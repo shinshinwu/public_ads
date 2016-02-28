@@ -52,10 +52,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
-        <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h2 class="section-heading">Request a public <span class="orange">ad</span></h2>
-        <p class="lead">Bacon ipsum dolor amet pig strip steak hamburger jerky, alcatra porchetta t-bone cow brisket pastrami leberkas. Short loin kevin shoulder, pancetta drumstick sausage pork pork chop. Pork loin spare ribs pastrami pig. Shankle t-bone pastrami beef kielbasa sirloin. Pork belly kevin corned beef hamburger, jowl turducken ground round sausage beef ribs shankle chicken bresaola tail turkey ball tip. Tenderloin short loin strip steak picanha chicken pig.</p>
+        <h2 class="section-heading">Request a public<span class="orange">ad</span></h2>
+        <hr class="section-heading-spacer"><br>
+        <p class="home lead">Bacon ipsum dolor amet pig strip steak hamburger jerky, alcatra porchetta t-bone cow brisket pastrami leberkas. Short loin kevin shoulder, pancetta drumstick sausage pork pork chop. Pork loin spare ribs pastrami pig.</p>
+        <%= link_to "Find your ad space", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
       </div>
       <div class="col-lg-5 col-sm-pull-6  col-sm-6">
         <%= image_tag("publicad-logo-lg.png", class:"img-responsive") %>
@@ -70,10 +71,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-5 col-sm-6">
-        <hr class="section-heading-spacer">
         <div class="clearfix"></div>
-        <h2 class="section-heading">Listing a public <span class="orange">ad</span></h2>
-        <p class="lead">Strip steak drumstick hamburger, doner prosciutto swine turkey frankfurter landjaeger cupim spare ribs ribeye bresaola bacon. Porchetta flank corned beef alcatra, pork loin sirloin prosciutto bacon cow pork belly. Pork chop filet mignon andouille, chicken corned beef short loin sausage cupim leberkas meatloaf pork loin.</p>
+        <h2 class="section-heading">Listing a public<span class="orange">ad</span></h2>
+        <hr class="section-heading-spacer"><br>
+        <p class="home lead">Strip steak drumstick hamburger, doner prosciutto swine turkey frankfurter landjaeger cupim spare ribs ribeye bresaola bacon. Porchetta flank corned beef alcatra, pork loin sirloin prosciutto bacon cow pork belly.</p>
+        <%= link_to "List your ad space", '#listing-tab', class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
       </div>
       <div class="col-lg-5 col-lg-offset-2 col-sm-6">
         <%= image_tag("publicad-logo-lg.png", class:"img-responsive") %>
