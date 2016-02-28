@@ -7,21 +7,21 @@
           <div id="intro-box">
             <div class="split-pannels">
               <ul class="nav nav-tabs" id="myTab">
-                <li class="active" id="request-tab" style="width:50%;"><a href="#request" data-toggle="tab">Request</a></li>
-                <li id="listing-tab" style="width:50%;"><a href="#listing" data-toggle="tab">Listing</a></li>
+                <li class="active" id="request-tab" style="width:50%;"><a href="#request" data-toggle="tab">Find your ad space</a></li>
+                <li id="listing-tab" style="width:50%;"><a href="#listing" data-toggle="tab">List your ad space</a></li>
               </ul>
 
               <div class="tab-content">
                 <div class="tab-pane active" id="request">
                   <div class="row">
                     <div id="request-section" class="col-xs-12">
-                      <h1 class="text-center hidden-xs">Request a public<span class="orange">ad</span> space by</h1>
-                      <h2 class="text-center visible-xs" style="color:black;">Request a public<span class="orange">ad</span> space by</h2>
+                      <h1 class="text-center hidden-xs">The only public<span class="orange">ad</span> space marketplace</h1>
+                      <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2>
                       <div class="visible-xs">
-                        <%= link_to "Search All Ad Space Listings<br />Near My Current Location".html_safe, listings_path, class: "btn btn-warning", data: { no_turbolink: true } %>
+                        <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning", data: { no_turbolink: true } %>
                       </div>
                       <div class="hidden-xs">
-                        <%= link_to "Search All Ad Space Listings Near My Current Location".html_safe, listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
+                        <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
                       </div>
                     </div>
                   </div>
@@ -72,7 +72,7 @@
         <div class="clearfix"></div>
         <h2 class="section-heading">Request a public<span class="orange">ad</span></h2>
         <hr class="section-heading-spacer"><br>
-        <p class="home lead">Bacon ipsum dolor amet pig strip steak hamburger jerky, alcatra porchetta t-bone cow brisket pastrami leberkas. Short loin kevin shoulder, pancetta drumstick sausage pork pork chop. Pork loin spare ribs pastrami pig.</p>
+        <p class="home lead">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
         <%= link_to "Find your ad space", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
       </div>
       <div class="col-lg-5 col-sm-pull-6  col-sm-6">
@@ -91,8 +91,8 @@
         <div class="clearfix"></div>
         <h2 class="section-heading">Listing a public<span class="orange">ad</span></h2>
         <hr class="section-heading-spacer"><br>
-        <p class="home lead">Strip steak drumstick hamburger, doner prosciutto swine turkey frankfurter landjaeger cupim spare ribs ribeye bresaola bacon. Porchetta flank corned beef alcatra, pork loin sirloin prosciutto bacon cow pork belly.</p>
-        <%= link_to "List your ad space", '#listing-tab', class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
+        <p class="home lead">Do you own out-of-home media space? Are you tired of paying those high advertisement agency fee's? List your sign for free today by creating a profile in under 3 minutes. We'll make an instantly marketeable profile for your public ad space that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.</p>
+        <%= link_to "List your ad space", new_listing_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
       </div>
       <div class="col-lg-5 col-lg-offset-2 col-sm-6">
         <%= image_tag("publicad-logo-lg.png", class:"img-responsive") %>
