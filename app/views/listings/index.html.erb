@@ -15,7 +15,7 @@
 
 <% content_for :javascripts do %>
 <script type="text/javascript">
-    var package_path = "//esri.github.com/bootstrap-map-js/src/js";
+    var package_path = "https://esri.github.io/bootstrap-map-js/src/js";
     var dojoConfig = {
         packages: [{
             name: "application",
@@ -23,7 +23,7 @@
         }]
     };
 </script>
-<script type="text/javascript" src="//js.arcgis.com/3.13compact">
+<script type="text/javascript" src="https://js.arcgis.com/3.13compact">
 </script>
 
 <script>
@@ -79,7 +79,7 @@
     // template.setTitle("<b>${description}</b>");
     template.setContent("<div><h3 class='ad-txt' style='text-align:center;'>${Title}</h3></div><div><p style='text-align:center;'><span class='ad-txt'> Description</span></p> <p class='listing-info-txt'>${description}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Category</span></p> <p class='listing-info-txt'>${category}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Is available</span></p> <p class='listing-info-txt'>${is_available}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Size</span></p> <p>width=${width} and height=${height}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Set-up cost</span></p> <p class='listing-info-txt'>${base_amount}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Charge frequency</span></p> <p class='listing-info-txt'>${charge_frequency}</p></div><div><p style='text-align:center;'><span class='ad-txt'> Minimum Lease Length</span></p> <p class='listing-info-txt'>${minimum_lease_day}</p></div>");
 
-    featureLayer = new FeatureLayer("http://services5.arcgis.com/IsOQGGJ77Az9lKvg/ArcGIS/rest/services/sampleData/FeatureServer/0", {
+    featureLayer = new FeatureLayer("https://services5.arcgis.com/IsOQGGJ77Az9lKvg/ArcGIS/rest/services/sampleData/FeatureServer/0", {
         mode: FeatureLayer.MODE_ONDEMAND,
         outFields: ["Title", "description", "is_available", "company_name", "width", "height", "base_amount", "recurring_amount", "charge_frequency", "minimum_lease_day", "category"],
         infoTemplate: template
