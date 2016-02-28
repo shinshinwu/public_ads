@@ -80,7 +80,7 @@
 
         <div class="tab-content">
           <div class="tab-pane active" id="listings">
-            <% @listings_to_sell.present? %>
+            <% if @listings_to_sell.present? %>
               <h3 class="text-center orange">Leased Spaces</h3>
               <hr>
               <% @listings_to_sell.each do |listing| %>
@@ -118,7 +118,7 @@
               <% end %>
             <% end %>
 
-            <% @listings_to_buy.present? %>
+            <% if @listings_to_buy.present? %>
               <h3 class="text-center orange sm-top-margin">Requested Spaces</h3>
               <hr>
               <% @listings_to_buy.each do |listing| %>
