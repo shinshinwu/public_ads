@@ -38,6 +38,9 @@ gem 'font-awesome-sass', '~> 4.5.0'
 # for heroku deployment
 gem 'rails_12factor', group: :production
 
+# to fix the lading issue for maps/turbolinks
+gem 'jquery-turbolinks'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
