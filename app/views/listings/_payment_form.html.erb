@@ -1,4 +1,4 @@
-<%= form_for transaction, url: transactions_path, method: :post, html: {class: "form"} do |f| %>
+<%= form_for transaction, url: transactions_path, method: :post, html: {class: "form sm-margin"} do |f| %>
     <%= f.hidden_field :listing_id, value: transaction.listing_id %>
   <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"

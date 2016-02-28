@@ -110,8 +110,6 @@
                       <h4>Lease Term</h4>
                       <p class="sm-bottom-margin">1 of 5 months completed</p>
 
-                      <div class="btn btn-warning">Payment</div>
-
                       <div class="btn btn-warning">Messages</div>
                     </div>
                 </div>
@@ -147,7 +145,15 @@
                       <h4>Lease Term</h4>
                       <p class="sm-bottom-margin">1 of 5 months completed</p>
 
-                      <div class="btn btn-warning">Payment</div>
+                      <% transaction = Transaction.new(listing_id: listing.id) -%>
+
+                      <% if current_user.customer_id.present? %>
+                        <div class="btn btn-warning sm-margin">
+                          <%= link_to "Pay with your card on file", transactions_path(transaction: {listing_id: listing.id}), method: :post, class: "no-link-styling" %>
+                        </div>
+                      <% else %>
+                        <%= render partial: "listings/payment_form", locals: { price: listing.base_amount*100, transaction: transaction } %>
+                      <% end %>
 
                       <div class="btn btn-warning">Messages</div>
                     </div>

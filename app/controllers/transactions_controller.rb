@@ -33,7 +33,7 @@ class TransactionsController < ApplicationController
       redirect_to :back and return
     end
 
-    flash[:success] = "Successfully submitted your payment!"
+    flash[:success] = "Successfully submitted your payment of $#{@listing.base_amount}!"
     redirect_to :back and return
   end
 
