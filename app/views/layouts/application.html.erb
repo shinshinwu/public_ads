@@ -8,6 +8,7 @@
 <link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.13/esri/css/esri.css">
 <link rel="stylesheet" type="text/css" href="https://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">
   <%= csrf_meta_tags %>
+  <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
   <!-- Navigation -->
@@ -21,7 +22,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <%= link_to image_tag("publicad-logo.png"), root_path, class: "navbar-brand topnav" %>
+        <%= link_to image_tag("publicad-logo-nav.png", width: 150, height: 50), root_path, class: "navbar-brand topnav" %>
       </div>
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -71,8 +72,6 @@
     </div>
   </div>
 </footer>
-
   <%= yield :javascripts %>
-
 </body>
 </html>
