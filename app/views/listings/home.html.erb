@@ -7,18 +7,22 @@
           <div id="intro-box">
             <div class="split-pannels">
               <ul class="nav nav-tabs" id="myTab">
-                <li class="active" id="request-tab"><a href="#request" data-toggle="tab">Request</a></li>
-                <li id="listing-tab"><a href="#listing" data-toggle="tab">Listing</a></li>
+                <li class="active" id="request-tab" style="width:50%;"><a href="#request" data-toggle="tab">Request</a></li>
+                <li id="listing-tab" style="width:50%;"><a href="#listing" data-toggle="tab">Listing</a></li>
               </ul>
 
               <div class="tab-content">
                 <div class="tab-pane active" id="request">
                   <div class="row">
                     <div id="request-section" class="col-xs-12">
-                      <h1 class="text-center">Request a public<span class="orange">ad</span> space by</h1>
-                      <ul>
-                        <%= link_to "Search all ad space listings near my current location", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
-                      </ul>
+                      <h1 class="text-center hidden-xs">Request a public<span class="orange">ad</span> space by</h1>
+                      <h2 class="text-center visible-xs" style="color:black;">Request a public<span class="orange">ad</span> space by</h2>
+                      <div class="visible-xs">
+                        <%= link_to "Search All Ad Space Listings<br />Near My Current Location".html_safe, listings_path, class: "btn btn-warning", data: { no_turbolink: true } %>
+                      </div>
+                      <div class="hidden-xs">
+                        <%= link_to "Search All Ad Space Listings Near My Current Location".html_safe, listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
+                      </div>
                     </div>
                   </div>
                 </div> <!-- request tab-pane -->
@@ -26,7 +30,8 @@
                 <div class="tab-pane" id="listing">
                   <div class="row">
                     <div id="listing-section" class="col-xs-12">
-                      <h2 class="text-center">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> <br />by creating an account today</h2>
+                      <h2 class="text-center hidden-xs">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> <br />by creating an account today</h2>
+                      <h3 class="text-center visible-xs" style="color:black;">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> by creating an account today</h3>
                       <%= form_for @user, url: users_path, method: :post, html: {class: "signup-form form form-inline"} do |f| %>
                         <div class="form-group">
                           <%= f.label :email %>
