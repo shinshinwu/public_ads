@@ -6,6 +6,10 @@
         <p>Click on one of the map's markers to get started and see the public<span class="ad-txt">ad</span> information.</p>
       </div>
       <div id="infoPane" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
+      <div class="col-xs-3"></div>
+      <div class="center-block col-xs-3" style="margin-top:10px;">
+        <%= link_to "See Listing Details", listing_path(Listing.last), class: "btn btn-warning btn-lg" %>
+      </div>
     </div>
     <div class="col-xs-8">
       <div id="map" data-dojo-type="dijit/layout/ContentPane" data-dojo-props="region:'center'"></div>
@@ -65,8 +69,8 @@
           ready(function() {
               parser.parse();
       map = BootstrapMap.create("map", {
-      basemap: "topo",  
-      center: [-122.45, 37.80], 
+      basemap: "topo",
+      center: [-122.45, 37.80],
       zoom: 14,
       smartNavigation: true
     });
