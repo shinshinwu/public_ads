@@ -6,35 +6,47 @@
         <div class="intro-message">
           <div id="intro-box">
             <div class="split-pannels">
-              <div class="row">
-                <div class="col-xs-6">
-                  <a href="#" id="request-button">Request</a>
-                </div>
-                <div class="col-xs-6">
-                  <a href="#" id="listing-button">Listing</a>
-                </div>
-              </div>
+              <ul class="nav nav-tabs" id="myTab">
+                <li class="active" id="request-tab"><a href="#request" data-toggle="tab">Request</a></li>
+                <li id="listing-tab"><a href="#listing" data-toggle="tab">Listing</a></li>
+              </ul>
 
-              <div class="row">
-                <section id="request-section" class="col-xs-12">
-                  <p>a public<span class="orange">ad</span> space by</p>
-                  <ul>
-                    <%= link_to "See all ad space listings near my current location", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
-                  </ul>
-                </section>
+              <div class="tab-content">
+                <div class="tab-pane active" id="request">
+                  <div class="row">
+                    <div id="request-section" class="col-xs-12">
+                      <h1 class="text-center">Request a public<span class="orange">ad</span> space by</h1>
+                      <ul>
+                        <%= link_to "Search all ad space listings near my current location", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
+                      </ul>
+                    </div>
+                  </div>
+                </div> <!-- request tab-pane -->
 
-                <section id="listing-section" class="col-xs-12">
-                  <p>Start listing your public <span class="orange">ad</span> space for free by creating an account today</p>
-                  <%= form_for @user, url: users_path, method: :post, html: {class: "signup-form form"} do |f| %>
-                    <%= f.label :email %>
-                    <%= f.email_field :email, required: true %>
+                <div class="tab-pane" id="listing">
+                  <div class="row">
+                    <div id="listing-section" class="col-xs-12">
+                      <h2 class="text-center">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> <br />by creating an account today</h2>
+                      <%= form_for @user, url: users_path, method: :post, html: {class: "signup-form form form-inline"} do |f| %>
+                        <div class="form-group">
+                          <%= f.label :email %>
+                          <%= f.email_field :email, required: true, class: "form-control" %>
+                        </div>
 
-                    <%= f.label :password %>
-                    <%= f.password_field :password, required: true %>
+                        <div class="form-group">
+                          <%= f.label :password %>
+                          <%= f.password_field :password, required: true, class: "form-control" %>
+                        </div>
+                        <div class="form-group">
+                          <%= f.submit "join", :class => 'btn btn-warning' %>
+                        </div>
+                      <% end %>
+                    </div> <!-- listing section -->
+                  </div> <!-- row -->
+                </div> <!-- listing tab-pane -->
 
-                    <%= f.submit "join", :class => 'btn btn-warning btn-lg' %>
-                  <% end %>
-                </section>
+              </div> <!-- tab-content -->
+
               </div>
             </div>
           </div>
@@ -109,19 +121,3 @@
   <!-- /.container -->
 </div>
 <!-- /.banner -->
-
-<% content_for :javascripts do %>
-<script type="text/javascript">
-  $(function() {
-    $("#request-button").hover(function(){
-      $("#request-section").show();
-      $("#listing-section").hide();
-    });
-
-    $("#listing-button").hover(function(){
-      $("#listing-section").show();
-      $("#request-section").hide();
-    });
-  });
-</script>
-<% end %>

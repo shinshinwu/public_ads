@@ -17,10 +17,6 @@
 @import "bootstrap";
 @import "font-awesome";
 
- .content #contact-listing {
-    display:          none;
- }
-
  /*!
  * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
  * Code licensed under the Apache License v2.0.
@@ -136,8 +132,19 @@ ul.navbar-right {
     background-size: cover;
 }
 
-.intro-header #listing-section {
-    display:  none;
+.nav-tabs li.active a,
+.nav-tabs li a:hover
+.nav-tabs li a:focus {
+  background-color: #F89838 !important;
+  color: white !important;
+}
+
+.nav-tabs li a {
+  color: #F89838 !important;
+}
+
+.nav-tabs li {
+  width: 50%;
 }
 
 .intro-message {
@@ -146,16 +153,20 @@ ul.navbar-right {
     padding-bottom: 20%;
 }
 
-.intro-message > h1 {
-    margin: 0;
-    text-shadow: 2px 2px 3px rgba(0,0,0,0.6);
-    font-size: 5em;
+.intro-message h1,
+.intro-message h2 {
+  margin: 25px 0;
+  color: black;
+}
+
+.intro-message h1 {
+  font-size: 4em;
 }
 
 #intro-box {
   height: 300px;
   background-color: white;
-  opacity: 0.8;
+  opacity: 0.95;
 }
 
 #intro-box .split-pannels {
