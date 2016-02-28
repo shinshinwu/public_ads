@@ -1,39 +1,98 @@
-<h1><%= @listing.title %></h1>
+<div class="container">
+  <div class="container top-margin col-sm-12">
+    <h1>&nbsp;&nbsp;
+      <%= @listing.title %>
+        <% if @listing.user == current_user %>
+          <div class="btn btn-warning">
+            <%= link_to "Edit Listing", edit_listing_path(@listing), class: "no-link-styling" %>
+          </div>
+        <% else %>
+          <div id="contact-button" class="btn btn-warning">Contact</div>
+      <% end %>
+    </h1>
 
-<% if @listing.user == current_user %>
-  <%= link_to "Edit Listing", edit_listing_path(@listing) %>
-<% end %>
+    <hr>
 
-<ul>
-  <%= image_tag(@listing.photo.url) %>
-  <li><%= @listing.title %></li>
-  <li>Type: <%= @listing.category %></li>
-  <li><%= @listing.is_available ? "Available" : "Unavailable" %></li>
-  <section>
-    <h3>Address:</h3>
-    <ul>
-      <li><%= @listing.address.line_1 %> <%= @listing.address.line_2 %></li>
-      <li><%= @listing.address.city %>, <%= @listing.address.state %> <%= @listing.address.zipcode %></li>
-      <li><%= @listing.address.country %></li>
-    </ul>
-  </section>
-  <li>Description: <%= @listing.description %></li>
-  <li>Owned by: <%= @listing.company_name %></li>
-  <li>Reference ID: <%= @listing.ref_id %></li>
-  <li>Width: <%= @listing.width %> inches</li>
-  <li>Height: <%= @listing.height %> inches</li>
-  <li>Once time base cost: <%= number_to_currency(@listing.base_amount) %></li>
-  <li>Recurring cost: <%= number_to_currency(@listing.recurring_amount) %> charged <%= @listing.charge_frequency %></li>
-  <li>Minimum Lease: <%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></li>
-  <% if @listing.user != current_user %>
-    <button id="contact-button">Contact</button>
-  <% end %>
-</ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="orange-border sm-margin sm-padding">
+            <div class="row">
+              <div class="col-sm-12 col-md-5 col-lg-5">
+                <%= image_tag(@listing.photo.url, class: "img-responsive img-thumbnail") %>
+              </div>
 
-<div id="contact-listing">
-  <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
+              <div class="col-sm-12 col-md-7 col-lg-7">
+                <div class="row sm-margin">
+                  <div class="pull-left">
+                    <h5><span>
+                      <%= number_to_currency(@listing.recurring_amount) %> <%= @listing.renewal_period_label %>&nbsp;&nbsp;&nbsp;&nbsp;
+                      <%= number_to_currency(@listing.base_amount) %> one time set-up fee
+                    </span></h5>
+                  </div>
+                  <div class="pull-right">
+                    <h5>Width: <%= @listing.width %> in | Height: <%= @listing.height %> in | <%= @listing.area %> SqIn</h5>
+                  </div>
+                </div>
+
+                <div class="row sm-margin">
+                  <h4><span class="fa fa-map-marker icon"></span>&nbsp;&nbsp;Corner of <%= @listing.address.line_1 %> and <%= @listing.address.line_2 %>, <%= @listing.address.city %>, <%= @listing.address.state %> <%= @listing.address.zipcode %> <%= @listing.address.country %></h4>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Type</div>
+                    <div class="col-sm-8"><%= @listing.category %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Availability:</div>
+                    <div class="col-sm-8"><%= @listing.is_available ? "Available" : "Unavailable" %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Reference ID:</div>
+                    <div class="col-sm-8"><%= @listing.ref_id %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Description:</div>
+                    <div class="col-sm-8"><%= @listing.description %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Owned By:</div>
+                    <div class="col-sm-8"><%= @listing.company_name %></div>
+                  </h5>
+                </div>
+
+                <div class="row sm-margin">
+                  <h5>
+                    <div class="col-sm-4 orange">Minimum Lease:</div>
+                    <div class="col-sm-8"><%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></div>
+                  </h5>
+                </div>
+              </div> <!-- / col-sm-12 -->
+            </div><!-- / row -->
+          </div><!-- / orang-border -->
+        </div><!-- / col-sm-12 -->
+      </div><!-- / row -->
+    </div><!-- / container -->
+
+    <div id="contact-listing" class="btn btn-warning">
+      <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
+    </div>
+
+  </div>
 </div>
-
 
 <% content_for :javascripts do %>
 <script type="text/javascript">
