@@ -51,6 +51,18 @@ p,
   margin: 50px 0;
 }
 
+.no-margin {
+  margin: 0;
+}
+
+.sm-margin {
+  margin: 25px 5px;
+}
+
+.sm-padding {
+  padding: 15px 5px;
+}
+
 .text-center {
   text-align: center;
 }
@@ -63,8 +75,21 @@ p,
   margin-top: 100px;
 }
 
+.sm-top-margin {
+  margin-top: 50px;
+}
+
+.sm-bottom-margin {
+  margin: 0 0 15px 0;
+}
+
 .orange {
   color:       #F89838;
+}
+
+.orange-border {
+  border-radius:  5px;
+  border:         4px solid #F89838;
 }
 
 .topnav {
@@ -209,7 +234,7 @@ ul.navbar-right {
 }
 
 footer {
-    padding: 50px 0;
+    padding: 25px 0;
     background-color: #f8f8f8;
 }
 
@@ -263,7 +288,7 @@ div.info-pane-description{
 div.info-pane-description p {
   padding: 2% 5% 0;
   margin: 0;
-  text-align: center; 
+  text-align: center;
 }
 div#infoPane div p {
   text-align: center;

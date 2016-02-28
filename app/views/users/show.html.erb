@@ -10,11 +10,11 @@
 <%#= link_to "Edit Profile", edit_users_path %> -->
 
 <div class="container top-margin">
-  <hr>
   <div class="container bootstrap snippet">
     <div class="row">
       <div class="col-sm-10"><h1><%= @user.name %>'s Profile</h1></div>
     </div>
+
     <div class="row">
       <div class="col-sm-3"><!--left col-->
 
@@ -70,130 +70,136 @@
         </ul>
 
       </div><!--/col-3-->
+
       <div class="col-sm-9">
+        <ul class="nav nav-tabs" id="myTab">
+          <li class="active"><a href="#listings" data-toggle="tab">Listings</a></li>
+          <li><a href="#messages" data-toggle="tab">Messages</a></li>
+          <li><a href="#settings" data-toggle="tab">Settings</a></li>
+        </ul>
 
-          <ul class="nav nav-tabs" id="myTab">
-            <li class="active"><a href="#listings" data-toggle="tab">Listings</a></li>
-            <li><a href="#messages" data-toggle="tab">Messages</a></li>
-            <li><a href="#settings" data-toggle="tab">Settings</a></li>
-          </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="listings">
+            <h3 class="text-center orange">Leased Spaces</h3>
+            <hr>
+            <% @listings_to_sell.each do |listing| %>
+              <div class="col-sm-12 orange-border sm-margin sm-padding">
+                  <div class="col-sm-4">
+                    <%= link_to image_tag(listing.photo.url, class: "img-responsive center-block img-thumbnail"), listing_path(listing) %>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <h4>Title</h4>
+                    <p class="no-margin">
+                      <%= link_to listing.title, listing_path(listing) %>
+                    </p>
 
-          <div class="tab-content">
-            <div class="tab-pane active" id="listings">
-              <div class="table-responsive">
-                <div class="leased-space">
-                  <h3 class="text-center orange">Leased Space</h3>
-                  <% @listings_to_sell.each do |listing| %>
-                    <div class="row">
-                      <div class="col-sm-3">
-                        <%= image_tag(listing.photo.url) %>
-                      </div>
-                      <div class="col-sm-9">
-                        <%= listing.title %>
-                      </div>
-                    </div>
-                  <% end %>
+                    <h4>Dimensions</h4>
+                    <p class="no-margin"><%= listing.width %> in x <%= listing.height %> in <br /> <%= listing.area %> sq/in total</p>
+
+                    <h4>Location</h4>
+                    <p class="no-margin">Corner of <%= listing.address.line_1 %> and <%= listing.address.line_2 %> <br />
+                      <%= listing.address.city %>, <%= listing.address.state %> <%= listing.address.zipcode %> <%= listing.address.country %>
+                    </p>
+                  </div>
+
+                  <div class="col-sm-4 text-center">
+                    <h4>Price</h4>
+                    <p class="no-margin"><%= number_to_currency(listing.recurring_amount) %> <%= listing.renewal_period_label %> <br /> <%= number_to_currency(listing.base_amount) %> one time set-up fee</p>
+
+                    <h4>Lease Term</h4>
+                    <p class="sm-bottom-margin">1 of 5 months completed</p>
+
+                    <div class="btn btn-warning">Payment</div>
+
+                    <div class="btn btn-warning">Messages</div>
+                  </div>
+              </div>
+            <% end %>
+
+            <h3 class="text-center orange sm-top-margin">Requested Spaces</h3>
+            <hr>
+            <% @listings_to_buy.each do |listing| %>
+              <div class="col-sm-12 orange-border sm-margin sm-padding">
+                  <div class="col-sm-4">
+                    <%= link_to image_tag(listing.photo.url, class: "img-responsive center-block img-thumbnail"), listing_path(listing) %>
+                  </div>
+                  <div class="col-sm-4 text-center">
+                    <h4>Title</h4>
+                    <p class="no-margin">
+                      <%= link_to listing.title, listing_path(listing) %>
+                    </p>
+
+                    <h4>Dimensions</h4>
+                    <p class="no-margin"><%= listing.width %> in x <%= listing.height %> in <br /> <%= listing.area %> sq/in total</p>
+
+                    <h4>Location</h4>
+                    <p class="no-margin">Corner of <%= listing.address.line_1 %> and <%= listing.address.line_2 %></p><br />
+                      <%= listing.address.city %>, <%= listing.address.state %> <%= listing.address.zipcode %> <%= listing.address.country %>
+                  </div>
+
+                  <div class="col-sm-4 text-center">
+                    <h4>Price</h4>
+                    <p class="no-margin"><%= number_to_currency(listing.recurring_amount) %> <%= listing.renewal_period_label %> <br /> <%= number_to_currency(listing.base_amount) %> one time set-up fee</p>
+
+                    <h4>Lease Term</h4>
+                    <p class="sm-bottom-margin">1 of 5 months completed</p>
+
+                    <div class="btn btn-warning">Payment</div>
+
+                    <div class="btn btn-warning">Messages</div>
+                  </div>
+              </div>
+            <% end %>
+          </div><!--/tab-pane-->
+
+          <div class="tab-pane" id="messages">
+            <ul class="list-group">
+              <li class="list-group-item text-muted">Inbox</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Here is your a link to the latest summary report from the..</a> 2.13.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+              <li class="list-group-item text-right"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
+            </ul>
+          </div><!--/tab-pane-->
+
+          <div class="tab-pane" id="settings">
+            <%= form_for @user, url: edit_users_path, method: :put, html: {class: "form form-horizontal"} do |f| %>
+              <legend>Edit Profile</legend>
+
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <%= f.label :email %>
+                  <%= f.email_field :email, class: "form-control" %>
                 </div>
-                <hr>
-              </div><!--/table-resp-->
 
-              <hr>
-             </div><!--/tab-pane-->
-
-             <div class="tab-pane" id="messages">
-
-               <h2></h2>
-
-               <ul class="list-group">
-                  <li class="list-group-item text-muted">Inbox</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Here is your a link to the latest summary report from the..</a> 2.13.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-                  <li class="list-group-item text-right"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-
-                </ul>
-
-             </div><!--/tab-pane-->
-             <div class="tab-pane" id="settings">
-
-
-                  <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="first_name"><h4>First name</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name" title="enter your first name if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                            <label for="last_name"><h4>Last name</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="last name" title="enter your last name if any.">
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="phone"><h4>Phone</h4></label>
-                              <input type="text" class="form-control" name="phone" id="phone" placeholder="enter phone" title="enter your phone number if any.">
-                          </div>
-                      </div>
-
-                      <div class="form-group">
-                          <div class="col-xs-6">
-                             <label for="mobile"><h4>Mobile</h4></label>
-                              <input type="text" class="form-control" name="mobile" id="mobile" placeholder="enter mobile number" title="enter your mobile number if any.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="you@email.com" title="enter your email.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Location</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="somewhere" title="enter a location">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                              <label for="password"><h4>Password</h4></label>
-                              <input type="password" class="form-control" name="password" id="password" placeholder="password" title="enter your password.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-
-                          <div class="col-xs-6">
-                            <label for="password2"><h4>Verify</h4></label>
-                              <input type="password" class="form-control" name="password2" id="password2" placeholder="password2" title="enter your password2.">
-                          </div>
-                      </div>
-                      <div class="form-group">
-                           <div class="col-xs-12">
-                                <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Save</button>
-                                <button class="btn btn-lg" type="reset"><i class="glyphicon glyphicon-repeat"></i> Reset</button>
-                            </div>
-                      </div>
-                </form>
+                <div class="col-xs-6">
+                  <%= f.label :phone %>
+                  <%= f.telephone_field :phone, class: "form-control" %>
+                </div>
               </div>
 
-              </div><!--/tab-pane-->
-          </div><!--/tab-content-->
+              <div class="form-group">
+                <div class="col-xs-6">
+                  <%= f.label :first_name %>
+                  <%= f.text_field :first_name, class: "form-control" %>
+                </div>
 
-        </div><!--/col-9-->
+                <div class="col-xs-6">
+                  <%= f.label :last_name %>
+                  <%= f.text_field :last_name, class: "form-control" %>
+                </div>
+              </div>
+
+              <div class="col-xs-5"></div>
+              <%= f.submit "Update Profile", :class => 'btn btn-warning col-xs-2' %>
+            <% end %>
+          </div> <!--/tab-pane-->
+        </div><!--/tab-content-->
+      </div><!--/col-9-->
     </div><!--/row-->
-  </div>
+  </div><!-- bootstrap snippet -->
 </div>

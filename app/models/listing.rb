@@ -24,4 +24,21 @@ class Listing < ActiveRecord::Base
       return 365
     end
   end
+
+  def renewal_period_label
+    case charge_frequency
+    when "daily"
+      return "/ day"
+    when "weekly"
+      return "/ week"
+    when "monthly"
+      return "/ mo"
+    when "yearly"
+      return "/ yr"
+    end
+  end
+
+  def area
+    return width * height
+  end
 end
