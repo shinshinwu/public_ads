@@ -1,5 +1,21 @@
 <div class="container">
-  <div class="container top-margin col-sm-12">
+
+  <!-- Message Modal -->
+  <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Send a message to the pulic<span class="orange">ad</span> owner</h4>
+        </div>
+        <div class="modal-body">
+          <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container col-sm-12">
     <h1>&nbsp;&nbsp;
       <%= @listing.title %>
         <% if @listing.user == current_user %>
@@ -7,7 +23,7 @@
             <%= link_to "Edit Listing", edit_listing_path(@listing), class: "no-link-styling" %>
           </div>
         <% else %>
-          <div id="contact-button" class="btn btn-warning">Contact</div>
+          <div id="contact-button" class="btn btn-warning" data-toggle="modal" data-target="#messageModal">Contact</div>
       <% end %>
     </h1>
 
@@ -87,19 +103,5 @@
       </div><!-- / row -->
     </div><!-- / container -->
 
-    <div id="contact-listing" class="btn btn-warning">
-      <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
-    </div>
-
   </div>
 </div>
-
-<% content_for :javascripts do %>
-<script type="text/javascript">
-  $(function() {
-    $("#contact-button").click(function(){
-      $("#contact-listing").show();
-    });
-  });
-</script>
-<% end %>

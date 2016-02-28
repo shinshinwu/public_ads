@@ -5,7 +5,7 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
 
-<link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.13/esri/css/esri.css"> 
+<link rel="stylesheet" type="text/css" href="https://js.arcgis.com/3.13/esri/css/esri.css">
 <link rel="stylesheet" type="text/css" href="https://esri.github.io/bootstrap-map-js/src/css/bootstrapmap.css">
   <%= csrf_meta_tags %>
 </head>
@@ -52,11 +52,12 @@
     </nav>
 
 
-  <div class="content">
-    <% flash.each do |key, value| %>
-      <div class="alert alert-<%= key %>"><%= value %></div>
-    <% end %>
+  <div class="top-margin"></div>
+  <% flash.each do |key, value| %>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
 
+  <div class="content">
     <%= yield %>
   </div>
 
