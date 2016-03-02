@@ -30,4 +30,6 @@ Rails.application.routes.draw do
 
   resources :transactions, only: [:create] do
   end
+
+  get '/sandbox' => 'sandbox#index', as: :sandbox
 end
