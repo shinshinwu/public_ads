@@ -75,6 +75,7 @@ var map,
         var name = locations[i][1]['title'];
         var lat = locations[i][0]['latitude'];
         var longi = locations[i][0]['longitude'];
+        var baseUrl = '/listings/'
         var latlngset = new google.maps.LatLng(lat, longi);
         var icon = {
                   scaledSize: new google.maps.Size(32, 32), 
@@ -88,7 +89,7 @@ var map,
                   position: latlngset,
                   icon: icon
                 });
-        var content = name;
+        var content = "<p class='marker_title'>"+name+"</p><p class='marker_title'><a href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
         var infowindow = new google.maps.InfoWindow();
             createMarkerButton(marker);
         google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 

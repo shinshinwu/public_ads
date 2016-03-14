@@ -16,6 +16,7 @@ class ListingsController < ApplicationController
       all_listings << listing
     end
     gon.sampleData = all_listings
+    print gon.sampleData
   end
 
   def new
