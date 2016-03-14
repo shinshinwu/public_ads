@@ -1,4 +1,4 @@
-<div class="container map-div">
+<div class="container">
   <div class="row">
     <div class="col-sm-4">
       <h1 class="text-center info-pane-title">public<span class="ad-txt">ad</span></h1>
@@ -21,8 +21,6 @@ var map,
     mapContainer = $('#pubAdMap'),
     mapCanvas = document.createElement('div'),
     infos = [];
-;APP.locationsMap = function () {
-  function initialize() {
     var mapOptions = {
       center: new google.maps.LatLng(33.1, -117.2),
       zoom: 9,
@@ -32,10 +30,18 @@ var map,
       scrollwheel: false,
       zoomControlOptions: {position: google.maps.ControlPosition.LEFT_CENTER}
     };
+;APP.locationsMap = function () {
+  function initialize() {
     styleMapElement(mapCanvas);
     appendMapElement(mapCanvas, mapContainer);  
     APP.map = new google.maps.Map(document.getElementById("map"),
         mapOptions);    
+    google.maps.event.addDomListener(APP.map, 'idle', function() {
+      calculateCenterOfMap();
+    });
+    google.maps.event.addDomListener(window, 'resize', function() {
+      APP.map.setCenter(APP.mapCenter);
+    });
     function styleMapElement(mapCanvas){
       mapCanvas.id = 'map';
       mapCanvas.style.height = '440px';
@@ -51,12 +57,6 @@ var map,
     function calculateCenterOfMap() {
       APP.mapCenter = APP.map.getCenter();
     }
-    google.maps.event.addDomListener(APP.map, 'idle', function() {
-        calculateCenterOfMap();
-    });
-    google.maps.event.addDomListener(window, 'resize', function() {
-      APP.map.setCenter(APP.mapCenter);
-    });
   }
   google.maps.event.addDomListener(window, 'load', initialize);
 }
