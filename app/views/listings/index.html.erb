@@ -6,6 +6,12 @@
         <p>Click on one of the map's markers to get started and see the public<span class="ad-txt">ad</span> information.</p>
       </div>
       <hr>
+      <div class="side-bar-container">
+        <ul id="marker_list">
+          
+        </ul>
+      </div>
+      <hr>
       <%@listings.each do  |x|%>
         <div class="row">
           <p><%= x.inspect%></p>
@@ -84,7 +90,7 @@ var map,
                 });
         var content = name;
         var infowindow = new google.maps.InfoWindow();
-              
+            createMarkerButton(marker);
         google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
             return function() {
                 /* close the previous info-window */
@@ -106,6 +112,19 @@ var map,
           /* blank the array */
           infoWindows.length = 0;
        }
+    }
+    function createMarkerButton(marker) {
+  //Creates a sidebar button
+      var ul = document.getElementById("marker_list");
+      var li = document.createElement("li");
+      var title = marker.getTitle();
+      li.innerHTML = title;
+      ul.appendChild(li);
+      
+      //Trigger a click event to marker when the button is clicked.
+      google.maps.event.addDomListener(li, "click", function(){
+        google.maps.event.trigger(marker, "click");
+      });
     }
 
     google.maps.event.addDomListener(APP.map, 'idle', function() {
