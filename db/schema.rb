@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227221143) do
+ActiveRecord::Schema.define(version: 20160313155544) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,15 +24,15 @@ ActiveRecord::Schema.define(version: 20160227221143) do
     t.string   "state"
     t.string   "zipcode"
     t.string   "country"
-    t.decimal  "lat"
-    t.decimal  "lng"
+    t.float    "latitude"
+    t.float    "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
-    t.boolean  "is_available"
+    t.boolean  "is_available",       default: true
     t.string   "title"
     t.text     "description"
     t.string   "company_name"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20160227221143) do
     t.string   "ref_id"
     t.integer  "width"
     t.integer  "height"
+    t.string   "img_url"
     t.float    "base_amount"
     t.float    "recurring_amount"
     t.string   "charge_frequency"
@@ -92,7 +93,6 @@ ActiveRecord::Schema.define(version: 20160227221143) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_id"
-    t.string   "payment_token"
   end
 
 end

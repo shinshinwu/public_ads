@@ -41,6 +41,9 @@ gem 'rails_12factor', group: :production
 # to fix the lading issue for maps/turbolinks
 gem 'jquery-turbolinks'
 
+# for geocoding services
+gem 'geocoder'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
