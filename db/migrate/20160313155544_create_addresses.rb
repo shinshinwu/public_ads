@@ -8,8 +8,8 @@ class CreateAddresses < ActiveRecord::Migration
       t.string      :state
       t.string      :zipcode
       t.string      :country
-      t.decimal     :lat
-      t.decimal     :lng
+      t.float       :latitude
+      t.float       :longitude
 
       t.timestamps
     end

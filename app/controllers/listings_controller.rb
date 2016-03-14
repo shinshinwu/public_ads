@@ -8,6 +8,15 @@ class ListingsController < ApplicationController
 
   def index
     @listings = Listing.includes(:address)
+    all_listings = []
+    @listings.each do |l|
+      listing = []
+      listing << l.address.as_json
+      listing << l.as_json
+      all_listings << listing
+    end
+    gon.sampleData = all_listings
+    print gon.sampleData
   end
 
   def new
