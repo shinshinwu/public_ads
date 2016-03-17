@@ -7,8 +7,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    
-     if params[:search] && search_params[:search] != 'All'
+    if params[:search] && search_params[:search] != 'All'
       @listings = Listing.search_by_ad_type(search_params[:search]).includes(:address)
     else
       @listings = Listing.includes(:address)  
@@ -19,23 +18,6 @@ class ListingsController < ApplicationController
       listing << l.address.as_json
       listing << l.as_json
       all_listings << listing
-    end
-
-    50.times do 
-      print '***'
-    end
-@listings.each do |r|
-  p r
-  p r.association_cache.keys 
-end
-      50.times do 
-      print '***'
-    end
-print params
-
-    
-    50.times do 
-      print '***'
     end
     gon.sampleData = all_listings
   end
@@ -149,8 +131,7 @@ print params
     @address.country  = params[:listing][:address][:country]
   end
 
-  def search_params
-    
+  def search_params 
     params.permit(:search) 
   end
 end
