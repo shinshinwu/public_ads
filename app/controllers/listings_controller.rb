@@ -15,8 +15,25 @@ class ListingsController < ApplicationController
       listing << l.as_json
       all_listings << listing
     end
+    results = Listing.search_by_ad_type('Bus Stop Ad').includes(:address)
+
+    50.times do 
+      print '***'
+    end
+results.each do |r|
+  p r
+  p r.association_cache.keys 
+end
+      50.times do 
+      print '***'
+    end
+# print results.address
+
+    
+    50.times do 
+      print '***'
+    end
     gon.sampleData = all_listings
-    print gon.sampleData
   end
 
   def new

@@ -23,7 +23,7 @@ messages = Message.create([
 
 
 
-listing = Listing.create(user_id: 1, title: 'Sign A', category: "Billboard", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
+listing = Listing.create(user_id: 1, title: 'Sign A', category: "Bench Ad", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
 puts listing.inspect
 address = Address.create(
 listing_id: listing.id,
@@ -45,7 +45,7 @@ zipcode: 94103,
 country: 'US'
 )
 puts address.inspect
-listing = Listing.create(user_id: 1, title: 'Sign C', category: "Billboard", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
+listing = Listing.create(user_id: 1, title: 'Sign C', category: "Bus Stop Ad", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
 puts listing.inspect
 address = Address.create(
 listing_id: listing.id,
@@ -67,7 +67,7 @@ zipcode: 94103,
 country: 'US'
 )
 puts address.inspect
-listing = Listing.create(user_id: 1, title: 'Sign E', category: "Billboard", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
+listing = Listing.create(user_id: 1, title: 'Sign E', category: "Bus Stop Ad", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
 puts listing.inspect
 address = Address.create(
 listing_id: listing.id,
@@ -89,7 +89,7 @@ zipcode: 94109,
 country: 'US'
 )
 puts address.inspect
-listing = Listing.create(user_id: 1, title: 'Sign G', category: "Billboard", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
+listing = Listing.create(user_id: 1, title: 'Sign G', category: "Bench Ad", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
 puts listing.inspect
 address = Address.create(
 listing_id: listing.id,
@@ -111,7 +111,7 @@ zipcode: 94102,
 country: 'US'
 )
 puts address.inspect
-listing = Listing.create(user_id: 1, title: 'Sign I', category: "Billboard", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
+listing = Listing.create(user_id: 1, title: 'Sign I', category: "Bench Ad", description: "A sign", width: 20, height:30, base_amount: 200, recurring_amount: 50, is_available: true, phone: '1234567890', ref_id: "vd-1234", charge_frequency: "momthly", company_name: "Some Signs", min_lease_days: 30)
 puts listing.inspect
 address = Address.create(
 listing_id: listing.id,
