@@ -26,9 +26,9 @@
                       <div>
                       <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
                        <%= label_tag(:search, "Search for:") %>
+                        <%=select_tag "search", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
                         
-                        
-                        <%= text_field_tag(:search) %>
+                        <!-- <%= text_field_tag(:search) %> -->
                         <%= submit_tag("Search") %>
                         <%end%>
                       </div>

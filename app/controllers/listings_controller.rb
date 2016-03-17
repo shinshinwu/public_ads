@@ -8,7 +8,7 @@ class ListingsController < ApplicationController
 
   def index
     
-     if params[:search]
+     if params[:search] && search_params[:search] != 'All'
       @listings = Listing.search_by_ad_type(search_params[:search]).includes(:address)
     else
       @listings = Listing.includes(:address)  
