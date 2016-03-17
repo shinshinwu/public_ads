@@ -7,7 +7,11 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @listings = Listing.includes(:address)
+    if params[:search] && search_params[:search] != 'All'
+      @listings = Listing.search_by_ad_type(search_params[:search]).includes(:address)
+    else
+      @listings = Listing.includes(:address)  
+    end
     all_listings = []
     @listings.each do |l|
       listing = []
@@ -16,7 +20,6 @@ class ListingsController < ApplicationController
       all_listings << listing
     end
     gon.sampleData = all_listings
-    print gon.sampleData
   end
 
   def new
@@ -128,4 +131,7 @@ class ListingsController < ApplicationController
     @address.country  = params[:listing][:address][:country]
   end
 
+  def search_params 
+    params.permit(:search) 
+  end
 end

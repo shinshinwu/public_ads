@@ -44,6 +44,9 @@ gem 'geocoder'
 # to pass ruby/rails server data to client
 gem 'gon'
 
+# for full-text search ability
+gem 'pg_search'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

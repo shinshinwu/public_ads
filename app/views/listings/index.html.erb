@@ -48,6 +48,7 @@ var map,
 
 ;APP.locationsMap = function () {
   function initialize() {
+    console.log(gon.sampleData);
     styleMapElement(mapCanvas);
     appendMapElement(mapCanvas, mapContainer);
     APP.map = new google.maps.Map(document.getElementById("map"),
@@ -80,15 +81,21 @@ var map,
         var icon = {
                   scaledSize: new google.maps.Size(32, 32), 
                   origin: new google.maps.Point(0,0), 
-                  anchor: new google.maps.Point(0, 0),
-                  url: "map_marker.png" 
+                  anchor: new google.maps.Point(0, 0)
                 };
+        if (locations[i][1]['is_available'] === true) {
+                icon['url']= "map_marker.png";
+        }
+        if (locations[i][1]['is_available'] === false) {
+                  icon['url']= "map_marker_n.png" ;
+        }
         marker = new google.maps.Marker({  
                   map: map, 
                   title: name,
                   position: latlngset,
                   icon: icon
                 });
+
         var content = "<p class='marker_title'>"+name+"</p><p class='marker_title'><a href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
         var infowindow = new google.maps.InfoWindow();
             createMarkerButton(marker);

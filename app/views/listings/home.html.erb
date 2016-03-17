@@ -17,14 +17,35 @@
                     <div id="request-section" class="col-xs-12">
                       <h1 class="text-center hidden-xs">The only public<span class="orange">ad</span> space marketplace</h1>
                       <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2>
-                      <div class="visible-xs">
+<!--                       <div class="visible-xs">
                         <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning", data: { no_turbolink: true } %>
-                      </div>
-                      <div class="hidden-xs">
+                      </div> -->
+<!--                       <div class="hidden-xs">
                         <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
-                      </div>
+                      </div> -->
+
+
                     </div>
                   </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                        <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
+                        <div class="row">
+                          <div class="col-sm-6">
+                          <%= label_tag(:search, "Search by publicAd space type: ", class: 'home-search-label') %>
+                          <%=select_tag "search", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
+                            
+                          </div>
+                          <div class="col-sm-6">
+                          <%= submit_tag("Find", class: 'btn btn-warning') %>
+                            
+                          </div>
+
+                          <!-- <%= text_field_tag(:search) %> -->
+                        </div>
+                        <%end%>
+                        </div>
+                      </div>
                 </div> <!-- request tab-pane -->
 
                 <div class="tab-pane" id="listing">
