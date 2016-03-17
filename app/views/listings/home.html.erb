@@ -23,6 +23,17 @@
                       <div class="hidden-xs">
                         <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
                       </div>
+                      <div>
+                      <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
+                       <%= label_tag(:search, "Search for:") %>
+                        
+                        
+                        <%= text_field_tag(:search) %>
+                        <%= submit_tag("Search") %>
+                        <%end%>
+                      </div>
+
+
                     </div>
                   </div>
                 </div> <!-- request tab-pane -->
