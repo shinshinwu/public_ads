@@ -6,17 +6,22 @@ class ListingsController < ApplicationController
     @user = User.new
   end
 
+
+
+
+
   def index
-    if params[:search] && search_params[:search] != 'All'
-      @listings = Listing.search_by_ad_type(search_params[:search]).includes(:address)
+    search_lat_long = Geocoder.coordinates(search_params[:address])
+    if params[:category] && params[:category] != 'All'
+      @listings = Address.address_search(search_params[:category]).includes(:listing).near(search_lat_long, search_params[:distance])
     else
-      @listings = Listing.includes(:address)  
+      @listings = Address.includes(:listing).near(search_lat_long, search_params[:distance])
     end
     all_listings = []
     @listings.each do |l|
       listing = []
-      listing << l.address.as_json
       listing << l.as_json
+      listing << l.listing.as_json
       all_listings << listing
     end
     gon.sampleData = all_listings
@@ -132,6 +137,6 @@ class ListingsController < ApplicationController
   end
 
   def search_params 
-    params.permit(:search) 
+    params.permit(:category, :address, :distance)
   end
 end
