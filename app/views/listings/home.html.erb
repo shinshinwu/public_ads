@@ -31,14 +31,22 @@
                         <div class="col-xs-12">
                         <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
                         <div class="row">
-                          <div class="col-sm-6">
-                          <%= label_tag(:search, "Search by publicAd space type: ", class: 'home-search-label') %>
-                          <%=select_tag "search", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
-                            
+                          <div class="col-sm-3">
+                          <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
+                          <%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
                           </div>
-                          <div class="col-sm-6">
+                          <div class="col-sm-3">
+                            <%= label_tag(:address, "Address:") %>
+                            <%= text_field_tag(:address) %>
+                          </div>
+                          <div class="col-sm-3">
+                            <%= label_tag(:distance, "Distance:") %>
+                            <%= text_field_tag(:distance) %>
+                          </div>
+
+
+                          <div class="col-sm-3">
                           <%= submit_tag("Find", class: 'btn btn-warning') %>
-                            
                           </div>
 
                           <!-- <%= text_field_tag(:search) %> -->
