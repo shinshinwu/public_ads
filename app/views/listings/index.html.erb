@@ -6,6 +6,54 @@
         <p>Click on one of the map's markers to get started and see the public<span class="ad-txt">ad</span> information.</p>
       </div>
       <hr>
+<div class="row">
+<div class="col-xs-12">
+<%=form_tag("/listings", method: "get", search: true, class: "nifty_form", id: "search_form") do%>
+<div class="row">
+<div class="col-xs-12">
+<%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
+<%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
+</div>
+<div class="col-xs-12">
+<%= label_tag(:address, "Address:") %>
+<%= text_field_tag(:address, nil, :required => true) %>
+</div>
+
+<%= hidden_field_tag('distance', 'valuye')%> 
+
+
+
+<!-- <%= text_field_tag(:search) %> -->
+</div>
+<div class="row">
+        <div id="nonlinear"></div>
+      <span class="example-val" id="lower-value"></span>
+      <span id="lower-offset"></span>
+      <span class="example-val" id="upper-value"></span>
+      <span id="upper-offset"></span>
+</div>
+<div class="row">
+<div class="col-xs-12">
+<%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
+</div>
+</div>
+<div class="row">
+  <!-- <div id="sliderFly"></div> -->
+<div class="col-xs-10">
+
+<div class="view center-block">
+
+</div>
+</div>
+
+
+
+
+</div>
+<%end%>
+</div>
+</div>  
+<hr>
       <div class="side-bar-container">
         <ul id="marker_list">
           
@@ -140,6 +188,7 @@ var map,
 }
 </script>
 <script>APP.locationsMap();</script>
+
 
 
 <% end %>

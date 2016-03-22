@@ -16,6 +16,9 @@
 @import "font-awesome-sprockets";
 @import "bootstrap";
 @import "font-awesome";
+@import "nouislider";
+@import "nouislider.pips";
+@import "nouislider.tooltips";
 
  /*!
  * Start Bootstrap - Landing Page Bootstrap Theme (http://startbootstrap.com)
@@ -393,4 +396,9 @@ p.home.lead{
 
 input,label {
   color: rgba(0,0,0,0.9);
+}
+
+
+span {
+  color: black;
 }
