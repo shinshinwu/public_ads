@@ -27,7 +27,7 @@ class ListingsController < ApplicationController
       listing << l.listing.as_json
       all_listings << listing
     end
-    gon.sampleData = all_listings
+    gon.publicAdMapData = all_listings
     gon.distance = search_distance
   end
 
