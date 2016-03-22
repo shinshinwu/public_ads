@@ -32,21 +32,28 @@
                         <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
                         <div class="row">
                           <div class="col-sm-3">
-                          <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
                           <%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
+                          <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
                           </div>
                           <div class="col-sm-3">
                             <%= label_tag(:address, "Address:") %>
-                            <%= text_field_tag(:address) %>
+                            <%= text_field_tag(:address, nil, :required => true) %>
                           </div>
                           <div class="col-sm-3">
-                            <%= label_tag(:distance, "Distance:") %>
-                            <%= text_field_tag(:distance) %>
+                            <!-- <%= label_tag(:distance, "Distance:") %> -->
+                            <!-- <%= text_field_tag(:distance, nil, :required => true) %> -->
+                          <div id="nonlinear"></div>
+                        <span class="example-val" id="lower-value"></span>
+                        <span id="lower-offset"></span>
+                        <span class="example-val" id="upper-value"></span>
+                        <span id="upper-offset"></span>                          
+
+
                           </div>
 
-
+<%= hidden_field_tag('distance', 'valuye')%> 
                           <div class="col-sm-3">
-                          <%= submit_tag("Find", class: 'btn btn-warning') %>
+                          <%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
                           </div>
 
                           <!-- <%= text_field_tag(:search) %> -->

@@ -4,7 +4,6 @@ include PgSearch
   geocoded_by :full_street_address
   after_validation :geocode
 
-
   pg_search_scope :address_search, :associated_against => {
     :listing => :category
   }

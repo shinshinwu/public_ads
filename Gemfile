@@ -28,6 +28,8 @@ gem 'bcrypt', '~> 3.1.7'
 
 # file and image upload awesomeness
 gem 'paperclip', '~> 4.3'
+# aws interface
+gem 'aws-sdk', '< 2.0'
 
 # payment processor
 gem 'stripe', '~> 1.36'
