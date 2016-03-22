@@ -12,11 +12,11 @@
 <div class="row">
 <div class="col-xs-12">
 <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
-<%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
+<%=select_tag 'category', options_for_select([ 'All', 'Billboard', 'Bench Ad', 'Bus Stop Ad'  ], @search_category ) %>
 </div>
 <div class="col-xs-12">
 <%= label_tag(:address, "Address:") %>
-<%= text_field_tag(:address, nil, :required => true) %>
+<%= text_field_tag(:address, @search_address || 94101, :required => true) %>
 </div>
 
 <%= hidden_field_tag('distance', 'valuye')%> 

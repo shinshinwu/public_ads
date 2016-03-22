@@ -37,6 +37,9 @@ APP.instance = noUiSlider.create(connectSlider, {
   postfix: '  miles'
   })
 });
+if (gon.distance) {
+	connectSlider.noUiSlider.set(gon.distance);
+}
 
 // Write the CSS 'left' value to a span.
 function leftValue ( handle ) {
