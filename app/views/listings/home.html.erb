@@ -1,54 +1,52 @@
-<a name="about"></a>
+<!-- <a name="about" ></a> -->
 <div class="intro-header">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="intro-message">
-          <div id="intro-box">
-            <div class="split-pannels">
-              <ul class="nav nav-tabs" id="myTab">
-                <li class="active" id="request-tab" style="width:50%;"><a href="#request" data-toggle="tab">Find your ad space</a></li>
-                <li id="listing-tab" style="width:50%;"><a href="#listing" data-toggle="tab">List your ad space</a></li>
-              </ul>
-
-              <div class="tab-content">
-                <div class="tab-pane active" id="request">
-                  <div class="row">
+           <div class="ad-tabs">
+        <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
+        <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
+        <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" />
+        <div class="tabs flex-tabs">
+          <label for="tab-one" id="tab-one-label" class="tab">Search</label>
+          <label for="tab-two" id="tab-two-label" class="tab">List</label>
+          <label for="tab-three" id="tab-three-label" class="tab">Request</label>
+          <div id="tab-one-panel" class="panel active">
+                              <div class="row">
                     <div id="request-section" class="col-xs-12">
-                      <h1 class="text-center hidden-xs">The only public<span class="orange">ad</span> space marketplace</h1>
+                      <h1 class="text-center hidden-xs b-t">The only public<span class="orange">ad</span> space marketplace</h1>
                       <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2>
                     </div>
                   </div>
-                      <div class="row">
-                        <div class="col-xs-12">
-                        <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
-                        <div class="row">
-                          <div class="col-sm-3">
-                          <%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
-                          <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
-                          </div>
-                          <div class="col-sm-3">
-                            <%= label_tag(:address, "Address:") %>
-                            <%= text_field_tag(:address, nil, :required => true, placeholder: 'Enter zip code or address') %>
-                          </div>
-                          <div class="col-sm-3">
-                            <div id="nonlinear"></div>
-                            <span class="example-val" id="distance-value"></span>
-                          </div>
-                          <div class="col-sm-3">
-                          <%= hidden_field_tag('distance', 'valuye')%> 
-                          <%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
-                          </div>
-                        </div>
-                        <%end%>
-                        </div>
-                      </div>
-                </div> <!-- request tab-pane -->
-
-                <div class="tab-pane" id="listing">
                   <div class="row">
+                    <div class="col-xs-12">
+                    <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
+                    <div class="row">
+                      <div class="col-md-4">
+                      <%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
+                      <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
+                      </div>
+                      <div class="col-md-4">
+                        <%= text_field_tag(:address, nil, :required => true, placeholder: 'Enter zip code or address') %>
+                        <%= label_tag(:address, "Address:") %>
+                      </div>
+                      <div class="col-md-4">
+                        <div id="nonlinear"></div>
+                        <span class="example-val" id="distance-value"></span>
+                      </div>
+                      <div class="col-sm-12">
+                      <%= hidden_field_tag('distance', 'valuye')%> 
+                      <%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
+                      </div>
+                    </div>
+                    <%end%>
+                    </div>
+                  </div>
+          </div>
+          <div id="tab-two-panel" class="panel">
+                              <div class="row">
                     <div id="listing-section" class="col-xs-12">
-                      <h2 class="text-center hidden-xs">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> <br />by creating an account today</h2>
+                      <h2 class="text-center hidden-xs b-t">List your public<span class="orange">ad</span> space<br />by creating your  <span class="orange">free</span>  account today</h2>
                       <h3 class="text-center visible-xs" style="color:black;">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> by creating an account today</h3>
                       <%= form_for @user, url: users_path, method: :post, html: {class: "signup-form form form-inline"} do |f| %>
                         <div class="form-group">
@@ -66,13 +64,12 @@
                       <% end %>
                     </div> <!-- listing section -->
                   </div> <!-- row -->
-                </div> <!-- listing tab-pane -->
-
-              </div> <!-- tab-content -->
-
-              </div>
-            </div>
           </div>
+          <div id="tab-three-panel" class="panel">
+            <h3 class="text-center b-t">Request Section</h3>
+          </div>
+        </div>
+      </div>
         </div>
       </div>
     </div>
@@ -83,15 +80,15 @@
 <!-- /.intro-header -->
 
 <!-- Page Content -->
-<div class="content-section-b">
+<div class="content-section-a">
   <div class="container">
     <div class="row">
       <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
         <div class="clearfix"></div>
-        <h2 class="section-heading">Request a public<span class="orange">ad</span> space</h2>
+        <h2 class="section-heading">Search for a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer"><br>
         <p class="home lead">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
-        <%= link_to "Find your ad space", listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
+<a href="#tab-one" class="linka btn btn-warning  btn-lg">Search</a>
       </div>
       <div class="col-lg-5 col-sm-pull-6  col-sm-6">
         <%= image_tag("public-ad-sample.png", class:"img-responsive") %>
@@ -102,7 +99,7 @@
 </div>
 <!-- /.content-section-b -->
 
-<div class="content-section-a">
+<div class="content-section-b">
   <div class="container">
     <div class="row">
       <div class="col-lg-5 col-sm-6">
@@ -110,39 +107,35 @@
         <h2 class="section-heading">Listing a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer"><br>
         <p class="home lead">Do you own out-of-home media space? Are you tired of paying those high advertisement agency fee's? List your sign for free today by creating a profile in under 3 minutes. We'll make an instantly marketeable profile for your public ad space that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.</p>
-        <%= link_to "List your ad space", new_listing_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
+        <a href="#tab-two" class="linka btn btn-warning  btn-lg">List</a>
       </div>
       <div class="col-lg-5 col-lg-offset-2 col-sm-6">
-        <%= image_tag("public-ad-sample-2.jpg", class:"img-responsive img-rounded") %>
+        <div class="listing-img-container">
+        <%= image_tag("public-ad-sample-2.jpg", class: "img-responsive ") %>
+        </div>
+      </div>
+      <div class="col-xs-12 visible-xs">
+<!-- <a href="#tab-two" class="linka btn btn-warning  btn-large"></a> -->
       </div>
     </div>
   </div>
   <!-- /.container -->
 </div>
-<!-- /.content-section-a -->
 
-<a name="contact"></a>
-<div class="banner">
+<div class="content-section-a">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6">
-        <h2 class="section-heading">Follow Us:</h2>
+      <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
+        <div class="clearfix"></div>
+        <h2 class="section-heading">Request a public<span class="orange">ad</span> space</h2>
+        <hr class="section-heading-spacer"><br>
+        <p class="home lead">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
+        <a href="#tab-three" class="linka btn btn-warning  btn-lg">Request</a>
       </div>
-      <div class="col-lg-6">
-        <ul class="list-inline banner-social-buttons">
-          <li>
-            <a href="https://twitter.com/SBootstrap" class="btn btn-warning btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-          </li>
-          <li>
-            <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-warning btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook</span></a>
-          </li>
-          <li>
-            <a href="#" class="btn btn-warning btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
-          </li>
-        </ul>
+      <div class="col-lg-5 col-sm-pull-6  col-sm-6">
+        <%= image_tag("public-ad-sample.png", class:"img-responsive") %>
       </div>
     </div>
   </div>
-  <!-- /.container -->
+    <!-- /.container -->
 </div>
-<!-- /.banner -->

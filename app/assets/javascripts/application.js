@@ -59,5 +59,21 @@ $(document).ready(function() {
 		$('#distance').val(distanceInMiles);
 	  $('#search_form').submit();
 	});
+
+// $('body').smoothScroll({
+//         delegateSelector: 'ul.mainnav li a'
+//       });
+$('.linka').smoothScroll({
+			offset: -150,
+		  beforeScroll: function(options) {
+		    var newItemID = options.scrollTarget;
+		    var someItem = $( "input[checked]" );
+		    $(someItem).prop( "checked", false);
+		    console.log(someItem.attr('id'));
+		    var newElement = $(newItemID);
+		    $(newElement).prop( "checked", true )
+		  }
+		});
+
 	APP.slider();
 });
