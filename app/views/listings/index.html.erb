@@ -157,7 +157,6 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
       var title = marker.getTitle();
       li.innerHTML = title;
       ul.appendChild(li);
-      
       //Trigger a click event to marker when a list link is clicked.
     google.maps.event.addDomListener(li, "click", function(){
         google.maps.event.trigger(marker, "click");

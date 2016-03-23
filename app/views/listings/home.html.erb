@@ -17,14 +17,6 @@
                     <div id="request-section" class="col-xs-12">
                       <h1 class="text-center hidden-xs">The only public<span class="orange">ad</span> space marketplace</h1>
                       <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2>
-<!--                       <div class="visible-xs">
-                        <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning", data: { no_turbolink: true } %>
-                      </div> -->
-<!--                       <div class="hidden-xs">
-                        <%= link_to "Search for your ideal public ad space".html_safe, listings_path, class: "btn btn-warning btn-lg", data: { no_turbolink: true } %>
-                      </div> -->
-
-
                     </div>
                   </div>
                       <div class="row">
@@ -40,23 +32,13 @@
                             <%= text_field_tag(:address, nil, :required => true, placeholder: 'Enter zip code or address') %>
                           </div>
                           <div class="col-sm-3">
-                            <!-- <%= label_tag(:distance, "Distance:") %> -->
-                            <!-- <%= text_field_tag(:distance, nil, :required => true) %> -->
-                          <div id="nonlinear"></div>
-                        <span class="example-val" id="lower-value"></span>
-                        <span id="lower-offset"></span>
-                        <span class="example-val" id="upper-value"></span>
-                        <span id="upper-offset"></span>                          
-
-
+                            <div id="nonlinear"></div>
+                            <span class="example-val" id="distance-value"></span>
                           </div>
-
-<%= hidden_field_tag('distance', 'valuye')%> 
                           <div class="col-sm-3">
+                          <%= hidden_field_tag('distance', 'valuye')%> 
                           <%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
                           </div>
-
-                          <!-- <%= text_field_tag(:search) %> -->
                         </div>
                         <%end%>
                         </div>
