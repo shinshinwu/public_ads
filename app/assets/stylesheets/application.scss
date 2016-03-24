@@ -698,13 +698,13 @@ padding-bottom: 10px;
   }
 }
 /*IPHONE 6+ MEDIA QUERY FOR PORTRAIT */
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3)  and (orientation: portrait) { 
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3)  and (max-aspect-ratio: 13/9) { 
   .intro-header{
     padding: 30% 0;
   } 
 }
 
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) { 
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (min-aspect-ratio: 13/9) { 
 .c-p-b{
   display: inline-block;
   float: left;
@@ -715,7 +715,7 @@ padding-bottom: 10px;
 
 
 /*IPHONE 5 / 5+ LANDSCAPE*/
-@media only screen  and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
+@media only screen  and (min-device-width: 320px) and (max-device-width: 568px) and (-webkit-min-device-pixel-ratio: 2) and (min-aspect-ratio: 13/9) {
 .c-p-b{
   display: inline-block;
   float: left;
@@ -723,7 +723,7 @@ padding-bottom: 10px;
 }
 }
 
-@media only screen  and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) { 
+@media only screen  and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (min-aspect-ratio: 13/9) { 
 .c-p-b{
   display: inline-block;
   float: left;
