@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   def show
       @listings_to_sell = @user.listings.includes(:address)
     # all the messages the users have received about a listing minues users own listing are the listings the user have inquired about. There is definitely a better way, but for now it's good enough
-      @listings_to_buy  = (@user.send_messages + @user.received_messages).map(&:listing).uniq - @listings_to_sell
+    @listings_to_buy  = @user.inquired_listings
+    @conversations = @user.mailbox.inbox
   end
 
   def create

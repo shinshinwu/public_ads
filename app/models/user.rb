@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  acts_as_messageable
+
   has_many    :listings
   has_many    :send_messages, class_name: "Message", foreign_key: "sender_id"
   has_many    :received_messages, class_name: "Message", foreign_key: "recipient_id"
@@ -14,8 +16,12 @@ class User < ActiveRecord::Base
     if first_name.present? && last_name.present?
       return first_name + " " + last_name
     else
-      return nil
+      return email[/[^@]+/] #first part of the email
     end
+  end
+
+  def mailboxer_email(object)
+    return email
   end
 
 end
