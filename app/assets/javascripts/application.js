@@ -63,7 +63,7 @@ $(document).ready(function() {
 // $('body').smoothScroll({
 //         delegateSelector: 'ul.mainnav li a'
 //       });
-$('.linka').smoothScroll({
+$('.cta-link').smoothScroll({
 			offset: -150,
 		  beforeScroll: function(options) {
 		    var newItemID = options.scrollTarget;
