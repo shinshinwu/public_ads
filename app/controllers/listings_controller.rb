@@ -11,6 +11,9 @@ class ListingsController < ApplicationController
 
 
   def index
+    @search_category = params[:category]
+    search_distance = search_params[:distance]
+    @search_address = search_params[:address]
     search_lat_long = Geocoder.coordinates(search_params[:address])
     if params[:category] && params[:category] != 'All'
       @listings = Address.address_search(search_params[:category]).includes(:listing).near(search_lat_long, search_params[:distance])
@@ -24,7 +27,8 @@ class ListingsController < ApplicationController
       listing << l.listing.as_json
       all_listings << listing
     end
-    gon.sampleData = all_listings
+    gon.publicAdMapData = all_listings
+    gon.distance = search_distance
   end
 
   def new
