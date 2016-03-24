@@ -14,29 +14,31 @@
           <div id="tab-one-panel" class="panel active">
                               <div class="row">
                     <div id="request-section" class="col-xs-12">
-                      <h1 class="text-center hidden-xs b-t">The only public<span class="orange">ad</span> space marketplace</h1>
-                      <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2>
+                      <h1 class="text-center v-p-t b-t">Find your future public<span class="orange">ad</span> space</h1>
+                      <!-- <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2> -->
                     </div>
                   </div>
                   <div class="row">
                     <div class="col-xs-12">
                     <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
                     <div class="row">
-                      <div class="col-md-4">
-                      <%=select_tag "category", "<option selected='selected'>All</option><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe%>
-                      <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
+                      <div class="col-sm-6 col-md-4 c-p-b">
+                      <p class='vp-s-t '>search by publicad type</p>
+                      <%=select_tag "category", "<option selected='selected' >All</option></span><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe, id: "dropdown"%>
                       </div>
-                      <div class="col-md-4">
-                        <%= text_field_tag(:address, nil, :required => true, placeholder: 'Enter zip code or address') %>
-                        <%= label_tag(:address, "Address:") %>
+                      <div class="col-sm-6 col-md-4 c-p-b">
+                      <p class="vp-s-t">search in this location</p>
+                        <%= text_field_tag(:address, nil, :required => true, placeholder: 'Zip code or Address') %>
+
                       </div>
-                      <div class="col-md-4">
+                      <div class="col-sm-12 col-md-4 c-p-b vp-s-c">
+                       <p class="vp-s-t">proximity from location</p>
                         <div id="nonlinear"></div>
                         <span class="example-val" id="distance-value"></span>
                       </div>
                       <div class="col-sm-12">
                       <%= hidden_field_tag('distance', 'valuye')%> 
-                      <%= submit_tag("Find", class: 'btn btn-warning', id: 'distance_slider') %>
+                      <%= submit_tag("Find PublicAdSpace", class: 'btn btn-warning btn-lg hm-button', id: 'distance_slider') %>
                       </div>
                     </div>
                     <%end%>
