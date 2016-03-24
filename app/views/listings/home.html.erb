@@ -28,7 +28,7 @@
                       </div>
                       <div class="col-sm-6 col-md-4 c-p-b">
                       <p class="vp-s-t">search in this location</p>
-                        <%= text_field_tag(:address, nil, :required => true, placeholder: 'Zip code or Address') %>
+                        <%= text_field_tag(:address, nil, :required => true, placeholder: 'Zip code or Address', class: 'add-class') %>
 
                       </div>
                       <div class="col-sm-12 col-md-4 c-p-b vp-s-c">
@@ -36,7 +36,7 @@
                         <div id="nonlinear"></div>
                         <span class="example-val" id="distance-value"></span>
                       </div>
-                      <div class="col-sm-12">
+                      <div class="col-sm-12" style="clear:both;">
                       <%= hidden_field_tag('distance', 'valuye')%> 
                       <%= submit_tag("Find PublicAdSpace", class: 'btn btn-warning btn-lg hm-button', id: 'distance_slider') %>
                       </div>

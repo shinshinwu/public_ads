@@ -59,7 +59,6 @@ $(document).ready(function() {
 		$('#distance').val(distanceInMiles);
 	  $('#search_form').submit();
 	});
-
 // $('body').smoothScroll({
 //         delegateSelector: 'ul.mainnav li a'
 //       });
@@ -74,6 +73,9 @@ $('.cta-link').smoothScroll({
 		    $(newElement).prop( "checked", true )
 		  }
 		});
+
+
+
 
 	APP.slider();
 });
