@@ -46,6 +46,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @have_contacted_listing = @user.have_contacted_listing?(@listing)
   end
 
   def create

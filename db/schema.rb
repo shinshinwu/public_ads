@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324024803) do
+ActiveRecord::Schema.define(version: 20160324195813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,6 +29,20 @@ ActiveRecord::Schema.define(version: 20160324024803) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "inquiries", force: :cascade do |t|
+    t.integer  "listing_id"
+    t.integer  "sender_id"
+    t.integer  "recipient_id"
+    t.date     "start_date"
+    t.date     "end_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "transaction_id"
+    t.integer  "conversation_id"
+  end
+
+  add_index "inquiries", ["transaction_id"], name: "index_inquiries_on_transaction_id", using: :btree
 
   create_table "listings", force: :cascade do |t|
     t.integer  "user_id"
@@ -106,21 +120,6 @@ ActiveRecord::Schema.define(version: 20160324024803) do
 
   add_index "mailboxer_receipts", ["notification_id"], name: "index_mailboxer_receipts_on_notification_id", using: :btree
   add_index "mailboxer_receipts", ["receiver_id", "receiver_type"], name: "index_mailboxer_receipts_on_receiver_id_and_receiver_type", using: :btree
-
-  create_table "messages", force: :cascade do |t|
-    t.integer  "listing_id"
-    t.integer  "sender_id"
-    t.integer  "recipient_id"
-    t.string   "subject"
-    t.text     "body"
-    t.date     "start_date"
-    t.date     "end_date"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "transaction_id"
-  end
-
-  add_index "messages", ["transaction_id"], name: "index_messages_on_transaction_id", using: :btree
 
   create_table "transactions", force: :cascade do |t|
     t.integer  "seller_id"

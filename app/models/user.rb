@@ -2,8 +2,8 @@ class User < ActiveRecord::Base
   acts_as_messageable
 
   has_many    :listings
-  has_many    :send_messages, class_name: "Message", foreign_key: "sender_id"
-  has_many    :received_messages, class_name: "Message", foreign_key: "recipient_id"
+  has_many    :send_inquiries, class_name: "Inquiry", foreign_key: "sender_id"
+  has_many    :received_inquiries, class_name: "Inquiry", foreign_key: "recipient_id"
   has_many    :payment_transactions, class_name: "Transaction", foreign_key: "buyer_id"
   has_many    :earning_transactions, class_name: "Transaction", foreign_key: "seller_id"
 
@@ -22,6 +22,14 @@ class User < ActiveRecord::Base
 
   def mailboxer_email(object)
     return email
+  end
+
+  def have_contacted_listing?(listing)
+    send_inquiries.where(listing: listing).present?
+  end
+
+  def inquired_listings
+    Listing.where(id: send_inquiries.pluck(:listing_id))
   end
 
 end

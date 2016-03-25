@@ -7,7 +7,6 @@ Rails.application.routes.draw do
   get '/', to: 'listings#home'
   resources :listings do
     member do
-      get 'messages',   to: 'listings#messages'
       get 'payments',   to: 'listings#payments'
       get 'payment/new', to: 'listings#new_payment'
     end
@@ -25,7 +24,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :messages, only: [:create] do
+  resources :inquiries, only: [:create] do
   end
 
   resources :transactions, only: [:create] do

@@ -6,10 +6,10 @@
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title text-center" id="myModalLabel">Send a message to the pulic<span class="orange">ad</span> owner</h4>
+          <h4 class="modal-title text-center" id="myModalLabel">Inquire about the listing with the pulic<span class="orange">ad</span> owner</h4>
         </div>
         <div class="modal-body">
-          <%= render partial: "message", locals: { message: Message.new(listing_id: @listing.id) ,url: messages_path, method: :post} %>
+          <%= render partial: "new_inquiry", locals: { inquiry: Inquiry.new(listing_id: @listing.id), url: inquiries_path, method: :post} %>
         </div>
       </div>
     </div>
@@ -23,7 +23,14 @@
             <%= link_to "Edit Listing", edit_listing_path(@listing), class: "no-link-styling" %>
           </div>
         <% else %>
-          <div id="contact-button" class="btn btn-warning" data-toggle="modal" data-target="#messageModal">Contact</div>
+          <% if @have_contacted_listing %>
+            <div class="btn btn-success">
+              <!-- redirect to conversation show page -->
+              Contacted
+            </div>
+          <% else %>
+            <div id="contact-button" class="btn btn-warning" data-toggle="modal" data-target="#messageModal">Contact</div>
+          <% end %>
       <% end %>
     </h1>
 
