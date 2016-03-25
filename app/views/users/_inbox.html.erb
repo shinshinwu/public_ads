@@ -1,6 +1,0 @@
-<ul class="list-group">
-  <li class="list-group-item text-muted">Inbox</li>
-  <% conversations.each do |conversation| %>
-    <li class="list-group-item text-right"><a href="#" class="pull-left"><%= conversation.subject %></a> <%= conversation.created_at.to_s(:short) %></li>
-  <% end %>
-</ul>

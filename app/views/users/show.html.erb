@@ -63,7 +63,7 @@
       <div class="col-sm-9">
         <ul class="nav nav-tabs" id="myTab">
           <li class="active" style="width:33%;"><a href="#listings" data-toggle="tab">Listings</a></li>
-          <li style="width:33%;"><a href="#messages" data-toggle="tab">Messages</a></li>
+          <li style="width:33%;"><a href="#inquiries" data-toggle="tab">Inquiries</a></li>
           <li style="width:33%;"><a href="#settings" data-toggle="tab">Settings</a></li>
         </ul>
 
@@ -151,8 +151,8 @@
             <% end %>
           </div><!--/tab-pane-->
 
-          <div class="tab-pane" id="messages">
-            <%= render partial: "inbox", locals: {conversations: @conversations} %>
+          <div class="tab-pane" id="inquiries">
+            <%= render partial: "inquiries", locals: {conversations: @conversations} %>
           </div><!--/tab-pane-->
 
           <div class="tab-pane" id="settings">
