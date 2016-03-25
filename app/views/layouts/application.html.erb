@@ -29,44 +29,56 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
           <% unless logged_in? -%>
-            <li>
-              <%= link_to "Sign Up", signup_users_path %>
-            </li>
-            <li>
-              <%= link_to "Login", login_users_path %>
-            </li>
-
-                  <li class="dropdown">
-                     <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign in <b class="caret"></b></a>
-                     <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
-                        <li class="text-center">public<span class="orange">ad</span> signin</li>
-                        <li>
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <form class="form" role="form" method="post" action="login" accept-charset="UTF-8" id="login-nav">
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputEmail2">Email address</label>
-                                       <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Email address" required>
-                                    </div>
-                                    <div class="form-group">
-                                       <label class="sr-only" for="exampleInputPassword2">Password</label>
-                                       <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password" required>
-                                    </div>
-                                    <div class="checkbox">
-                                       <label>
-                                       <input type="checkbox"> Remember me
-                                       </label>
-                                    </div>
-                                    <div class="form-group">
-                                       <button type="submit" class="btn btn-warning btn-block">Sign in</button>
-                                    </div>
-                                 </form>
+            <li class="dropdown">
+               <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
+               <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                  <li class="text-center">public<span class="orange">ad</span> signin</li>
+                  <li>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form", id: "login-nav"}) do |f| %>
+                              <div class="form-group">
+                                 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                               <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
                               </div>
-                           </div>
-                        </li>
-                     </ul>
+                              <div class="form-group">
+                                 <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                 <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+                              </div>
+                              <div class="form-group">
+                                <%= f.submit "Log In", :class => 'btn btn-warning btn-block' %>
+                              </div>
+                           <% end %>
+                        </div>
+                     </div>
                   </li>
-
+               </ul>
+            </li>
+            <li class="dropdown">
+               <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+               <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
+                  <li class="text-center">public<span class="orange">ad</span> signup</li>
+                  <li>
+                     <div class="row">
+                        <div class="col-md-12">
+                            <%= form_for @user, html: {class: "form", id: "sign-up-nav"} do |f| %>
+                              <div class="form-group">
+                                 <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                               <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+                              </div>
+                              <div class="form-group">
+                                 <label class="sr-only" for="exampleInputPassword2">Password</label>
+                                 <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+                              </div>
+                              <div class="form-group">
+                            <%= f.submit "Create Account", :class => 'btn btn-warning btn-block' %>
+                              </div>
+                           <% end %>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </li>
 
           <% else -%>
             <li>
