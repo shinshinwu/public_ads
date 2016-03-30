@@ -371,7 +371,8 @@ input,label, span, select, .b-t {
   -webkit-flex-grow: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
-  max-height: 40px;
+  max-height: 50px;
+  font-size: 1.3em;
 }
 .ad-tabs .flex-tabs .panel {
   background-color: rgba(255,255,255,0.8);
@@ -386,12 +387,12 @@ input,label, span, select, .b-t {
 }
 .ad-tabs .tab {
   display: inline-block;
-  padding: 5px 10px;
+  padding: 12px 10px;
   vertical-align: top;
   background-color: rgba(255,255,255,0.8);
   cursor: hand;
   cursor: pointer;
-  border-left: 10px solid #ccc;
+  /*border-left: 10px solid #ccc;*/
 }
 .ad-tabs .tab:hover {
   background-color: #fff;
@@ -401,9 +402,10 @@ input,label, span, select, .b-t {
 #tab-two:checked ~ .tabs #tab-two-label,
 #tab-three:checked ~ .tabs #tab-three-label,
 #tab-four:checked ~ .tabs #tab-four-label {
-  background-color: #fff;
+  background-color: #F89838;
   cursor: default;
   border-left-color: #F89838;
+  color: white;
 }
 
 #tab-one:checked ~ .tabs #tab-one-panel,
@@ -616,10 +618,73 @@ input{
     margin-top: 15px;
     padding: 10px 10%;
   }
+  .home-img{
+    /*min-height: 250px;*/
+  }
+
+  .f-r{
+    float: right;
+  }
+  .f-l{
+    float: left;
+  }
+  .l-t{
+    text-align: left !important;
+  }
+  .r-t{
+    text-align: right !important;
+  }
+  
+  .desk-btn{width: 40%;}
+.p-l-30{ padding-left: 50px;}
+
+}
+.c-t{
+    text-align: center !important;
+  }
+.w-80-p{
+  width: 80%;
+}
+.c-w-m{
+  margin: 0 auto;
 }
 
+  .d-b{
+    display: block;
+  }
+  .no-pad{
+    padding: 0 !important;
+  }
+  .no-marg{
+    margin: 0 !important;
+  }
 
 @media (min-width: 768px) and (max-width: 991px) {
 /*value prop slider container*/
   .vp-s-c{padding: 0 10%;}
+}
+
+
+
+
+
+
+
+/*REVEAL PATTERN*/
+
+/*.testing{
+  opacity: 1;
+}
+.untesting{
+  opacity: 0;
+}*/
+
+#signUpDiv {
+    display: none;
+}
+
+
+
+.no-li-style{
+  list-style-type: none;
 }

@@ -11,6 +11,7 @@ class ListingsController < ApplicationController
 
 
   def index
+    @user = User.new
     @search_category = params[:category]
     search_distance = search_params[:distance]
     @search_address = search_params[:address]

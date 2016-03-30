@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-sm-4">
         <div class="row">
@@ -12,21 +12,22 @@
       <hr>
       <div class="row">
         <div class="col-xs-12">
-          <%=form_tag("/listings", method: "get", search: true, class: "nifty_form", id: "search_form") do%>
+          <%=form_tag("/listings", method: "get", search: true, class: "nifty_form c-t", id: "search_form") do%>
             <div class="row">
               <div class="col-xs-12">
                 <%= label_tag(:category, "Search by publicAd space type: ", class: 'home-search-label') %>
                 <%=select_tag 'category', options_for_select([ 'All', 'Billboard', 'Bench Ad', 'Bus Stop Ad'  ], @search_category ) %>
               </div>
               <div class="col-xs-12">
-                <%= label_tag(:address, "Address:") %>
+                <%= label_tag(:address, "Zip Code of Address:", class: 'd-b') %>
                 <%= text_field_tag(:address, @search_address || 94101, :required => true) %>
               </div>
               <%= hidden_field_tag('distance', 'radius')%> 
             </div>
             <div class="row">
               <div class="col-xs-12">
-                <div id="nonlinear"></div>
+                <p class="no-marg no-pad">Proxity </p>
+                <div id="nonlinear" class="w-80-p c-w-m"></div>
                 <span class="example-val" id="distance-value"></span>
               </div> <!-- .col-xs-12 -->
             </div> <!-- .row -->
@@ -42,8 +43,13 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="side-bar-container">
-            <ul id="marker_list">
-            </ul>
+            <div id="marker_list">
+            <div class="accordion-group" id="list-details">
+
+              
+            </div>
+            </div>
+
           </div> <!-- .side-bar-container -->
         </div> <!-- .col-xs-12 -->
       <hr>
@@ -55,6 +61,12 @@
   </div> <!-- .row -->
 </div> <!-- .container -->
 
+
+
+
+
+
+
 <% content_for :javascripts do %>
 <script type="text/javascript" src="http://maps.google.com/maps/api/js"></script>
 <script type="text/javascript">
@@ -63,7 +75,9 @@ var APP = {},
     center,
     mapContainer = $('#pubAdMap'),
     mapCanvas = document.createElement('div'),
-    infoWindows = [];
+    infoWindows = [],
+    listingItemPanes = [];
+
     var mapOptions = {
       center: new google.maps.LatLng(37.7851138,-122.4204182),
       zoom: 13,
@@ -122,19 +136,26 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
                   map: map, 
                   title: name,
                   position: latlngset,
-                  icon: icon
+                  icon: icon,
+                  id: i + 1
                 });
 
-        var content = "<p class='marker_title'>"+name+"</p><p class='marker_title'><a href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
+        var content = "<p class='marker_title'>"+marker.id +'. '+name+"</p><p class='marker_title'><a href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
         var infowindow = new google.maps.InfoWindow();
             createMarkerButton(marker);
         google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
             return function() {
                 /* close the previous info-window */
                closeInfoWindows();
-                   infowindow.setContent(content);
-                   infowindow.open(map,marker);
+               collapseListItemPane();
+               
+               infowindow.setContent(content);
+               infowindow.open(map,marker);
+               listItemPane = $('#marker-'+marker.id);
+               $(listItemPane).collapse('show');
+
                 /* keep the handle, in order to close it on next click event */
+                listingItemPanes[0] = listItemPane;
                 infoWindows[0]=infowindow;
             };
         })(marker,content,infowindow)); 
@@ -150,15 +171,42 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
           infoWindows.length = 0;
        }
     }
+    function collapseListItemPane(){
+      if (listingItemPanes.length > 0) {
+        console.log('this worked');
+        $(listingItemPanes[0]).collapse('hide');
+        console.log('pre-wipe: ' + listingItemPanes.length);
+        listingItemPanes.length = 0;
+        console.log('post-wipe: ' + listingItemPanes.length);
+      }
+
+    }
     function createMarkerButton(marker) {
   //Creates a sidebar list
-      var ul = document.getElementById("marker_list");
-      var li = document.createElement("li");
+      var divY = document.getElementById("marker_list");
+      var link = document.createElement("a");
+      link.className += "no-li-style " + "d-b" ;
       var title = marker.getTitle();
-      li.innerHTML = title;
-      ul.appendChild(li);
+      var markerId = marker.id;
+      console.log('here is the marker id' + markerId);
+      link.innerHTML = markerId + '. ' +title;
+        link.setAttribute('data-parent', '#marker_list');
+        link.setAttribute('data-target', '#marker-'+ markerId);
+        link.setAttribute('data-toggle', 'collapse');
+
+var containerized = document.getElementById('list-details');
+var divX = document.createElement('div');
+divXP = document.createElement('p');
+divX.className += 'collapse';
+divX.setAttribute('id', 'marker-'+ markerId);
+divXP.innerHTML = 'hello world stuff for marker' + markerId;
+
+divX.appendChild(divXP);
+containerized.appendChild(divX);
+
+      divY.insertBefore(link, divY.lastChild);
       //Trigger a click event to marker when a list link is clicked.
-    google.maps.event.addDomListener(li, "click", function(){
+    google.maps.event.addDomListener(link, "click", function(){
         google.maps.event.trigger(marker, "click");
       });
     }
@@ -170,10 +218,13 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
     google.maps.event.addDomListener(window, 'resize', function() {
       APP.map.setCenter(APP.mapCenter);
     });
+
   }
+
   //initializes map buiilding function
   google.maps.event.addDomListener(window, 'load', initialize);
 }
 </script>
 <script>APP.locationsMap();</script>
+
 <% end %>
