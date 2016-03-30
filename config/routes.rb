@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       get '/profile',   to: 'users#show'
       get '/edit',      to: 'users#edit'
       put '/edit',      to: 'users#update'
+      get '/conversation', to: 'users#conversation'
     end
   end
 

@@ -1,0 +1,41 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <ul class="chat">
+      <li class="list-group-item text-muted">Inquiry for <%= link_to @listing.title, listing_path(@listing) %><br /><%= @conversation.subject %></li>
+      <%- @messages.each do |message| -%>
+        <%- msg_location = message.sender == current_user ? "left" : "right"
+           msg_sender_class = message.sender == current_user ? "pull-right" : "pull-left"
+        -%>
+        <li class="<%= msg_location %> clearfix">
+          <%- if message.sender == current_user -%>
+            <span class="chat-img pull-right">
+              <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
+            </span>
+          <%- else -%>
+            <span class="chat-img pull-left">
+              <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+            </span>
+          <%- end -%>
+
+          <div class="chat-body clear-fix">
+            <div class="header">
+              <strong class="<%= msg_sender_class %> primary-font"><%= message.sender.name %></strong> <small class="<%= msg_sender_class == 'pull-right' ? 'pull-left' : 'pull-right' %> text-muted">
+              <span class="glyphicon glyphicon-time"></span><%= message.created_at.to_s(:short) -%></small>
+              <p><%= message.body %></p>
+            </div>
+          </div>
+        </li>
+      <%- end -%>
+    </ul>
+  </div>
+
+  <div class="panel-footer">
+      <div class="input-group">
+          <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here...">
+          <span class="input-group-btn">
+              <button class="btn btn-warning btn-sm" id="btn-chat">
+                  Send</button>
+          </span>
+      </div>
+  </div>
+</div>

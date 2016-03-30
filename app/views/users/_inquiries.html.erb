@@ -13,7 +13,9 @@
       <tr>
         <th scope="row"></th>
         <td><%= conversation.originator.name %></td>
-        <td colspan="2"><a href="#" class="pull-left"><%= conversation.subject %></a></td>
+        <td colspan="2">
+          <%= link_to conversation.subject, conversation_users_path(id: conversation.id), class: "pull-left", :remote => true %>
+        </td>
         <td><%= conversation.created_at.to_s(:short) %></td>
       </tr>
     <% end %>

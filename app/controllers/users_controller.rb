@@ -35,9 +35,24 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Profile Updated!"
     else
-      flash[:eroor] = "Something went wrong when saving your profile"
+      flash[:error] = "Something went wrong when saving your profile"
     end
     redirect_to profile_users_path
+  end
+
+  def conversation
+    @conversation = Mailboxer::Conversation.where(id: params[:id]).first
+    unless @conversation.present? && @conversation.participants.include?(current_user)
+      flash[:error] = "Something went wrong loading your messages"
+      redirect_to profile_users_path and return
+    end
+
+    @messages = @conversation.messages
+    @listing  = @conversation.inquiry.listing
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   private

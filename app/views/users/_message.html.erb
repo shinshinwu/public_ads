@@ -1,7 +1,0 @@
-<ul class="list-group">
-  <li class="list-group-item text-muted">Conversation</li>
-  <% messages.each do |message| %>
-    <% msg_location = message.sender == current_user ? "pull-right" : "pull-left" %>
-    <li class="list-group-item text-right"><a href="#" class=<%= msg_location %>><%= message.body %></a> <%= message.created_at.to_s(:short) %></li>
-  <% end %>
-</ul>
