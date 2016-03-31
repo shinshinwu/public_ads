@@ -1,24 +1,86 @@
 
 <h1>Hello World</h1>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+<a class="btn btn-primary" role="button" data-toggle="collapse" href="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="margin: 0 auto;  display: block; width: 30%;">
+  Link with href
+</a>
+      <div class="collapse" id="collapseExample">
+        <div class="well">
+          <p>hello hi hello</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <section class="main-content">
-    
-    <p>
-        <input type="file" id="take-picture" accept="image/*">
-    </p>
-
-    <h2>Preview:</h2>
-    <p>
-        <img src="about:blank" alt="" id="show-picture">
-    </p>
-
-    <p id="error"></p>
-
+<p>
+<input type="file" id="take-picture" accept="image/*">
+</p>
+<h2>Preview:</h2>
+<p>
+<img src="about:blank" alt="" id="show-picture">
+</p>
+<p id="error"></p>
 </section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form id="form1" runat="server">
+    <input type='file' id="inputFile" />
+    <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" />
+</form>
+    </div>
+    
+  </div>
+</div>
+
+
 
 
 <div id="mapContainer">
 </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+<div id='pano'  style="width: 45%; height: 300px;float:left; display:block;"></div>
+      
+    </div>
+  </div>
+</div>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="floating-panel">
+        <table>
+          <tr>
+            <td><b>Position</b></td><td id="position-cell">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><b>POV Heading</b></td><td id="heading-cell">270</td>
+          </tr>
+          <tr>
+            <td><b>POV Pitch</b></td><td id="pitch-cell">0.0</td>
+          </tr>
+          <tr>
+            <td><b>Pano ID</b></td><td id="pano-cell">&nbsp;</td>
+          </tr>
+          <table id="links_table"></table>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 
 
@@ -37,6 +99,12 @@ function success(position) {
 
   document.querySelector('#mapContainer').appendChild(mapcanvas);
 
+
+  var sv = new google.maps.StreetViewService();
+
+var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'));
+
+
   var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   
   var options = {
@@ -50,14 +118,82 @@ function success(position) {
   };
   var map = new google.maps.Map(document.getElementById("map"), options);
 
-  var marker = new google.maps.Marker({
-      position: coords,
-      map: map,
-      title:"publicAds"
-  });
+
+sv.getPanorama({location: coords, radius: 50}, processSVData);
+
+
+
 console.log(position.coords.latitude );
  
  console.log(position.coords.longitude );
+
+function processSVData(data, status) {
+  if (status === google.maps.StreetViewStatus.OK) {
+    
+  var marker = new google.maps.Marker({
+      position: coords,
+      map: map,
+      title:"publicAds",
+      draggable: true
+  });
+
+
+
+    marker.addListener('dragend',function(event) {
+        var lati = event.latLng.lat();
+        var longi = event.latLng.lng();
+        console.log('here we are: ' + lati + longi);
+    });
+
+
+    console.log('processingSVDATA')
+    panorama.setPano(data.location.pano);
+    panorama.setPov({
+    heading: 270,
+    pitch: 0
+    });
+    panorama.setVisible(true);
+  
+
+        panorama.addListener('pano_changed', function() {
+            var panoCell = document.getElementById('pano-cell');
+            panoCell.innerHTML = panorama.getPano();
+        });
+
+        panorama.addListener('links_changed', function() {
+            var linksTable = document.getElementById('links_table');
+            while (linksTable.hasChildNodes()) {
+              linksTable.removeChild(linksTable.lastChild);
+            }
+            var links = panorama.getLinks();
+            for (var i in links) {
+              var row = document.createElement('tr');
+              linksTable.appendChild(row);
+              var labelCell = document.createElement('td');
+              labelCell.innerHTML = '<b>Link: ' + i + '</b>';
+              var valueCell = document.createElement('td');
+              valueCell.innerHTML = links[i].description;
+              linksTable.appendChild(labelCell);
+              linksTable.appendChild(valueCell);
+            }
+        });
+
+        panorama.addListener('position_changed', function() {
+            var positionCell = document.getElementById('position-cell');
+            positionCell.firstChild.nodeValue = panorama.getPosition() + '';
+        });
+
+        panorama.addListener('pov_changed', function() {
+            var headingCell = document.getElementById('heading-cell');
+            var pitchCell = document.getElementById('pitch-cell');
+            headingCell.firstChild.nodeValue = panorama.getPov().heading + '';
+            pitchCell.firstChild.nodeValue = panorama.getPov().pitch + '';
+        });
+
+
+  }
+}
+
 }
 
 
@@ -70,7 +206,17 @@ if (navigator.geolocation) {
 </script>
 
 <script type="text/javascript">
-	var takePicture = document.querySelector("#take-picture");
+
+
+
+</script>
+
+<script type="text/javascript">
+	(function () {
+    
+    var takePicture = document.querySelector("#take-picture"),
+        showPicture = document.querySelector("#show-picture");
+  // var takePicture = document.querySelector("#take-picture");
 takePicture.onchange = function (event) {
     // Get a reference to the taken picture or chosen file
     var files = event.target.files,
@@ -80,13 +226,6 @@ takePicture.onchange = function (event) {
     }
 };
 
-
-</script>
-
-<script type="text/javascript">
-	(function () {
-    var takePicture = document.querySelector("#take-picture"),
-        showPicture = document.querySelector("#show-picture");
 
     if (takePicture && showPicture) {
         // Set events
@@ -129,6 +268,25 @@ takePicture.onchange = function (event) {
 })();
 </script>
 
+<script type="text/javascript">
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#image_upload_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputFile").change(function () {
+        readURL(this);
+    });
+    //     $("#show-picture").change(function () {
+    //     readURL(this);
+    // });
+</script>
 
 <%end%>

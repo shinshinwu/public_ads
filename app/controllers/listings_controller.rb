@@ -11,6 +11,7 @@ class ListingsController < ApplicationController
 
 
   def index
+    @user = User.new
     @search_category = params[:category]
     search_distance = search_params[:distance]
     @search_address = search_params[:address]
@@ -29,6 +30,11 @@ class ListingsController < ApplicationController
     end
     gon.publicAdMapData = all_listings
     gon.distance = search_distance
+    if gon.publicAdMapData.length > 0 
+      @gon_flag = true
+    else
+      @gon_flag = false
+    end
   end
 
   def new
