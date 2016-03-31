@@ -621,7 +621,6 @@ input{
   .home-img{
     /*min-height: 250px;*/
   }
-
   .f-r{
     float: right;
   }
@@ -634,11 +633,10 @@ input{
   .r-t{
     text-align: right !important;
   }
-  
   .desk-btn{width: 40%;}
 .p-l-30{ padding-left: 50px;}
-
 }
+
 .c-t{
     text-align: center !important;
   }
@@ -659,32 +657,25 @@ input{
     margin: 0 !important;
   }
 
+#signUpDiv {
+display: none;
+}
+
+.no-li-style{
+list-style-type: none;
+}
+
+.av-hold{
+float: left;
+width: 50%;
+}
+.unav-hold{
+float: right;
+width: 50%;
+}
+
 @media (min-width: 768px) and (max-width: 991px) {
 /*value prop slider container*/
   .vp-s-c{padding: 0 10%;}
 }
 
-
-
-
-
-
-
-/*REVEAL PATTERN*/
-
-/*.testing{
-  opacity: 1;
-}
-.untesting{
-  opacity: 0;
-}*/
-
-#signUpDiv {
-    display: none;
-}
-
-
-
-.no-li-style{
-  list-style-type: none;
-}

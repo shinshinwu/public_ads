@@ -40,10 +40,25 @@
         </div> <!-- .col-xs-12 -->
       </div>  <!-- .row -->
       <hr>
+
       <div class="row">
+      
+<% if @gon_flag == true %>
+          <div class="col-xs-12 c-w-m">
+            <div class="av-hold">
+              <img src="map_marker.png" class=" center-block" width="32" height="32">
+              <p class="no-marg no-pad text-center">available</p>              
+            </div>
+            <div class="unav-hold">              
+              <img src="map_marker_n.png" class=" center-block" width="32" height="32">
+              <p class="no-marg no-pad text-center">unavailable</p>
+            </div>
+          </div>
+<%end%>
         <div class="col-xs-12">
-          <div class="side-bar-container">
-            <div id="marker_list">
+          <hr>
+          <div class="side-bar-container" id="listingsSideBarContainer">
+            <div id="marker_list" class="w-80-p c-w-m">
             <div class="accordion-group" id="list-details">
 
               
@@ -95,8 +110,16 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
     appendMapElement(mapCanvas, mapContainer);
     APP.map = new google.maps.Map(document.getElementById("map"),
         mapOptions);    
+    if (gon.publicAdMapData.length > 0){
     setMarkers(APP.map, gon.publicAdMapData);
-    
+    } else {
+      console.log('no gon data');
+      var listingSideBar = document.getElementById('listingsSideBarContainer');
+      var noMarkerMessage = document.createElement('p');
+      noMarkerMessage.innerHTML = 'As Public Ad Space is currently in beta testing in the San Francisco area, try modifying your search within the SF area, with a higher proximity, to see publicAd listings.';
+      noMarkerMessage.className += 'no-marg ' + 'no-pad '+ 'text-center'
+      listingSideBar.appendChild(noMarkerMessage);
+    }
     function styleMapElement(mapCanvas){
       mapCanvas.id = 'map';
       mapCanvas.style.height = '440px';
@@ -142,7 +165,7 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
 
         var content = "<p class='marker_title'>"+marker.id +'. '+name+"</p><p class='marker_title'><a href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
         var infowindow = new google.maps.InfoWindow();
-            createMarkerButton(marker);
+            createMarkerButton(marker, locations[i]);
         google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
             return function() {
                 /* close the previous info-window */
@@ -181,32 +204,50 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
       }
 
     }
-    function createMarkerButton(marker) {
+    function createMarkerButton(marker, markerData) {
   //Creates a sidebar list
-      var divY = document.getElementById("marker_list");
-      var link = document.createElement("a");
-      link.className += "no-li-style " + "d-b" ;
-      var title = marker.getTitle();
-      var markerId = marker.id;
-      console.log('here is the marker id' + markerId);
-      link.innerHTML = markerId + '. ' +title;
-        link.setAttribute('data-parent', '#marker_list');
-        link.setAttribute('data-target', '#marker-'+ markerId);
-        link.setAttribute('data-toggle', 'collapse');
+var baseUrlListing = '/listings/'
+var markerTitle = marker.getTitle();
+var markerId = marker.id;
 
-var containerized = document.getElementById('list-details');
-var divX = document.createElement('div');
-divXP = document.createElement('p');
-divX.className += 'collapse';
-divX.setAttribute('id', 'marker-'+ markerId);
-divXP.innerHTML = 'hello world stuff for marker' + markerId;
+var listingsListContainer = document.getElementById("marker_list"),
+    listingLink = document.createElement("a"),
+    listingInfoContainer = document.createElement('div'),
+    listingInfo = document.createElement('p');
 
-divX.appendChild(divXP);
-containerized.appendChild(divX);
 
-      divY.insertBefore(link, divY.lastChild);
-      //Trigger a click event to marker when a list link is clicked.
-    google.maps.event.addDomListener(link, "click", function(){
+listingLink.className += "no-li-style " + "d-b" ;
+listingLink.innerHTML = markerId + '. ' +markerTitle;
+listingLink.setAttribute('data-parent', '#marker_list');
+listingLink.setAttribute('data-target', '#marker-'+ markerId);
+listingLink.setAttribute('data-toggle', 'collapse');
+
+listingInfoContainer.className += 'collapse';
+listingInfoContainer.setAttribute('id', 'marker-'+ markerId);
+
+listingInfo.className += 'no-marg ' + 'no-pad';
+listingInfo.innerHTML = 'Description: ' + markerData[1]['description'];
+moreInfo = document.createElement("a"),
+moreInfo.setAttribute('href', baseUrlListing+markerData[1]['id'])
+moreInfo.innerHTML = 'More Info';
+
+
+console.log('here is some' +moreInfo.length);
+listingInfoContainer.appendChild(listingInfo);
+listingInfoContainer.appendChild(moreInfo);
+listingLink.setAttribute('id', 'list-link-' + markerId);
+listingsListContainer.insertBefore(listingLink, listingsListContainer.lastChild);
+// var selector = '#list-link-'+markerId
+var trial = $('#list-link-'+markerId);
+// console.log('here is selector' + selector);
+console.log('lengtj of trial '+ trial.length);
+$(trial).after(listingInfoContainer);
+
+console.log('here is the marker id' + markerId);
+console.log('here is test data ' + JSON.stringify(markerData));
+
+      //Trigger a click event to marker when a list listingLink is clicked.
+    google.maps.event.addDomListener(listingLink, "click", function(){
         google.maps.event.trigger(marker, "click");
       });
     }

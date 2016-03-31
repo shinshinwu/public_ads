@@ -19,22 +19,29 @@
 
 
 <section class="main-content">
-    
-    <p>
-        <input type="file" id="take-picture" accept="image/*">
-    </p>
-
-    <h2>Preview:</h2>
-    <p>
-        <img src="about:blank" alt="" id="show-picture">
-    </p>
-
-    <p id="error"></p>
-
-
-
-
+<p>
+<input type="file" id="take-picture" accept="image/*">
+</p>
+<h2>Preview:</h2>
+<p>
+<img src="about:blank" alt="" id="show-picture">
+</p>
+<p id="error"></p>
 </section>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <form id="form1" runat="server">
+    <input type='file' id="inputFile" />
+    <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" />
+</form>
+    </div>
+    
+  </div>
+</div>
+
+
 
 
 <div id="mapContainer">
@@ -73,6 +80,10 @@
     </div>
   </div>
 </div>
+
+
+
+
 
 
 <% content_for :javascripts do %>
@@ -195,7 +206,17 @@ if (navigator.geolocation) {
 </script>
 
 <script type="text/javascript">
-	var takePicture = document.querySelector("#take-picture");
+
+
+
+</script>
+
+<script type="text/javascript">
+	(function () {
+    
+    var takePicture = document.querySelector("#take-picture"),
+        showPicture = document.querySelector("#show-picture");
+  // var takePicture = document.querySelector("#take-picture");
 takePicture.onchange = function (event) {
     // Get a reference to the taken picture or chosen file
     var files = event.target.files,
@@ -205,13 +226,6 @@ takePicture.onchange = function (event) {
     }
 };
 
-
-</script>
-
-<script type="text/javascript">
-	(function () {
-    var takePicture = document.querySelector("#take-picture"),
-        showPicture = document.querySelector("#show-picture");
 
     if (takePicture && showPicture) {
         // Set events
@@ -254,6 +268,25 @@ takePicture.onchange = function (event) {
 })();
 </script>
 
+<script type="text/javascript">
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
 
+            reader.onload = function (e) {
+                $('#image_upload_preview').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#inputFile").change(function () {
+        readURL(this);
+    });
+    //     $("#show-picture").change(function () {
+    //     readURL(this);
+    // });
+</script>
 
 <%end%>

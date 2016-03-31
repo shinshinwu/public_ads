@@ -30,6 +30,11 @@ class ListingsController < ApplicationController
     end
     gon.publicAdMapData = all_listings
     gon.distance = search_distance
+    if gon.publicAdMapData.length > 0 
+      @gon_flag = true
+    else
+      @gon_flag = false
+    end
   end
 
   def new
