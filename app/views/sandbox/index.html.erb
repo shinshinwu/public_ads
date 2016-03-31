@@ -40,8 +40,39 @@
 <div id="mapContainer">
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+<div id='pano'  style="width: 45%; height: 300px;float:left; display:block;"></div>
+      
+    </div>
+  </div>
+</div>
 
 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div id="floating-panel">
+        <table>
+          <tr>
+            <td><b>Position</b></td><td id="position-cell">&nbsp;</td>
+          </tr>
+          <tr>
+            <td><b>POV Heading</b></td><td id="heading-cell">270</td>
+          </tr>
+          <tr>
+            <td><b>POV Pitch</b></td><td id="pitch-cell">0.0</td>
+          </tr>
+          <tr>
+            <td><b>Pano ID</b></td><td id="pano-cell">&nbsp;</td>
+          </tr>
+          <table id="links_table"></table>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 <% content_for :javascripts do %>
@@ -57,6 +88,12 @@ function success(position) {
 
   document.querySelector('#mapContainer').appendChild(mapcanvas);
 
+
+  var sv = new google.maps.StreetViewService();
+
+var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'));
+
+
   var coords = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
   
   var options = {
@@ -70,14 +107,82 @@ function success(position) {
   };
   var map = new google.maps.Map(document.getElementById("map"), options);
 
-  var marker = new google.maps.Marker({
-      position: coords,
-      map: map,
-      title:"publicAds"
-  });
+
+sv.getPanorama({location: coords, radius: 50}, processSVData);
+
+
+
 console.log(position.coords.latitude );
  
  console.log(position.coords.longitude );
+
+function processSVData(data, status) {
+  if (status === google.maps.StreetViewStatus.OK) {
+    
+  var marker = new google.maps.Marker({
+      position: coords,
+      map: map,
+      title:"publicAds",
+      draggable: true
+  });
+
+
+
+    marker.addListener('dragend',function(event) {
+        var lati = event.latLng.lat();
+        var longi = event.latLng.lng();
+        console.log('here we are: ' + lati + longi);
+    });
+
+
+    console.log('processingSVDATA')
+    panorama.setPano(data.location.pano);
+    panorama.setPov({
+    heading: 270,
+    pitch: 0
+    });
+    panorama.setVisible(true);
+  
+
+        panorama.addListener('pano_changed', function() {
+            var panoCell = document.getElementById('pano-cell');
+            panoCell.innerHTML = panorama.getPano();
+        });
+
+        panorama.addListener('links_changed', function() {
+            var linksTable = document.getElementById('links_table');
+            while (linksTable.hasChildNodes()) {
+              linksTable.removeChild(linksTable.lastChild);
+            }
+            var links = panorama.getLinks();
+            for (var i in links) {
+              var row = document.createElement('tr');
+              linksTable.appendChild(row);
+              var labelCell = document.createElement('td');
+              labelCell.innerHTML = '<b>Link: ' + i + '</b>';
+              var valueCell = document.createElement('td');
+              valueCell.innerHTML = links[i].description;
+              linksTable.appendChild(labelCell);
+              linksTable.appendChild(valueCell);
+            }
+        });
+
+        panorama.addListener('position_changed', function() {
+            var positionCell = document.getElementById('position-cell');
+            positionCell.firstChild.nodeValue = panorama.getPosition() + '';
+        });
+
+        panorama.addListener('pov_changed', function() {
+            var headingCell = document.getElementById('heading-cell');
+            var pitchCell = document.getElementById('pitch-cell');
+            headingCell.firstChild.nodeValue = panorama.getPov().heading + '';
+            pitchCell.firstChild.nodeValue = panorama.getPov().pitch + '';
+        });
+
+
+  }
+}
+
 }
 
 
