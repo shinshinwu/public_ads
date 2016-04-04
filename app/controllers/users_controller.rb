@@ -48,10 +48,30 @@ class UsersController < ApplicationController
     end
 
     @messages = @conversation.messages
-    @listing  = @conversation.inquiry.listing
+    @new_message = Mailboxer::Notification.new(conversation_id: @conversation.id)
+    inquiry = Inquiry.where(conversation_id: @conversation.id).first
+    @listing  = inquiry.listing
+
     respond_to do |format|
       format.html
       format.js
+    end
+  end
+
+  def reply
+    @conversation = Mailboxer::Conversation.where(id: params[:mailboxer_notification][:conversation_id]).first
+    receipt = @user.reply_to_conversation(@conversation, params[:mailboxer_notification][:body])
+
+    respond_to do |format|
+      if receipt
+        @message = receipt.notification
+        format.html { redirect_to profile_users_path, notice: 'Message successfuly send!'}
+        format.js {}
+        format.json {render json: @message, status: :created, location: @message}
+      else
+        format.html { redirect_to profile_users_path, notice: 'Sorry, somthing went wrong while sending your reply'}
+        format.json { render json: receipt.errors, status: :unprocessable_entity}
+      end
     end
   end
 
