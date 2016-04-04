@@ -1,0 +1,26 @@
+<div class="panel panel-primary">
+  <div class="panel-body">
+    <ul class="chat">
+      <li class="list-group-item text-muted">Inquiry for <%= link_to @listing.title, listing_path(@listing) %><br /><%= @conversation.subject %></li>
+      <div id="inbox-messages">
+        <%- @messages.each do |message| -%>
+          <%= render partial: "message", locals: {message: message} %>
+        <%- end -%>
+      </div>
+    </ul>
+  </div>
+
+  <%= form_for @new_message, url: message_users_path, method: :post, remote: true, html: {class: "form"} do |f| %>
+    <div class="panel-footer">
+      <div class="input-group">
+        <%= f.hidden_field :conversation_id, value: @conversation.id %>
+        <%= f.text_field :body, placeholder: 'Type your message here...', class: 'form-control input-sm', id: 'btn-input' %>
+
+        <span class="input-group-btn">
+          <%= f.submit "Send", class: 'btn btn-warning btn-sm', id: 'btn-chat' %>
+        </span>
+      </div>
+    </div>
+  <% end %>
+
+</div>

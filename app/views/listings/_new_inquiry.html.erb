@@ -1,5 +1,5 @@
-<%= form_for message, url: url, method: method, html: {class: "form"} do |f| %>
-  <%= f.hidden_field :listing_id, value: message.listing_id %>
+<%= form_for inquiry, url: url, method: method, html: {class: "form"} do |f| %>
+  <%= f.hidden_field :listing_id, value: inquiry.listing_id %>
 
   <div class="form-group">
     <%= f.label :start_date, "What's the desired start date of your ad?" %>
@@ -11,15 +11,17 @@
     <%= f.date_select :end_date, required: true, class: "form-control" %>
   </div>
 
-  <div class="form-group">
-    <%= f.label :subject %>
-    <%= f.text_field :subject, required: true, class: "form-control" %>
-  </div>
+  <%= f.fields_for :conversation do |convo| %>
+    <div class="form-group">
+      <%= convo.label :subject %>
+      <%= convo.text_field :subject, required: true, class: "form-control" %>
+    </div>
 
-  <div class="form-group">
-    <%= f.label :body %>
-    <%= f.text_area :body, required: true, class: "form-control", rows: "3" %>
-  </div>
+    <div class="form-group">
+      <%= convo.label :body %>
+      <%= convo.text_area :body, required: true, class: "form-control", rows: "3" %>
+    </div>
+  <% end %>
 
   <div class="form-group">
     <div class="col-sm-5"></div>

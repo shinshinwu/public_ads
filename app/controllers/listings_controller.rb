@@ -6,10 +6,6 @@ class ListingsController < ApplicationController
     @user = User.new
   end
 
-
-
-
-
   def index
     @user = User.new
     @search_category = params[:category]
@@ -50,6 +46,7 @@ class ListingsController < ApplicationController
   end
 
   def show
+    @have_contacted_listing = @user.have_contacted_listing?(@listing)
   end
 
   def create
@@ -146,7 +143,7 @@ class ListingsController < ApplicationController
     @address.country  = params[:listing][:address][:country]
   end
 
-  def search_params 
+  def search_params
     params.permit(:category, :address, :distance)
   end
 end

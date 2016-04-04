@@ -49,6 +49,9 @@ gem 'gon'
 # for full-text search ability
 gem 'pg_search'
 
+# for private messaging capability
+gem 'mailboxer', '~> 0.13'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

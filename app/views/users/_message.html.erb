@@ -1,0 +1,32 @@
+<%- if message.sender == current_user -%>
+  <li class="right clearfix">
+    <span class="chat-img pull-right">
+      <img src="http://placehold.it/50/FA6F57/fff&amp;text=ME" alt="User Avatar" class="img-circle">
+    </span>
+
+    <div class="chat-body clear-fix">
+      <div class="header">
+        <small class="text-muted">
+          <span class="glyphicon glyphicon-time"></span><%= message.created_at.to_s(:short) -%>
+        </small>
+        <strong class="pull-right primary-font"><%= message.sender.name %></strong>
+        <p><%= message.body %></p>
+      </div>
+    </div>
+  </li>
+<%- else -%>
+  <li class="left clearfix">
+    <span class="chat-img pull-left">
+      <img src="http://placehold.it/50/55C1E7/fff&amp;text=U" alt="User Avatar" class="img-circle">
+    </span>
+
+    <div class="chat-body clear-fix">
+      <div class="header">
+        <strong class="primary-font"><%= message.sender.name %></strong>
+        <small class="pull-right text-muted">
+        <span class="glyphicon glyphicon-time"></span><%= message.created_at.to_s(:short) -%></small>
+        <p><%= message.body %></p>
+      </div>
+    </div>
+  </li>
+<%- end -%>

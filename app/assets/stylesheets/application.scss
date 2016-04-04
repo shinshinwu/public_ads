@@ -538,13 +538,13 @@ input{
    text-align: center;
 }
 :-moz-placeholder { /* Firefox 18- */
-   text-align: center;  
+   text-align: center;
 }
 ::-moz-placeholder {  /* Firefox 19+ */
-   text-align: center;  
+   text-align: center;
 }
-:-ms-input-placeholder {  
-   text-align: center; 
+:-ms-input-placeholder {
+   text-align: center;
 }
 .navbar{
   margin-bottom: 0px;
@@ -558,13 +558,13 @@ input{
 }
 
 /*IPHONE 6+ MEDIA QUERY FOR PORTRAIT */
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3)  and (orientation: portrait) { 
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3)  and (orientation: portrait) {
   .intro-header{
     padding: 30% 0;
-  } 
+  }
 }
 
-@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) { 
+@media only screen and (min-device-width: 414px) and (max-device-width: 736px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: landscape) {
   .c-p-b{
     display: inline-block;
     float: left;
@@ -581,7 +581,7 @@ input{
   }
 }
 
-@media only screen  and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) { 
+@media only screen  and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) {
   .c-p-b{
     display: inline-block;
     float: left;
@@ -601,7 +601,7 @@ input{
 @media (min-width: 430px) and (min-height: 500px) {
   .intro-header{
     padding: 100px 0;
-  } 
+  }
   .v-p-t{
     font-size: 2em;
   }
@@ -679,3 +679,65 @@ width: 50%;
   .vp-s-c{padding: 0 10%;}
 }
 
+
+/*chat messaging system styles*/
+
+.chat
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li
+{
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li.left .chat-body
+{
+    margin-left: 60px;
+}
+
+.chat li.right .chat-body
+{
+    margin-right: 60px;
+}
+
+
+.chat li .chat-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.panel .slidedown .glyphicon, .chat .glyphicon
+{
+    margin-right: 5px;
+}
+
+.panel-body
+{
+    overflow-y: scroll;
+    height: 450px;
+}
+
+::-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar
+{
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}

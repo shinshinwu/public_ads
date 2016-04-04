@@ -9,7 +9,8 @@ class UsersController < ApplicationController
   def show
       @listings_to_sell = @user.listings.includes(:address)
     # all the messages the users have received about a listing minues users own listing are the listings the user have inquired about. There is definitely a better way, but for now it's good enough
-      @listings_to_buy  = (@user.send_messages + @user.received_messages).map(&:listing).uniq - @listings_to_sell
+    @listings_to_buy  = @user.inquired_listings
+    @conversations = @user.mailbox.inbox
   end
 
   def create
@@ -34,9 +35,44 @@ class UsersController < ApplicationController
     if @user.save
       flash[:success] = "Profile Updated!"
     else
-      flash[:eroor] = "Something went wrong when saving your profile"
+      flash[:error] = "Something went wrong when saving your profile"
     end
     redirect_to profile_users_path
+  end
+
+  def conversation
+    @conversation = Mailboxer::Conversation.where(id: params[:id]).first
+    unless @conversation.present? && @conversation.participants.include?(current_user)
+      flash[:error] = "Something went wrong loading your messages"
+      redirect_to profile_users_path and return
+    end
+
+    @messages = @conversation.messages
+    @new_message = Mailboxer::Notification.new(conversation_id: @conversation.id)
+    inquiry = Inquiry.where(conversation_id: @conversation.id).first
+    @listing  = inquiry.listing
+
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
+
+  def reply
+    @conversation = Mailboxer::Conversation.where(id: params[:mailboxer_notification][:conversation_id]).first
+    receipt = @user.reply_to_conversation(@conversation, params[:mailboxer_notification][:body])
+
+    respond_to do |format|
+      if receipt
+        @message = receipt.notification
+        format.html { redirect_to profile_users_path, notice: 'Message successfuly send!'}
+        format.js {}
+        format.json {render json: @message, status: :created, location: @message}
+      else
+        format.html { redirect_to profile_users_path, notice: 'Sorry, somthing went wrong while sending your reply'}
+        format.json { render json: receipt.errors, status: :unprocessable_entity}
+      end
+    end
   end
 
   private

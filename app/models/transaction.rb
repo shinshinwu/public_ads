@@ -2,7 +2,7 @@ class Transaction < ActiveRecord::Base
   belongs_to :listing
   belongs_to :seller, class_name: "User", foreign_key: "seller_id"
   belongs_to :buyer, class_name: "User", foreign_key: "buyer_id"
-  has_many :messages
+  belongs_to :inquiry
 
   def create_customer!(token:nil, user:nil)
     Stripe.api_key = ENV["STRIPE_API_KEY"]

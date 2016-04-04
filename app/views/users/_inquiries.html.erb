@@ -1,0 +1,23 @@
+<table class="table table-striped">
+  <thead>
+    <tr class="text-muted">
+      <th></th>
+      <th>Sender</th>
+      <th>Subject</th>
+      <th></th>
+      <th>Send On</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% conversations.each do |conversation| %>
+      <tr>
+        <th scope="row"></th>
+        <td><%= conversation.originator.name %></td>
+        <td colspan="2">
+          <%= link_to conversation.subject, conversation_users_path(id: conversation.id), class: "pull-left", :remote => true %>
+        </td>
+        <td><%= conversation.created_at.to_s(:short) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

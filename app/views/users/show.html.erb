@@ -1,14 +1,3 @@
-<!-- <h1>Profile</h1>
-
-<ul>
-  <li>First Name: <%= @user.first_name %></li>
-  <li>Last Name: <%= @user.last_name %></li>
-  <li>Email: <%= @user.email %></li>
-  <li>Phone: <%= number_to_phone(@user.phone) %></li>
-</ul>
-
-<%#= link_to "Edit Profile", edit_users_path %> -->
-
 <div class="container">
   <div class="container bootstrap snippet">
     <div class="row">
@@ -74,7 +63,7 @@
       <div class="col-sm-9">
         <ul class="nav nav-tabs" id="myTab">
           <li class="active" style="width:33%;"><a href="#listings" data-toggle="tab">Listings</a></li>
-          <li style="width:33%;"><a href="#messages" data-toggle="tab">Messages</a></li>
+          <li style="width:33%;"><a href="#inquiries" data-toggle="tab">Inquiries</a></li>
           <li style="width:33%;"><a href="#settings" data-toggle="tab">Settings</a></li>
         </ul>
 
@@ -162,18 +151,8 @@
             <% end %>
           </div><!--/tab-pane-->
 
-          <div class="tab-pane" id="messages">
-            <ul class="list-group">
-              <li class="list-group-item text-muted">Inbox</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Here is your a link to the latest summary report from the..</a> 2.13.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Hi Joe, There has been a request on your account since that was..</a> 2.11.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Nullam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Thllam sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Wesm sapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">For therepien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Also we, havesapien massaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-              <li class="list-group-item text-right"><a href="#" class="pull-left">Swedish chef is assaortor. A lobortis vitae, condimentum justo...</a> 2.11.2014</li>
-            </ul>
+          <div class="tab-pane" id="inquiries">
+            <%= render partial: "inquiries", locals: {conversations: @conversations} %>
           </div><!--/tab-pane-->
 
           <div class="tab-pane" id="settings">
