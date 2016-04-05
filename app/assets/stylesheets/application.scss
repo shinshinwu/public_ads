@@ -658,7 +658,7 @@ input{
   width: 80%;
 }
 .c-w-m{
-  margin: 0 auto;
+  margin: 0 auto !important;
 }
 
   .d-b{
@@ -879,4 +879,16 @@ color: rgba(248, 152, 56, 1) !important;
 }
 .navbar-toggle.collapsed .bottom-bar {
   transform: rotate(0);
+}
+
+#marker_list{
+  padding-bottom: 20px;
+}
+
+.f-p-t-20px{
+  padding-top: 20px;
+}
+.dropdown-menu{
+  border: none !important;
+  border-radius: 0;
 }

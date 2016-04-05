@@ -55,11 +55,11 @@
         <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form-inline", id: "login-nav"}) do |f| %>
           <div class="form-group">
              <label class="sr-only" >Email address</label>
-           <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+           <%= f.email_field :email, required: true, class: "", placeholder: "Email" %>
           </div>
           <div class="form-group">
              <label class="sr-only" >Password</label>
-             <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+             <%= f.password_field :password, required: true, class: "", placeholder: "Password" %>
           </div>
           <div class="form-group">
             <%= f.submit "Log In", :class => 'btn btn-warning btn-block' %>
@@ -77,11 +77,11 @@
         <%= form_for @user, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
           <div class="form-group">
              <label class="sr-only">Email address</label>
-           <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+           <%= f.email_field :email, required: true, class: "", placeholder: "Email" %>
           </div>
           <div class="form-group">
              <label class="sr-only">Password</label>
-             <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+             <%= f.password_field :password, required: true, class: "", placeholder: "Password" %>
           </div>
           <div class="form-group">
         <%= f.submit "Create Account", :class => 'btn btn-warning btn-block' %>
