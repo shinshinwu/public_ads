@@ -797,9 +797,12 @@ a.t-d-n{
 .f-w-400{
   font-weight: 400 !important;
 }
+.f-w-700{
+  font-weight: 600 !important;
+}
 /*padding left 15px*/
 .p-l-15px{
-padding-left: 15px;
+  padding-left: 15px;
 }
 /*orange color text*/
 .o-c-t{
@@ -807,15 +810,18 @@ padding-left: 15px;
 }
 /*text black*/
 .t-b{
-color: rgba(0,0,0,1);
+  color: rgba(0,0,0,1);
 }
 /* a/link STYLING HELPERS (END) */
 
 
 .d-b.t-d-n.l-c-p.t-b:hover,
+.f-w-600.l-c-p.t-d-g.t-d-n.t-d-g:hover,
 .d-b.t-d-n.l-c-p.t-b:active,
+.f-w-600.l-c-p.t-d-g.t-d-n.t-d-g:active,
 .d-b.t-d-n.l-c-p.t-b:focus,
+.f-w-600.l-c-p.t-d-g.t-d-n.t-d-g:focus,
 .d-b.t-d-n.l-c-p.t-b[aria-expanded="true"]{
 color: rgba(248, 152, 56, 1) !important;
--webkit-transition: all 0.1s ease;transition: all 0.1s ease;
+-webkit-transition: all 0.3s ease;transition: all 0.3s ease;
 }

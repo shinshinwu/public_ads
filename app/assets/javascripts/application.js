@@ -25,6 +25,7 @@ $(document).ready(function() {
 	  connect: 'lower',
 	  behaviour: 'tap',
 	  start: 1,
+	  step: .25,
 	  range: {
 	    'min': [ 0 ],
 	    'max': [ 10 ]

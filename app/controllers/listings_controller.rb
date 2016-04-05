@@ -30,7 +30,7 @@ class ListingsController < ApplicationController
       @gon_flag = true
     else
       @gon_flag = false
-      flash[:error] = "Please search in SF area, with a wider radius to see PublicAd listings."
+      flash[:error] = "Please search in the San Francisco area, with a wider radius to see PublicAd listings."
     end
   end
 
