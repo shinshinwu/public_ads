@@ -17,11 +17,11 @@
     <div class="container topnav">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false" >
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
         </button>
         <%= link_to image_tag("publicad-logo-nav.png", width: 150, height: 50), root_path, class: "navbar-brand topnav" %>
       </div>
@@ -30,20 +30,20 @@
         <ul class="nav navbar-nav navbar-right">
           <% unless logged_in? -%>
             <li class="dropdown">
-               <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
+               <a class="dropdown-toggle l-c-p s-nav-l" data-toggle="dropdown">Sign In </a>
                <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                   <li class="text-center">public<span class="orange">ad</span> signin</li>
                   <li>
                      <div class="row">
                         <div class="col-md-12">
-                            <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form", id: "login-nav"}) do |f| %>
+                            <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "f-p-t-20px", id: "login-nav"}) do |f| %>
                               <div class="form-group">
                                  <label class="sr-only" >Email address</label>
-                               <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+                               <%= f.email_field :email, required: true, class: "c-w-m d-b", placeholder: "Email" %>
                               </div>
                               <div class="form-group">
                                  <label class="sr-only" >Password</label>
-                                 <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+                                 <%= f.password_field :password, required: true, class: "c-w-m d-b", placeholder: "Password" %>
                               </div>
                               <div class="form-group">
                                 <%= f.submit "Log In", :class => 'btn btn-warning btn-block' %>
@@ -55,23 +55,23 @@
                </ul>
             </li>
             <li class="dropdown">
-               <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+               <a  class="dropdown-toggle l-c-p s-u-l s-nav-l" data-toggle="dropdown">Sign Up </a>
                <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                   <li class="text-center">public<span class="orange">ad</span> signup</li>
                   <li>
                      <div class="row">
                         <div class="col-md-12">
-                            <%= form_for(User.new, url: {controller: "users", action: "create"}, html: {class: "form", id: "sign-up-nav"}) do |f| %>
+                            <%= form_for(User.new, url: {controller: "users", action: "create"}, html: {class: "f-p-t-20px", id: "sign-up-nav"}) do |f| %>
                               <div class="form-group">
                                  <label class="sr-only">Email address</label>
-                               <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+                               <%= f.email_field :email, required: true, class: "c-w-m d-b", placeholder: "Email" %>
                               </div>
                               <div class="form-group">
                                  <label class="sr-only">Password</label>
-                                 <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+                                 <%= f.password_field :password, required: true, class: "c-w-m d-b", placeholder: "Password" %>
                               </div>
                               <div class="form-group">
-                            <%= f.submit "Create Account", :class => 'btn btn-warning btn-block' %>
+                            <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
                               </div>
                            <% end %>
                         </div>

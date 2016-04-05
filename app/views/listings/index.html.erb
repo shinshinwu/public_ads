@@ -3,7 +3,7 @@
     <div class="col-sm-4">
         <div class="row">
           <div class="col-xs-12">
-            <h1 class="text-center info-pane-title">public<span class="ad-txt">ad</span></h1>
+            <h1 class="text-center info-pane-title">public<span class="ad-txt ">ad</span></h1>
             <div class="info-pane-description">
               <p>Click on one of the map's markers to get started and see the public<span class="ad-txt">ad</span> information.</p>
             </div>
@@ -163,7 +163,7 @@ console.log(' here is the server-side returned data to build map: ' + gon.public
                   id: i + 1
                 });
 
-        var content = "<p class='marker_title'>"+marker.id +'. '+name+"</p><p class='marker_title'><a href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
+        var content = "<p class='marker_title'>"+marker.id +'. '+name+"</p><p class='marker_title '><a class='t-d-n l-c-p o-c-t' href='"+baseUrl+locations[i][1]['id']+"'>More Info</a></p>";
         var infowindow = new google.maps.InfoWindow();
             createMarkerButton(marker, locations[i]);
         google.maps.event.addListener(marker,'click', (function(marker,content,infowindow){ 
@@ -216,19 +216,20 @@ var listingsListContainer = document.getElementById("marker_list"),
     listingInfo = document.createElement('p');
 
 
-listingLink.className += "no-li-style " + "d-b" ;
+listingLink.className += "d-b t-d-n l-c-p t-b" ;
 listingLink.innerHTML = markerId + '. ' +markerTitle;
 listingLink.setAttribute('data-parent', '#marker_list');
 listingLink.setAttribute('data-target', '#marker-'+ markerId);
 listingLink.setAttribute('data-toggle', 'collapse');
 
-listingInfoContainer.className += 'collapse';
+listingInfoContainer.className += 'collapse p-l-15px';
 listingInfoContainer.setAttribute('id', 'marker-'+ markerId);
 
-listingInfo.className += 'no-marg ' + 'no-pad';
+listingInfo.className += 'no-marg f-w-400 t-d-g ' + 'no-pad';
 listingInfo.innerHTML = 'Description: ' + markerData[1]['description'];
 moreInfo = document.createElement("a"),
 moreInfo.setAttribute('href', baseUrlListing+markerData[1]['id'])
+moreInfo.className += 'f-w-600 l-c-p t-d-g t-d-n t-d-g'
 moreInfo.innerHTML = 'More Info';
 
 

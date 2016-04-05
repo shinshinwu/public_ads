@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @user = User.new
+    # @user = User.new
     @search_category = params[:category]
     search_distance = search_params[:distance]
     @search_address = search_params[:address]
@@ -30,6 +30,7 @@ class ListingsController < ApplicationController
       @gon_flag = true
     else
       @gon_flag = false
+      flash.now[:error] = "Please search in the San Francisco area, with a higher proximity to see PublicAd listings."
     end
   end
 
