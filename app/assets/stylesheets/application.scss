@@ -398,6 +398,7 @@ input,label, span, select, .b-t {
   -webkit-flex-basis: auto;
       -ms-flex-preferred-size: auto;
           flex-basis: auto;
+/*-webkit-transition: all 0.3s ease;transition: all 0.3s ease;*/
 }
 
 .ad-tabs .tab {
@@ -407,10 +408,12 @@ input,label, span, select, .b-t {
   background-color: rgba(255,255,255,0.8);
   cursor: hand;
   cursor: pointer;
+  -webkit-transition: all 0.3s ease;transition: all 0.3s ease;
   /*border-left: 10px solid #ccc;*/
 }
 .ad-tabs .tab:hover {
   background-color: #fff;
+  /*-webkit-transition: all 0.3s ease;transition: all 0.3s ease;*/
 }
 
 #tab-one:checked ~ .tabs #tab-one-label,
@@ -428,6 +431,7 @@ input,label, span, select, .b-t {
 #tab-three:checked ~ .tabs #tab-three-panel,
 #tab-four:checked ~ .tabs #tab-four-panel {
   display: block;
+
 }
 
 /*HOME SERVICE (START) SECTION STYLING*/
@@ -898,4 +902,12 @@ color: rgba(248, 152, 56, 1) !important;
 }
 .f-s-l{
   font-size: 1.3em;
+}
+
+.t-d-n.l-c-p.t-d-g.f-s-l:focus, 
+.t-d-n.l-c-p.t-d-g.f-s-l:hover,
+.t-d-n.l-c-p.t-d-g.f-s-l:active,{
+  color: rgba(248, 152, 56, 1) !important;
+  -webkit-transition: all 0.3s ease;transition: all 0.3s ease;
+
 }

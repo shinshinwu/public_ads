@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :update, :messages, :new, :show]
+  before_filter :authenticate_user!, only: [:create, :update, :messages, :new]
   before_filter :set_listing_context, except: [:index, :new, :create, :home]
 
   def home

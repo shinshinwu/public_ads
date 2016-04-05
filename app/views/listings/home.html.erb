@@ -1,115 +1,99 @@
-<!-- <a name="about" ></a> -->
+
 <div class="intro-header">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-           <div class="ad-tabs">
-        <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
-        <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
-        <!-- <input class="state" type="radio" title="tab-three" name="tabs-state" id="tab-three" /> -->
-        <div class="tabs flex-tabs">
-          <label for="tab-one" id="tab-one-label" class="tab">Search</label>
-          <label for="tab-two" id="tab-two-label" class="tab">List</label>
-          <!-- <label for="tab-three" id="tab-three-label" class="tab">Request</label> -->
-          <div id="tab-one-panel" class="panel active">
-                              <div class="row">
-                    <div id="request-section" class="col-xs-12">
-                      <h1 class="text-center v-p-t b-t f-w-400">Find your future public<span class="orange">ad</span> space</h1>
-                      <!-- <h2 class="text-center visible-xs" style="color:black;">The only public<span class="orange">ad</span> space marketplace</h2> -->
-                    </div>
-                  </div>
+        <div class="ad-tabs">
+          <input class="state" type="radio" title="tab-one" name="tabs-state" id="tab-one" checked />
+          <input class="state" type="radio" title="tab-two" name="tabs-state" id="tab-two" />
+          <div class="tabs flex-tabs">
+            <label for="tab-one" id="tab-one-label" class="tab">Search</label>
+            <label for="tab-two" id="tab-two-label" class="tab">List</label>
+            <div id="tab-one-panel" class="panel active">
+            <div class="row">
+                <div id="request-section" class="col-xs-12">
+                  <h1 class="text-center v-p-t b-t">Find your future public<span class="orange">ad</span> space</h1>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12">
+                <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
                   <div class="row">
-                    <div class="col-xs-12">
-                    <%=form_tag("/listings", method: "get", search: true, class: "nifty_form") do%>
-                    <div class="row">
-                      <div class="col-sm-6 col-md-4 c-p-b">
+                    <div class="col-sm-6 col-md-4 c-p-b">
                       <p class='vp-s-t '>search by publicad type</p>
                       <%=select_tag "category", "<option selected='selected' >All</option></span><option>Billboard</option><option>Bench Ad</option><option>Bus Stop Ad</option>".html_safe, id: "dropdown"%>
-                      </div>
-                      <div class="col-sm-6 col-md-4 c-p-b">
+                    </div>
+                    <div class="col-sm-6 col-md-4 c-p-b">
                       <p class="vp-s-t">search in this location</p>
-                        <%= text_field_tag(:address, nil, :required => true, placeholder: 'Zip code or Address') %>
-
-                      </div>
-                      <div class="col-sm-12 col-md-4 c-p-b vp-s-c">
-                       <p class="vp-s-t">proximity from location</p>
-                        <div id="nonlinear"></div>
-                        <span class="example-val" id="distance-value"></span>
-                      </div>
-                      <div class="col-sm-12" style="clear:both;">
+                      <%= text_field_tag(:address, nil, :required => true, placeholder: 'Zip code or Address') %>
+                    </div>
+                    <div class="col-sm-12 col-md-4 c-p-b vp-s-c">
+                      <p class="vp-s-t">proximity from location</p>
+                      <div id="nonlinear"></div>
+                      <span class="example-val" id="distance-value"></span>
+                    </div>
+                    <div class="col-sm-12" style="clear:both;">
                       <%= hidden_field_tag('distance', 'valuye')%> 
                       <%= submit_tag("Find PublicAdSpace", class: 'btn btn-warning btn-lg hm-button', id: 'distance_slider') %>
-                      </div>
-                    </div>
-                    <%end%>
                     </div>
                   </div>
-          </div>
-          <div id="tab-two-panel" class="panel ">
-            <div class="row toggleable" id='signInDiv'>
-              <div id="listing-section" class="col-xs-12">
-                <h2 class="text-center hidden-xs b-t">List your public<span class="orange">ad</span> space<br />by creating your  <span class="orange">free</span>  account today</h2>
-                <h3 class="text-center visible-xs" style="color:black;">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> by creating an account today</h3>
-              </div> <!-- listing section -->
-              <div class="col-xs-12">
-        <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form-inline", id: "login-nav"}) do |f| %>
-          <div class="form-group">
-             <label class="sr-only" >Email address</label>
-           <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
-          </div>
-          <div class="form-group">
-             <label class="sr-only" >Password</label>
-             <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
-          </div>
-          <div class="form-group">
-            <%= f.submit "Sign In", :class => 'btn btn-warning btn-block' %>
-          </div>
-       <% end %>
-              </div>
-            </div> <!-- row -->
-            <div class="row toggleable" id='signUpDiv'>
-              <div id="listing-section" class="col-xs-12">
-                <h2 class="text-center hidden-xs b-t">List your public<span class="orange">ad</span> space<br />by creating your  <span class="orange">free</span>  account today</h2>
-                <h3 class="text-center visible-xs" style="color:black;">Start listing your public<span class="orange">ad</span> space for <span class="orange">free</span> by creating an account today</h3>
-
-              </div> <!-- listing section -->
-              <div class="col-xs-12">
-        <%= form_for @user, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
-          <div class="form-group">
-             <label class="sr-only">Email address</label>
-           <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
-          </div>
-          <div class="form-group">
-             <label class="sr-only">Password</label>
-             <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
-          </div>
-          <div class="form-group">
-        <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
-          </div>
-       <% end %>
+                <%end%>
+                </div>
               </div>
             </div>
-            <div class="row">
-              <div class="col-xs-12 f-p-t-20px">
-                <a class="t-d-n l-c-p o-c-t f-s-l" id= 'joinLink'> Sign Up</a>
+            <div id="tab-two-panel" class="panel ">
+              <div class="row toggleable" id='signInDiv'>
+                <div id="listing-section" class="col-xs-12">
+                 <h1 class="text-center v-p-t b-t ">List your public<span class="orange">ad</span> space by creating your  <span class="orange">free</span>  account today</h1>
+                </div> <!-- listing section -->
+                <div class="col-xs-12 ">
+                  <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form-inline", id: "login-nav"}) do |f| %>
+                    <div class="form-group">
+                      <label class="sr-only" >Email address</label>
+                      <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" >Password</label>
+                      <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
+                    </div>
+                    <div class="form-group">
+                      <%= f.submit "Sign In", :class => 'btn btn-warning btn-block' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div> <!-- row -->
+              <div class="row toggleable" id='signUpDiv'>
+                <div id="listing-section" class="col-xs-12">
+                <h1 class="text-center v-p-t b-t ">List your public<span class="orange">ad</span> space by creating your  <span class="orange">free</span>  account today</h1>
+                </div> <!-- listing section -->
+                <div class="col-xs-12 ">
+                  <%= form_for @user, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
+                    <div class="form-group">
+                      <label class="sr-only">Email address</label>
+                      <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only">Password</label>
+                        <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
+                    </div>
+                    <div class="form-group">
+                        <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-xs-12 f-p-t-20px">
+                  <a class="t-d-n l-c-p t-d-g f-s-l" id= 'joinLink'> Sign Up</a>
+                </div>
               </div>
             </div>
           </div>
-
-
-<!--           <div id="tab-three-panel" class="panel">
-<p>some stuff</p>
-          </div> -->
-        </div>
-      </div>
         </div>
       </div>
     </div>
   </div>
-    <!-- /.container -->
-
-<!-- </div> -->
-<!-- /.intro-header -->
+</div>
 
 <!-- Page Content -->
 <div class="content-section-a s-s-s">
@@ -142,7 +126,7 @@
       </div>
       <div class="col-lg-6 p-l-30 col-sm-6">
         <div class="clearfix"></div>
-        <h2 class="section-heading no-pad no-marg l-t">Listing a public<span class="orange">ad</span> space</h2>
+        <h2 class="section-heading no-pad no-marg l-t">List a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer">
         <p class="home lead l-t no-pad no-marg">Do you own out-of-home media space? Are you tired of paying those high advertisement agency fee's? List your sign for free today by creating a profile in under 3 minutes. We'll make an instantly marketeable profile for your public ad space that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.</p>
         <a href="#tab-two" class="cta-link btn btn-warning desk-btn btn-lg hidden-xs">List</a>
@@ -163,14 +147,14 @@
         <div class="clearfix"></div>
         <h2 class="section-heading r-t">Request a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer">
-        <p class="home lead r-t no-pad no-marg">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
-        <a href="#tab-three" class="cta-link btn btn-warning f-r desk-btn btn-lg hidden-xs">Request</a>
+        <p class="home lead r-t no-pad no-marg">Do you know the exact public<span class="orange">ad</span> you want? If you search our market place and don't see it, you can make a request for any public<span class="orange">ad</span> space and we will help to negotiate the listing for you.</p>
+        <a href="#tab-one" class="cta-link btn btn-warning f-r desk-btn btn-lg hidden-xs">Request</a>
       </div>
       <div class="col-lg-5 col-sm-6">
         <%= image_tag("public-ad-sample.png", class: "f-l img-responsive l-t home-img") %>
       </div>
       <div class="col-xs-12 visible-xs">
-        <a href="#tab-three" class="cta-link btn btn-warning btn-lg visible-xs">Request</a>
+        <a href="#tab-one" class="cta-link btn btn-warning btn-lg visible-xs">Request</a>
       </div>
     </div>
   </div>
