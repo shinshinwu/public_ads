@@ -24,7 +24,7 @@ $(document).ready(function() {
 	APP.instance = noUiSlider.create(connectSlider, {
 	  connect: 'lower',
 	  behaviour: 'tap',
-	  start: 1,
+	  start: 5,
 	  step: .25,
 	  range: {
 	    'min': [ 0 ],

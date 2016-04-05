@@ -27,6 +27,19 @@
  */
 
 
+@font-face {
+    font-family: 'sofia_prolight';
+    src: url('SofiaProLight-webfont.eot');
+    src: url('SofiaProLight-webfont.eot?#iefix') format('embedded-opentype'),
+         url('SofiaProLight-webfont.woff2') format('woff2'),
+         url('SofiaProLight-webfont.woff') format('woff'),
+         url('SofiaProLight-webfont.ttf') format('truetype'),
+         url('SofiaProLight-webfont.svg#sofia_prolight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 
 
 html {
@@ -52,7 +65,8 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;
+    /*font-family: "Lato","Helvetica Neue",Helvetica,Arial,sans-serif;*/
+    font-family: 'sofia_prolight';
     font-weight: 700;
 }
 
@@ -424,7 +438,7 @@ input,label, span, select, .b-t {
   height:100%;
   width:100%;
   overflow:hidden;
-  padding: 5% 0 18%;
+  padding: 10% 0 10%;
 
 }
 .content-section-a{
@@ -824,4 +838,45 @@ a.t-d-n{
 .d-b.t-d-n.l-c-p.t-b[aria-expanded="true"]{
 color: rgba(248, 152, 56, 1) !important;
 -webkit-transition: all 0.3s ease;transition: all 0.3s ease;
+}
+
+
+
+.navbar-toggle{
+  border-radius: 0;
+  background-color: #f8f8f8 !important;
+  border: none !important;
+  padding: 11px 20px 10px 10px;
+  margin: 0;
+  margin-top: 15px;
+}
+
+.navbar-toggle .icon-bar {
+  /*width: 22px;*/
+  /*transition: all 0.2s;*/
+  margin: 0 auto;
+  width: 35px;
+  height: 5px;
+  -webkit-transition: all 0.2s;transition: all 0.2s;
+  background-color: rgba(255,255,255,1);
+}
+.navbar-toggle .top-bar {
+  transform: rotate(45deg);
+  transform-origin: 10% 10%;
+}
+.navbar-toggle .middle-bar {
+  opacity: 0;
+}
+.navbar-toggle .bottom-bar {
+  transform: rotate(-45deg);
+  transform-origin: 10% 90%;
+}
+.navbar-toggle.collapsed .top-bar {
+  transform: rotate(0);
+}
+.navbar-toggle.collapsed .middle-bar {
+  opacity: 1;
+}
+.navbar-toggle.collapsed .bottom-bar {
+  transform: rotate(0);
 }
