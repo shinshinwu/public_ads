@@ -741,3 +741,58 @@ width: 50%;
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
     background-color: #555;
 }
+
+
+
+
+
+/*SIGN IN / SIGN UP STYLING (START) */
+/*link cursor pointer*/
+.l-c-p{
+  cursor: pointer;
+}
+.s-nav-l{
+  text-align: center;
+}
+/*sign in link*/
+.s-i-l{
+}
+@media (min-width: 768px) {
+/*sign up/in navbar link*/
+.s-u-l{
+border: 3px rgba(248, 152, 56, 1) solid;
+margin-left: 20px;
+color: rgba(248, 152, 56, 1) !important;
+}
+/*.s-u-l:focus{
+  outline: none !important;
+}*/
+.s-nav-l{
+  padding-top: 10px !important;
+  padding-bottom: 10px !important;
+  margin-top: 5px;
+  
+}
+/*.s-nav-l:hover, .s-nav-l:active, .s-nav-l:focus{
+}*/
+
+.dropdown.open a{
+  background-color: rgba(248, 152, 56, 1) !important;
+  color: rgba(255, 255, 255, 1) !important;
+}
+/*.dropdown.open a:focus{
+ border-color: none;
+}*/
+/*.nav .open > a:focus {
+ outline: none !important;  
+  border-color: rgba(248, 152, 56, 1)  !important;
+}*/
+.nav .open > a, .nav .open > a:hover, .nav .open > a:focus{
+  border: 3px rgba(248, 152, 56, 1) !important;
+  -webkit-transition: all 0.5s ease;transition: all 0.5s ease;
+  color: rgba(255, 255, 255, 1);
+}
+
+}
+/*SIGN IN / SIGN UP STYLING (END) */
+

@@ -1,5 +1,5 @@
 class ListingsController < ApplicationController
-  before_filter :authenticate_user!, only: [:create, :update, :messages, :new]
+  before_filter :authenticate_user!, only: [:create, :update, :messages, :new, :show]
   before_filter :set_listing_context, except: [:index, :new, :create, :home]
 
   def home
@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
   end
 
   def index
-    @user = User.new
+    # @user = User.new
     @search_category = params[:category]
     search_distance = search_params[:distance]
     @search_address = search_params[:address]
@@ -30,6 +30,7 @@ class ListingsController < ApplicationController
       @gon_flag = true
     else
       @gon_flag = false
+      flash[:error] = "Please search in SF area, with a wider radius to see PublicAd listings."
     end
   end
 

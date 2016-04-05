@@ -30,7 +30,7 @@
         <ul class="nav navbar-nav navbar-right">
           <% unless logged_in? -%>
             <li class="dropdown">
-               <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign In <b class="caret"></b></a>
+               <a class="dropdown-toggle l-c-p s-nav-l" data-toggle="dropdown">Sign In </a>
                <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                   <li class="text-center">public<span class="orange">ad</span> signin</li>
                   <li>
@@ -55,7 +55,7 @@
                </ul>
             </li>
             <li class="dropdown">
-               <a href="http://www.jquery2dotnet.com" class="dropdown-toggle" data-toggle="dropdown">Sign Up <b class="caret"></b></a>
+               <a  class="dropdown-toggle l-c-p s-u-l s-nav-l" data-toggle="dropdown">Sign Up </a>
                <ul class="dropdown-menu" style="padding: 15px;min-width: 250px;">
                   <li class="text-center">public<span class="orange">ad</span> signup</li>
                   <li>
@@ -71,7 +71,7 @@
                                  <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
                               </div>
                               <div class="form-group">
-                            <%= f.submit "Create Account", :class => 'btn btn-warning btn-block' %>
+                            <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
                               </div>
                            <% end %>
                         </div>
