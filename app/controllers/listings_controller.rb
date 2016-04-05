@@ -26,7 +26,7 @@ class ListingsController < ApplicationController
     end
     gon.publicAdMapData = all_listings
     gon.distance = search_distance
-    if gon.publicAdMapData.length > 0 
+    if gon.publicAdMapData.length > 0
       @gon_flag = true
     else
       @gon_flag = false
@@ -46,7 +46,11 @@ class ListingsController < ApplicationController
   end
 
   def show
-    @have_contacted_listing = @user.have_contacted_listing?(@listing)
+    @have_contacted_listing = if @user
+      @user.have_contacted_listing?(@listing)
+    else
+      false
+    end
   end
 
   def create
