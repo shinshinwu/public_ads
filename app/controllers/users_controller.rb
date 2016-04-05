@@ -7,10 +7,14 @@ class UsersController < ApplicationController
   end
 
   def show
-      @listings_to_sell = @user.listings.includes(:address)
+    @listings_to_sell = @user.listings.includes(:address)
     # all the messages the users have received about a listing minues users own listing are the listings the user have inquired about. There is definitely a better way, but for now it's good enough
     @listings_to_buy  = @user.inquired_listings
-    @conversations = @user.mailbox.inbox
+    @conversations = if @user.mailbox.inbox.present?
+        @user.mailbox.inbox
+      else
+        @user.mailbox.sentbox
+      end
   end
 
   def create

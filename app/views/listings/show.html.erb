@@ -25,11 +25,14 @@
         <% else %>
           <% if @have_contacted_listing %>
             <div class="btn btn-success">
-              <!-- redirect to conversation show page -->
-              Contacted
+              <%= link_to "Contacted", profile_users_path %>
             </div>
           <% else %>
-            <div id="contact-button" class="btn btn-warning" data-toggle="modal" data-target="#messageModal">Contact</div>
+            <% if current_user %>
+              <div id="contact-button" class="btn btn-warning" data-toggle="modal" data-target="#messageModal">Contact</div>
+            <% else %>
+              <%= link_to "Contact", login_users_path, class: "btn btn-warning" %>
+            <% end %>
           <% end %>
       <% end %>
     </h1>
