@@ -5,7 +5,7 @@ class Listing < ActiveRecord::Base
   has_many   :messages
   has_many   :transactions
 
-  has_attached_file :photo, default_url: "/images/:style/missing.png"
+  has_attached_file :photo, default_url: "publicad-logo-lg.png"
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
   # validates_attachment_presence :photo
