@@ -5,7 +5,7 @@ class Listing < ActiveRecord::Base
   has_many   :messages
   has_many   :transactions
 
-  has_attached_file :photo, default_url: "publicad-logo-lg.png"
+  has_attached_file :photo, default_url: :set_default_url_on_ad_type
   validates_attachment_content_type :photo, content_type: /\Aimage\/.*\Z/
 
   # validates_attachment_presence :photo
@@ -41,5 +41,19 @@ class Listing < ActiveRecord::Base
 
   def area
     return width * height
+  end
+
+  private
+  def set_default_url_on_ad_type
+    case self.category
+    when "Billboard"
+      "public-ad-sample-2.jpg"
+    when "Bus Stop"
+      "bus-stop-poster.jpg"
+    when "Bench Ad"
+      "bench-ad-sample.jpg"
+    else
+      "publicad-logo-lg.png"
+    end
   end
 end
