@@ -55,14 +55,14 @@
         <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form-inline", id: "login-nav"}) do |f| %>
           <div class="form-group">
              <label class="sr-only" >Email address</label>
-           <%= f.email_field :email, required: true, class: "", placeholder: "Email" %>
+           <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
           </div>
           <div class="form-group">
              <label class="sr-only" >Password</label>
-             <%= f.password_field :password, required: true, class: "", placeholder: "Password" %>
+             <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
           </div>
           <div class="form-group">
-            <%= f.submit "Log In", :class => 'btn btn-warning btn-block' %>
+            <%= f.submit "Sign In", :class => 'btn btn-warning btn-block' %>
           </div>
        <% end %>
               </div>
@@ -77,21 +77,21 @@
         <%= form_for @user, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
           <div class="form-group">
              <label class="sr-only">Email address</label>
-           <%= f.email_field :email, required: true, class: "", placeholder: "Email" %>
+           <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
           </div>
           <div class="form-group">
              <label class="sr-only">Password</label>
-             <%= f.password_field :password, required: true, class: "", placeholder: "Password" %>
+             <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
           </div>
           <div class="form-group">
-        <%= f.submit "Create Account", :class => 'btn btn-warning btn-block' %>
+        <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
           </div>
        <% end %>
               </div>
             </div>
             <div class="row">
-              <div class="col-xs-12">
-                <a id= 'joinLink'> Don't Have an account, sign up for free today!</a>
+              <div class="col-xs-12 f-p-t-20px">
+                <a class="t-d-n l-c-p o-c-t f-s-l" id= 'joinLink'> Sign Up</a>
               </div>
             </div>
           </div>
@@ -159,7 +159,7 @@
 <div class="content-section-a s-s-s">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6  col-sm-6">
+      <div class="col-lg-6  col-lg-offset-1 col-sm-6">
         <div class="clearfix"></div>
         <h2 class="section-heading r-t">Request a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer">

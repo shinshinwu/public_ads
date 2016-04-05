@@ -391,7 +391,7 @@ input,label, span, select, .b-t {
 .ad-tabs .flex-tabs .panel {
   background-color: rgba(255,255,255,0.8);
   padding: 20px;
-  min-height: 200px;
+  min-height: 250px;
   display: none;
   width: 100%;
   border-radius: 0;
@@ -399,6 +399,7 @@ input,label, span, select, .b-t {
       -ms-flex-preferred-size: auto;
           flex-basis: auto;
 }
+
 .ad-tabs .tab {
   display: inline-block;
   padding: 12px 10px;
@@ -891,4 +892,10 @@ color: rgba(248, 152, 56, 1) !important;
 .dropdown-menu{
   border: none !important;
   border-radius: 0;
+}
+.w-100p{
+  width: 100%;
+}
+.f-s-l{
+  font-size: 1.3em;
 }

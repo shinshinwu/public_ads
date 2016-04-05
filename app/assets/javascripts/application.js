@@ -79,10 +79,13 @@ $('.cta-link').smoothScroll({
 $('#joinLink').click(function() {
     $('#tab-two-panel > .toggleable').toggle();
     $(this).text(function(i,txt) {
-        return txt === "Sign In" ? "Dont have an account? Sign Up for free today !" : "Sign In";
+        return txt === "Sign In" ? "Sign Up" : "Sign In";
     });
 });
 
+$(document).on('click',function(){
+	$('.collapse').collapse('hide');
+})
 
 
 	APP.slider();
