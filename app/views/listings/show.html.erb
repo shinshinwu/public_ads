@@ -25,7 +25,7 @@
         <% else %>
           <% if @have_contacted_listing %>
             <div class="btn btn-success">
-              <%= link_to "Contacted", profile_users_path %>
+              <%= link_to "Contacted", profile_users_path, class: "no-link-styling" %>
             </div>
           <% else %>
             <% if current_user %>
