@@ -71,6 +71,11 @@
                                  <%= f.password_field :password, required: true, class: "c-w-m d-b", placeholder: "Password" %>
                               </div>
                               <div class="form-group">
+                                <label class="sr-only">Type
+                                </label>
+                                <%= select_tag :user_type, options_for_select(User.user_form_selections, "User::Curator"), class: "c-w-m d-b" %>
+                              </div>
+                              <div class="form-group">
                             <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
                               </div>
                            <% end %>

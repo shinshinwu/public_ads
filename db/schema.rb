@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160324195813) do
+ActiveRecord::Schema.define(version: 20160405224034) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20160324195813) do
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
     t.datetime "photo_updated_at"
+    t.boolean  "is_approved"
   end
 
   create_table "mailboxer_conversation_opt_outs", force: :cascade do |t|
@@ -145,6 +146,7 @@ ActiveRecord::Schema.define(version: 20160324195813) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "customer_id"
+    t.string   "user_type"
   end
 
   add_foreign_key "mailboxer_conversation_opt_outs", "mailboxer_conversations", column: "conversation_id", name: "mb_opt_outs_on_conversations_id"

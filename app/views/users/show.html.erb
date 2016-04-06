@@ -27,6 +27,11 @@
             <strong>Phone</strong></span>
             <%= number_to_phone(@user.phone) %>
           </li>
+
+          <li class="list-group-item text-right"><span class="pull-left">
+            <strong>User Role</strong></span>
+            <%= @user.role %>
+          </li>
         </ul>
 
         <ul class="list-group">

@@ -13,9 +13,9 @@ class ListingsController < ApplicationController
     @search_address = search_params[:address]
     search_lat_long = Geocoder.coordinates(search_params[:address])
     if params[:category] && params[:category] != 'All'
-      @listings = Address.address_search(search_params[:category]).includes(:listing).near(search_lat_long, search_params[:distance])
+      @listings = Address.joins(:listing).where('listings.is_approved = ?', true).address_search(search_params[:category]).near(search_lat_long, search_params[:distance])
     else
-      @listings = Address.includes(:listing).near(search_lat_long, search_params[:distance])
+      @listings = Address.joins(:listing).where('listings.is_approved = ?', true).near(search_lat_long, search_params[:distance])
     end
     all_listings = []
     @listings.each do |l|
@@ -55,7 +55,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(user_id: current_user.id)
+    @listing = Listing.new(user_id: current_user.id, is_approved: false)
 
     begin
       ActiveRecord::Base.transaction do
@@ -70,8 +70,8 @@ class ListingsController < ApplicationController
       redirect_to new_listing_path and return
     end
 
-    flash[:success] = "Your listing is successfully posted!"
-    redirect_to listing_path(@listing)
+    flash[:success] = "Your listing is successfully submitted for approval!"
+    redirect_to listings_path
   end
 
   def update
