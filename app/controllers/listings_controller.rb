@@ -13,9 +13,9 @@ class ListingsController < ApplicationController
     @search_address = search_params[:address]
     search_lat_long = Geocoder.coordinates(search_params[:address])
     if params[:category] && params[:category] != 'All'
-      @listings = Address.joins(:listing).where('listings.is_approved = ?', true).address_search(search_params[:category]).near(search_lat_long, search_params[:distance])
+      @listings = Address.address_search(search_params[:category]).includes(:listing).near(search_lat_long, search_params[:distance])
     else
-      @listings = Address.joins(:listing).where('listings.is_approved = ?', true).near(search_lat_long, search_params[:distance])
+      @listings = Address.includes(:listing).near(search_lat_long, search_params[:distance])
     end
     all_listings = []
     @listings.each do |l|

@@ -11,7 +11,7 @@ class ModifyUsers < ActiveRecord::Migration
 
     execute <<-SQL
       update listings
-      set is_approved=1;
+      set is_approved='t';
     SQL
   end
 
