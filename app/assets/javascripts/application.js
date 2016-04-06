@@ -46,7 +46,7 @@ $(document).ready(function() {
 		connectSlider.noUiSlider.on('update', function ( values, handle ) {
 		  if ( !handle ) {
 		    distanceVal.innerHTML = values[handle];
-		  } else {
+		  } else { 
 		  }
 		});
 	};
@@ -86,6 +86,7 @@ $('#joinLink').click(function() {
 $(document).on('click',function(){
 	$('.collapse').collapse('hide');
 })
+
 
 
 	APP.slider();

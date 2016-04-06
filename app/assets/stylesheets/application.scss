@@ -932,10 +932,21 @@ color: rgba(248, 152, 56, 1) !important;
 }
 
 
+.formform-inline{
 
+}
 
-
-
+.m-w-70p{
+  width: 70%
+}
+.m-w-40p{
+  width: 40%;
+}
+@media (min-width: 767px){
+  .d-w-100p{
+    width: 100%;
+  }
+}
 
 
 
@@ -946,4 +957,9 @@ color: rgba(248, 152, 56, 1) !important;
   display: block;
   margin: 0 auto;
   padding-right: 0;
+}
+
+.pad-sides-20px{
+  padding-left:40px;
+  padding-right:40px;
 }

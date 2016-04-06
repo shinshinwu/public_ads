@@ -1,17 +1,17 @@
-<div class="container">
+<div class="container text-center">
   <%= form_for(:session, url: {action: "create"}, html: {class: "form form-inline"}) do |f| %>
     <legend>Log In</legend>
 
     <div class="form-group">
-      <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+      <%= f.email_field :email, required: true, class: "pad-sides-20px d-w-100p m-w-70p", placeholder: "Email" %>
     </div>
 
     <div class="form-group">
-      <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+      <%= f.password_field :password, required: true, class: "pad-sides-20px d-w-100p m-w-70p", placeholder: "Password" %>
     </div>
-
-    <%= f.submit "Log In", :class => 'btn btn-warning' %>
-
+<div class="form-group">
+    <%= f.submit "Log In", :class => 'btn btn-warning d-w-100p m-w-40p' %>
+</div>
     <div class="form-group">
       <span>&nbsp;&nbsp;&nbsp;&nbsp;New user? <%= link_to "Sign up now!", signup_users_path %></span>
     </div>

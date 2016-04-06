@@ -1,7 +1,6 @@
 
 <h1>Hello World</h1>
 
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -16,7 +15,6 @@
     </div>
   </div>
 </div>
-
 
 <section class="main-content">
 <p>
@@ -41,9 +39,6 @@
   </div>
 </div>
 
-
-
-
 <div id="mapContainer">
 </div>
 
@@ -55,7 +50,6 @@
     </div>
   </div>
 </div>
-
 
 <div class="container">
   <div class="row">
@@ -81,7 +75,6 @@
   </div>
 </div>
 
-
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
@@ -90,16 +83,7 @@
   </div>
 </div>
 
-
-<!-- <div class="container"> -->
-  <!-- <div class="row"> -->
-    <!-- <div class="col-xs-12"> -->
-      <!-- <img src="pub"> -->
-    <!-- </div> -->
-  <!-- </div> -->
-<!-- </div> -->
-
-      <%=image_tag('publicad_listing_info.jpg', {class: 'img-responsive center-block listing-img-details'} ) %> 
+<%=image_tag('publicad_listing_info.jpg', {class: 'img-responsive center-block listing-img-details'} ) %> 
 
 <% content_for :javascripts do %>
 
@@ -133,10 +117,6 @@ var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'
   };
   var map = new google.maps.Map(document.getElementById("map"), options);
 
-
-
-
-
 console.log(position.coords.latitude );
  
  console.log(position.coords.longitude );
@@ -162,12 +142,6 @@ sv.getPanorama({location: coords, radius: 50}, processSVData);
 
 function processSVData(data, status) {
   if (status === google.maps.StreetViewStatus.OK) {
-    
-
-
-
-
-
 
     console.log('processingSVDATA')
     panorama.setPano(data.location.pano);
@@ -212,8 +186,6 @@ function processSVData(data, status) {
             headingCell.firstChild.nodeValue = panorama.getPov().heading + '';
             pitchCell.firstChild.nodeValue = panorama.getPov().pitch + '';
         });
-
-
   }
 }
 
