@@ -158,9 +158,24 @@ ul.navbar-right {
     /*padding-top: 50px;  If you're making other pages, make sure there is 50px of padding to make sure the navbar doesn't overlap content! */
     text-align: center;
     color: #f8f8f8;
-    background: image-url("landing-page-bg.png") no-repeat center center;
+    background: linear-gradient(
+      rgba(232, 232, 232, 0.4), 
+      rgba(232, 232, 232, 0.4)
+    ), image-url("publicad_bill_a.jpg") no-repeat 30% center;
     background-size: cover;
+    background-attachment: fixed;
 }
+
+/*.intro-header:before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: linear-gradient(to bottom right, #002f4b, #dc4225);
+  opacity: .6;
+}*/
 
 .nav-tabs li.active a,
 .nav-tabs li a:hover
@@ -905,4 +920,30 @@ color: rgba(248, 152, 56, 1) !important;
   color: rgba(248, 152, 56, 1) !important;
   -webkit-transition: all 0.3s ease;transition: all 0.3s ease;
 
+}
+
+
+
+
+#sample-pano{
+  height: 200px;
+  width: 200px;
+  display: block;
+}
+
+
+
+
+
+
+
+
+
+.listing-img-details{
+  width: 50%;
+  height: 50%;
+  min-width: 300px;
+  display: block;
+  margin: 0 auto;
+  padding-right: 0;
 }

@@ -82,9 +82,24 @@
 </div>
 
 
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <div id='sample-pano'></div>
+    </div>
+  </div>
+</div>
 
 
+<!-- <div class="container"> -->
+  <!-- <div class="row"> -->
+    <!-- <div class="col-xs-12"> -->
+      <!-- <img src="pub"> -->
+    <!-- </div> -->
+  <!-- </div> -->
+<!-- </div> -->
 
+      <%=image_tag('publicad_listing_info.jpg', {class: 'img-responsive center-block listing-img-details'} ) %> 
 
 <% content_for :javascripts do %>
 
@@ -95,7 +110,7 @@ function success(position) {
   var mapcanvas = document.createElement('div');
   mapcanvas.id = 'map';
   mapcanvas.style.height = '400px';
-  mapcanvas.style.width = '600px';
+  mapcanvas.style.width = '100%';
 
   document.querySelector('#mapContainer').appendChild(mapcanvas);
 
@@ -119,7 +134,6 @@ var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'
   var map = new google.maps.Map(document.getElementById("map"), options);
 
 
-sv.getPanorama({location: coords, radius: 50}, processSVData);
 
 
 
@@ -127,9 +141,6 @@ console.log(position.coords.latitude );
  
  console.log(position.coords.longitude );
 
-function processSVData(data, status) {
-  if (status === google.maps.StreetViewStatus.OK) {
-    
   var marker = new google.maps.Marker({
       position: coords,
       map: map,
@@ -137,13 +148,25 @@ function processSVData(data, status) {
       draggable: true
   });
 
-
-
     marker.addListener('dragend',function(event) {
         var lati = event.latLng.lat();
         var longi = event.latLng.lng();
         console.log('here we are: ' + lati + longi);
+var coords_new = new google.maps.LatLng(lati, longi);
+sv.getPanorama({location: coords_new, radius: 50}, processSVData);        
     });
+
+
+sv.getPanorama({location: coords, radius: 50}, processSVData);
+
+
+function processSVData(data, status) {
+  if (status === google.maps.StreetViewStatus.OK) {
+    
+
+
+
+
 
 
     console.log('processingSVDATA')
@@ -205,11 +228,35 @@ if (navigator.geolocation) {
 
 </script>
 
-<script type="text/javascript">
+ <script type="text/javascript">
+var SUM = {};
+SUM.sampleStreetView = function() {
 
+var sv = new google.maps.StreetViewService();
+var panorama = new google.maps.StreetViewPanorama(document.getElementById('sample-pano'));
+var coords = new google.maps.LatLng(37.77516808505975, -122.4378558113159);
+console.log('hit street view on the outside');
+sv.getPanorama({location: coords, radius: 50}, processSVDataa);
 
+function processSVDataa(data, status) {
+  if (status === google.maps.StreetViewStatus.OK) {
+    // panorama.setPano(data.location.pano);
+    panorama.setPano('3pd7g1sWL_JT9Vo-3ZNxeg');
+    panorama.setPov({
+    heading: -101.85275238613258,
+    pitch: -1.7897974888664474
+    });
+    panorama.setVisible(true);
+console.log('hit street view on the inside-b');
+  }
+console.log('hit street view on the inside-a');
+}
 
-</script>
+}
+
+SUM.sampleStreetView();
+
+// </script>
 
 <script type="text/javascript">
 	(function () {
@@ -267,6 +314,14 @@ takePicture.onchange = function (event) {
     }
 })();
 </script>
+
+
+
+<script type="text/javascript">
+  
+</script>
+
+
 
 <script type="text/javascript">
       function readURL(input) {
