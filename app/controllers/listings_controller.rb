@@ -55,7 +55,7 @@ class ListingsController < ApplicationController
   end
 
   def create
-    @listing = Listing.new(user_id: current_user.id)
+    @listing = Listing.new(user_id: current_user.id, is_approved: false)
 
     begin
       ActiveRecord::Base.transaction do
@@ -70,8 +70,8 @@ class ListingsController < ApplicationController
       redirect_to new_listing_path and return
     end
 
-    flash[:success] = "Your listing is successfully posted!"
-    redirect_to listing_path(@listing)
+    flash[:success] = "Your listing is successfully submitted for approval!"
+    redirect_to listings_path
   end
 
   def update

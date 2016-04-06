@@ -11,14 +11,15 @@ class UsersController < ApplicationController
     # all the messages the users have received about a listing minues users own listing are the listings the user have inquired about. There is definitely a better way, but for now it's good enough
     @listings_to_buy  = @user.inquired_listings
     @conversations = if @user.mailbox.inbox.present?
-        @user.mailbox.inbox
-      else
-        @user.mailbox.sentbox
-      end
+      @user.mailbox.inbox
+    else
+      @user.mailbox.sentbox
+    end
   end
 
   def create
-    @user = User.new(user_params)
+    user_klass = params[:user_type].constantize
+    @user = user_klass.new(user_params)
     if @user.save
       log_in @user
       flash[:success] = "Welcome to Public Ads!"
