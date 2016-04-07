@@ -1,6 +1,7 @@
 class Address < ActiveRecord::Base
 include PgSearch
   belongs_to :listing
+  has_many :details
   geocoded_by :full_street_address
   after_validation :geocode
 
