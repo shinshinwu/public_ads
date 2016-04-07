@@ -71,15 +71,14 @@
     <div class="col-sm-6">      
       <h1>4) Upload Picture of Ad</h1>
       <p>take or upload image</p>
-        <input type="file"  name="image" accept="image/*" >
+<!--         <input type="file"  name="image" accept="image/*" >
 
-           <input type='file' id="inputFile" />
-
+           <input type='file' id="inputFile" /> -->
+<%= f.file_field :picture %> 
 
     </div>
     <div class="col-sm-6">     
-      <h1>New Picture for Ad</h1>
-      <img id="image_upload_preview" src="http://placehold.it/100x100" alt="your image" />
+      <img id="image_upload_preview" src="http://placehold.it/300x300" alt="your image" class="img-responsive center-block" />
     </div>
 	</div>
 </div>
@@ -120,7 +119,7 @@
         }
     }
 
-    $("#inputFile").change(function () {
+    $("#coohration_picture").change(function () {
         readURL(this);
     });
 </script>
