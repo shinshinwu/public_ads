@@ -30,9 +30,11 @@
     </div>
     <div class="col-sm-6">
       <div id="pani" class="c-w-m"></div>
-      <%= f.hidden_field(:pano_id)%> 
-      <%= f.hidden_field(:heading)%> 
-      <%= f.hidden_field(:pitch)%> 
+      <%= f.hidden_field(:pano_id, id: 'pano_id_field')%> 
+      <%= f.hidden_field(:heading, id: 'pano_heading')%>
+      <%= f.hidden_field(:pitch, id: 'pano_pitch')%> 
+      <%= f.hidden_field(:lat, id: 'pano_lat')%>
+      <%= f.hidden_field(:lng, id: 'pano_lng')%>
     </div>
 	</div>
 </div>
@@ -81,7 +83,7 @@
 		<div class="col-xs-12">			
 		  <div class="form-group">
       <h1>5) Review and Submit !</h1>
-        <%= f.submit "Sign In", :class => 'btn btn-warning btn-block' %>
+        <%= f.submit "Sign In", :class => 'btn btn-warning btn-block', id: 'stopy' %>
       </div>
     </div>
 	</div>
