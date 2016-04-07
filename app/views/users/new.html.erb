@@ -1,13 +1,15 @@
-<div class="container">
+<div class="container-fluid text-center">
   <%= form_for @user, html: {class: "form form-inline"} do |f| %>
     <legend>Sign Up</legend>
     <div class="form-group">
-      <%= f.email_field :email, required: true, class: "form-control", placeholder: "Email" %>
+      <%= f.email_field :email, required: true, class: "pad-sides-20px d-w-100p m-w-70p", placeholder: "Email" %>
     </div>
 
     <div class="form-group">
-      <%= f.password_field :password, required: true, class: "form-control", placeholder: "Password" %>
+      <%= f.password_field :password, required: true, class: "pad-sides-20px d-w-100p m-w-70p", placeholder: "Password" %>
     </div>
-    <%= f.submit "Create Account", :class => 'btn btn-warning' %>
+    <div class="form-group">
+    <%= f.submit "Create Account", :class => 'btn btn-warning d-w-100p m-w-40p' %>
+    </div>
   <% end %>
 </div>

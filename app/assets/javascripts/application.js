@@ -46,11 +46,32 @@ $(document).ready(function() {
 		connectSlider.noUiSlider.on('update', function ( values, handle ) {
 		  if ( !handle ) {
 		    distanceVal.innerHTML = values[handle];
-		  } else {
+		  } else { 
 		  }
 		});
 	};
-	$( "input#distance_slider" ).on( "click",  function( event ) {
+	;APP.getCoordsFromNewListing = function() {
+			var newListingGeoData = {};
+				newListingGeoData['panoLat'] =newOOHM.panorama.getPosition().lat();
+				newListingGeoData['panoLng'] =newOOHM.panorama.getPosition().lng();
+				newListingGeoData['panoId'] = newOOHM.panorama.getPano();
+				newListingGeoData['heading'] = newOOHM.panorama.getPov().heading;
+				newListingGeoData['pitch'] = newOOHM.panorama.getPov().pitch;
+				return newListingGeoData;
+			// alert('panoCoords: ' + panoCoords + 'panoId: ' + panoId+ 'heading: ' + heading + 'pitch: ' + pitch);
+		
+	}
+	;APP.getPanoFromNewListing = function() {
+	}
+	;APP.getImgFromNewListing = function() {
+	}
+	;APP.bindCoordsFromNewListingToForm = function() {
+	}
+	;APP.bindPanoFromNewListingToForm = function() {
+	}
+	;APP.bindImgFromNewListingToForm = function() {
+	}
+	;$( "input#distance_slider" ).on( "click",  function( event ) {
 	  event.stopImmediatePropagation();
 	  var inputValue = '',
 	  		distanceInMiles = '';
@@ -63,6 +84,28 @@ $(document).ready(function() {
 // $('body').smoothScroll({
 //         delegateSelector: 'ul.mainnav li a'
 //       });
+$("input#stopy").on("click", function(event){
+	event.stopImmediatePropagation();
+	if (newOOHM.panorama) {
+		var newListingGeoData = APP.getCoordsFromNewListing();
+		$('#pano_id_field').val(newListingGeoData['panoId']);
+		$('#pano_heading').val(newListingGeoData['heading']);
+$('#pano_pitch').val(newListingGeoData['pitch']);
+$('#pano_lat').val(newListingGeoData['panoLat']);
+$('#pano_lng').val(newListingGeoData['panoLng']);
+		$('input#stopy').submit();
+		}	
+	// alert(newListingGeoData['panoCoords']);
+// $('input#stopy :input:visible[required="required"]').each(function() {
+//     if(!this.validity.valid) { 
+//   		$(this).focus();
+//       return false;
+//     }
+// });
+
+	
+	// alert('hit the button breh. im listening.');
+});
 $('.cta-link').smoothScroll({
 			offset: -150,
 		  beforeScroll: function(options) {
@@ -86,6 +129,7 @@ $('#joinLink').click(function() {
 $(document).on('click',function(){
 	$('.collapse').collapse('hide');
 })
+
 
 
 	APP.slider();

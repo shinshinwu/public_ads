@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   resources :transactions, only: [:create] do
   end
 
-  get '/sandbox' => 'sandbox#index', as: :sandbox
+  get '/sandbox' => 'sandbox#sample', as: :sandbox
+  get '/coohration/new' => 'sandbox#new', as: :coohration
+  post '/get_map' => 'sandbox#get_map', as: :listing_map
 end
