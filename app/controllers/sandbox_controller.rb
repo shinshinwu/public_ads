@@ -36,6 +36,6 @@ end
 	end
 
 	def listing_params
-	params.require(:coohration) .permit(:street_address, :city, :state, :pano_id, :heading, :pitch, :oohm_id, :oohm_vendor)
+	params.require(:coohration) .permit(:lat, :lng, :pano_id, :heading, :pitch, :oohm_id, :oohm_vendor)
 	end
 end
