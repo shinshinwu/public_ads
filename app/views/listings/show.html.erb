@@ -114,10 +114,10 @@
             </div><!-- / row -->
             <div class="row">
               <div class="col-sm-6">
-                <div id="map"></div>
+                <div class="c-w-m" id="map"></div>
               </div>
               <div class="col-sm-6">
-                <div id="pano"></div>
+                <div class="c-w-m" id="pano"></div>
               </div>
             </div> <!-- .row -->
           </div><!-- / orang-border -->
@@ -157,7 +157,8 @@ var coords = new google.maps.LatLng(gon.address['latitude'], gon.address['longit
     LISTING.panorama.setPano(gon.addressDetails['pano_id']);
     LISTING.panorama.setPov({
       heading: Number(gon.addressDetails['heading']),
-      pitch: Number(gon.addressDetails['pitch'])
+      pitch: Number(gon.addressDetails['pitch']),
+      zoom: Number(gon.addressDetails['zoom'])
     })
     LISTING.panorama.setVisible(true);
     console.log("i've got details");

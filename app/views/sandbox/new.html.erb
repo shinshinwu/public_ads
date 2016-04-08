@@ -1,5 +1,16 @@
-<%= form_for(:coohration, url: {controller: "sandbox", action: "get_map"}, html: {multipart: true}, authenticity_token: true) do |f| %>
+<section class="oohm-f oohm-0 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <h1 class="text-center">Create a new public<span class="orange">ad</span></h1>
+      </div>
+    </div>
+  </div>
+</section>
+
+
   
+<%= form_for(:coohration, url: {controller: "sandbox", action: "get_map"}, html: {multipart: true}, authenticity_token: true) do |f| %>
 <section class="oohm-f oohm-0 o-0">
 <div class="container">
 	<div class="row">
@@ -38,6 +49,7 @@
       <%= f.hidden_field(:pitch, id: 'pano_pitch')%> 
       <%= f.hidden_field(:lat, id: 'pano_lat')%>
       <%= f.hidden_field(:lng, id: 'pano_lng')%>
+      <%= f.hidden_field(:zoom, id: 'pano_zoom')%>
 
     </div>
 	</div>

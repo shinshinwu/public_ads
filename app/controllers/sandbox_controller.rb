@@ -33,7 +33,7 @@ private
 		@user = User.find(current_user.id)
 	end
 	def listing_params
-	params.require(:coohration).permit(:lat, :lng, :pano_id, :heading, :pitch, :oohm_id, :oohm_vendor, :public_ad_category, :picture, :title, :description)
+	params.require(:coohration).permit(:lat, :lng, :pano_id, :heading, :pitch, :oohm_id, :oohm_vendor, :public_ad_category, :picture, :title, :description, :zoom)
 	end
 	def set_listing_params
 		@listing.category = listing_params[:public_ad_category]
@@ -51,6 +51,7 @@ private
 		set_address_pano_id
 		set_address_heading
 		set_address_pitch
+		set_address_pano_zoom
 	end
 	def set_address_pano_id
 		detail = Detail.new(address_id: @address.id)
@@ -70,4 +71,12 @@ private
 		detail.value =listing_params[:pitch]
 		detail.save!
 	end
+	def set_address_pano_zoom
+		detail = Detail.new(address_id: @address.id)
+		detail.key = 'zoom'
+		detail.value =listing_params[:zoom]
+		detail.save!
+	end
+
+
 end

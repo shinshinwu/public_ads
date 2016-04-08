@@ -967,3 +967,16 @@ color: rgba(248, 152, 56, 1) !important;
 #submitb{
   text-align: center;
 }
+
+
+.one-edge-shadow {
+  -webkit-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+     -moz-box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+          box-shadow: 0 8px 6px -6px rgba(0,0,0,0.3);
+}
+@media (min-width: 768px) {
+.navbar.navbar-default{
+  border: none;
+  border-radius: 0 !important;
+}
+}

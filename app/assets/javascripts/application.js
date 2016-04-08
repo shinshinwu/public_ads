@@ -57,6 +57,7 @@ $(document).ready(function() {
 				newListingGeoData['panoId'] = newOOHM.panorama.getPano();
 				newListingGeoData['heading'] = newOOHM.panorama.getPov().heading;
 				newListingGeoData['pitch'] = newOOHM.panorama.getPov().pitch;
+				newListingGeoData['pano_zoom'] = newOOHM.panorama.getZoom();
 				return newListingGeoData;
 			// alert('panoCoords: ' + panoCoords + 'panoId: ' + panoId+ 'heading: ' + heading + 'pitch: ' + pitch);
 		
@@ -93,6 +94,7 @@ $("input#stopy").on("click", function(event){
 $('#pano_pitch').val(newListingGeoData['pitch']);
 $('#pano_lat').val(newListingGeoData['panoLat']);
 $('#pano_lng').val(newListingGeoData['panoLng']);
+$('#pano_zoom').val(newListingGeoData['pano_zoom']);
 		$('input#stopy').submit();
 		}	
 	// alert(newListingGeoData['panoCoords']);
