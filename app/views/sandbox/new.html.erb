@@ -94,8 +94,16 @@
 	<div class="row">
 		<div class="col-xs-12">			
 		  <div class="form-group">
-      <h1>5) Review and Submit !</h1>
-<%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Choose Ad Type"}, {:multiple => false, class: "", required: true} %>
+        <h1>5) Review and Submit !</h1>
+        <div class="form-group">
+          <label class="orange" > ID </label>
+          <%= f.text_field :title, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+        </div>
+        <div class="form-group">
+          <label class="orange" > ID </label>
+          <%= f.text_field :description, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+        </div>
+        <%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Choose Ad Type"}, {:multiple => false, class: "", required: true} %>
         <%= f.submit "Sign In", :class => 'btn btn-warning btn-block', id: 'stopy' %>
       </div>
     </div>

@@ -32,13 +32,15 @@ private
 		@user = User.find(current_user.id)
 	end
 	def listing_params
-	params.require(:coohration).permit(:lat, :lng, :pano_id, :heading, :pitch, :oohm_id, :oohm_vendor, :public_ad_category, :picture)
+	params.require(:coohration).permit(:lat, :lng, :pano_id, :heading, :pitch, :oohm_id, :oohm_vendor, :public_ad_category, :picture, :title, :description)
 	end
 	def set_listing_params
 		@listing.category = listing_params[:public_ad_category]
 		@listing.photo = listing_params[:picture]
 		@listing.ref_id = listing_params[:oohm_id]
 		@listing.company_name = listing_params[:oohm_vendor]
+		@listing.title = listing_params[:title]
+		@listing.description = listing_params[:description]
 	end
 	def set_address_params
 		@address.latitude  = listing_params[:lat]
