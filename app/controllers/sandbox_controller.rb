@@ -57,20 +57,17 @@ private
 		detail.key = 'pano_id'
 		detail.value =listing_params[:pano_id]
 		detail.save!
-		puts detail.inspect
 	end
 	def set_address_heading
 		detail = Detail.new(address_id: @address.id)
 		detail.key = 'heading'
 		detail.value =listing_params[:heading]
 		detail.save!
-		puts detail.inspect
 	end
 	def set_address_pitch
 		detail = Detail.new(address_id: @address.id)
 		detail.key = 'pitch'
 		detail.value =listing_params[:pitch]
 		detail.save!
-		puts detail.inspect
 	end
 end
