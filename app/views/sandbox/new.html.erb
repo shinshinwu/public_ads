@@ -15,20 +15,22 @@
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">			
-			<h1>1) Set Map Marker on publicAd location</h1>
+			<h1 class="text-center c-w-m instruction-counter" >1</h1>
+      <h1 class="text-center instruction-text" >Set marker on public<span class="orange">ad</span> location</h1>
 
     <div  id="floating-panel">
-      <input class="text-center" id="address" type="textbox" placeholder="Address">
-      <input id="newOoohByAddress" type="button" value="Geocode" class="btn btn-warning">
+      <input class="text-center" id="address" type="textbox" placeholder="Street Address">
+      <input id="newOoohByAddress" type="button" value="Use Address" class="btn btn-warning m-w-60-p">
     </div>
     
-    <p class="no-marg no-pad text-center">or by current location</p>
+    <h3 class="no-marg text-center" style="padding-bottom:10px;">or</h3>
 
-    <input id="newOoohByCurrentLocation" type="button" value="Geocode" class="btn btn-warning d-b c-w-m ">
-    <p class="no-marg no-pad text-center">PS. you can drag the marker to the exact location you want. Feel free to zoom in even more to be as accurate as possible using the Google Maps controls.</p>
+    <input id="newOoohByCurrentLocation" type="button" value="Use Current Location" class="btn btn-warning d-b c-w-m m-w-60-p">
+
+    <p class="no-marg text-center" style="padding: 10px 10% 0">PS. you can drag the marker to the exact location you want. Feel free to zoom in even more to be as accurate as possible using the Google Maps controls.</p>
 		</div>
-		<div class="col-sm-6">
-			<div class="c-w-m" id="map"></div>
+		<div class="col-sm-6 pad-top-50px">
+			<div class="c-w-m " id="map" ></div>
 		</div>
 	</div>
 </div>
@@ -36,13 +38,14 @@
 <section class="oohm-f oohm-1 o-0">
 <div class="container">
 	<div class="row">
-		<div class="col-sm-6">			
-  		<h1>2) Set Street View as accurately as possible</h1>
-      <p>You can move marker on map above to make larger position changes and adjust the street view for fine tuning.</p>
-      <p>If you are happy with your job, move on to the next step.</p>
-      <input id="next_step_1" type="button" value="Geocode" class="btn btn-warning">
+		<div class="col-sm-6">		
+      <h1 class="text-center c-w-m instruction-counter" >2</h1>	
+  		<h1 class="text-center instruction-text">Set Street View as accurately as possible</h1>
+      <p class="text-center no-marg instruction-text">You can move marker on map above to make larger position changes and adjust the street view for fine tuning.</p>
+      <p class="text-center no-marg instruction-text">If you are happy with your job, move on to the next step.</p>
+      <input  id="next_step_1" type="button" value="Next" class="btn btn-warning d-b c-w-m m-w-60-p">
     </div>
-    <div class="col-sm-6">
+    <div class="col-sm-6 ">
       <div id="pani" class="c-w-m"></div>
       <%= f.hidden_field(:pano_id, id: 'pano_id_field')%> 
       <%= f.hidden_field(:heading, id: 'pano_heading')%>
@@ -59,23 +62,22 @@
 <div class="container">
 	<div class="row">
     <div class="col-sm-6">      
-      <h1>3) Company Name and publicAd ID</h1>
-
-
+      <h1 class="text-center c-w-m instruction-counter" >3</h1> 
+      <h1 class="text-center instruction-text">Set public<span class="organge">ad</span> vendor details</h1>
+      <%=image_tag('publicad_listing_info.jpg', {class: 'img-responsive center-block listing-img-details visible-xs'} ) %> 
   <div class="form-group">
-    <label class="orange" > OOHM vendor</label>
-  <%= f.text_field :oohm_vendor, required: true, class: "w-100p", placeholder: "Vendor" %>
+    <label class="orange text-center d-b c-w-m" > Vendor Name</label>
+  <%= f.text_field :oohm_vendor, required: true, class: "w-100p", placeholder: "Example: Clear Channel" %>
   </div>
 
 
   <div class="form-group">
-    <label class="orange" > ID </label>
-  <%= f.text_field :oohm_id, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+    <label class="orange text-center d-b c-w-m" > Listing ID </label>
+  <%= f.text_field :oohm_id, required: true, class: "w-100p", placeholder: "Example: 01234-abc" %>
   </div>
-      <input id="next_step_2" type="button" value="Geocode" class="btn btn-warning">
-
+      <input id="next_step_2" type="button" value="Next" class="btn btn-warning d-b c-w-m m-w-60-p">
     </div>
-    <div class="col-sm-6">     
+    <div class="col-sm-6 hidden-xs">     
       <%=image_tag('publicad_listing_info.jpg', {class: 'img-responsive center-block listing-img-details'} ) %> 
     </div>
 	</div>
@@ -85,15 +87,14 @@
 <div class="container">
 	<div class="row">
     <div class="col-sm-6">      
-      <h1>4) Upload Picture of Ad</h1>
-      <p>take or upload image</p>
-<!--         <input type="file"  name="image" accept="image/*" >
-
-           <input type='file' id="inputFile" /> -->
-<%= f.file_field :picture, accept: 'image/png,image/gif,image/jpeg' %> 
-
-
-  <input id="next_step_3" type="button" value="Geocode" class="btn btn-warning">
+      <h1 class="text-center c-w-m instruction-counter" >4</h1> 
+      <h1 class="text-center instruction-text">Upload picture of public<span class="orange">ad</span></h1>
+<div class="form-group">
+<%= f.file_field :picture, accept: 'image/png,image/gif,image/jpeg', required:true, class: "d-b c-w-m text-center" %> 
+</div>
+<div class="form-group">
+  <input id="next_step_3" type="button" value="Next" class="pad-top-10px btn btn-warning d-b c-w-m m-w-60-p">
+    </div>
     </div>
     <div class="col-sm-6">     
       <img id="image_upload_preview" src="http://placehold.it/300x300" alt="your image" class="img-responsive center-block" />
@@ -104,20 +105,24 @@
 <section class="oohm-f oohm-4 o-0">
 <div class="container">
 	<div class="row">
-		<div class="col-xs-12">			
+		<div class="col-sm-6 col-sm-offset-3">			
+      <h1 class="text-center c-w-m instruction-counter" >5</h1> 
+      <h1 class="text-center instruction-text">Review public<span class="orange">ad</span> and submit</h1>
 		  <div class="form-group">
-        <h1>5) Review and Submit !</h1>
-        <div class="form-group">
-          <label class="orange" > ID </label>
-          <%= f.text_field :title, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+        <label class="orange d-b c-w-m text-center" > Public<span class="t-d-g">Ad</span> Type</label>
+        <%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Choose Ad Type"}, {:multiple => false, class: "d-b c-w-m", required: true} %>
         </div>
         <div class="form-group">
-          <label class="orange" > ID </label>
-          <%= f.text_field :description, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+          <label class="orange d-b c-w-m text-center" > Title</label>
+          <%= f.text_field :title, required: true, class: "w-100p", placeholder: "Example: Nice Billboard" %>
         </div>
-        <%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Choose Ad Type"}, {:multiple => false, class: "", required: true} %>
-        <%= f.submit "Sign In", :class => 'btn btn-warning btn-block', id: 'stopy' %>
-      </div>
+        <div class="form-group">
+          <label class="orange d-b c-w-m text-center" > Description </label>
+          <%= f.text_field :description, required: true, class: "w-100p", placeholder: "Example: On busy cross street in SOMA area" %>
+        </div>
+        <div class="form-group">
+        <%= f.submit "Submit", :class => 'btn btn-warning c-w-m d-b m-w-60-p', id: 'stopy' %>
+        </div>
     </div>
 	</div>
 </div>
@@ -268,34 +273,32 @@ newOOHM.pickMeUp = function(oohmMap) {
 
 
 <style>
-	#pano, #pano1{
-		width: 350px;
-		height: 350px;
-	}
-	#hidden_map{
-		width: 350px;
-		height: 350px;
-	}
+#pano, #pano1{
+	width: 350px;
+	height: 350px;
+}
+#hidden_map{
+	width: 350px;
+	height: 350px;
+}
 
-	      #map {
-        height: 300px;
-        width: 300px;
-      }
-      #floating-panel {
-        /*position: absolute;*/
-        /*top: 10px;*/
-        /*left: 25%;*/
-        z-index: 5;
-        padding: 5px;
-        /*border: 1px solid #999;*/
-        text-align: center;
-        font-family: 'Roboto','sans-serif';
-        line-height: 30px;
-        padding-left: 10px;
-      }
+#map {
+height: 300px;
+width: 300px;
+}
+#floating-panel {
+z-index: 5;
+padding: 5px;
+text-align: center;
+font-family: 'Roboto','sans-serif';
+line-height: 30px;
+padding-left: 10px;
+}
 
 .oohm-f {
 	min-height: 400px;
+  padding-bottom: 50px;
+  padding-top: 50px;
 }
 .oohm-0{
 	background-color: rgba(255,255,255,0.6);
@@ -324,5 +327,28 @@ newOOHM.pickMeUp = function(oohmMap) {
 }
 .oohm-0.o-0{
   display: block;
+}
+h1.instruction-counter{
+  padding: 5px 0px 7px 0px; width: 40px; border:3px solid black;
+}
+h1.instruction-text{
+  padding:0 10% 15px;
+}
+.pad-top-50px{
+padding-top: 50px;
+}
+.pad-top-10px{
+  margin-top: 100px;
+}
+p.instruction-text{
+  padding: 0 10% 10px;
+}
+.m-w-60-p{
+  width: 60%;
+}
+@media (min-width: 768px) {
+.d-w-60-p{
+  width: 60%
+} 
 }
 </style>

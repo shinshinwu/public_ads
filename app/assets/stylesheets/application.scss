@@ -954,9 +954,16 @@ color: rgba(248, 152, 56, 1) !important;
   width: 50%;
   height: 50%;
   min-width: 300px;
+  max-width: 300px;
   display: block;
   margin: 0 auto;
   padding-right: 0;
+}
+@media (min-width: 768px){
+  .listing-img-details{
+    width: 80%;
+    max-width: 500px;
+  }
 }
 
 .pad-sides-20px{
