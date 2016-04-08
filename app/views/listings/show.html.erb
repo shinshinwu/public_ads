@@ -112,10 +112,78 @@
                 <% end %>
               </div> <!-- / col-sm-12 -->
             </div><!-- / row -->
+            <div class="row">
+              <div class="col-sm-6">
+                <div id="map"></div>
+              </div>
+              <div class="col-sm-6">
+                <div id="pano"></div>
+              </div>
+            </div> <!-- .row -->
           </div><!-- / orang-border -->
         </div><!-- / col-sm-12 -->
       </div><!-- / row -->
+
     </div><!-- / container -->
 
   </div>
 </div>
+
+
+
+<% content_for :javascripts do %>
+  <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyD4MNOQPBMHu2SwoXKy0CFvwEP7PcjN-Wg"></script>
+  <script type="text/javascript">
+  var LISTING = {};
+  console.log(gon.addressDetails);
+  console.log(gon.address);
+
+var coords = new google.maps.LatLng(gon.address['latitude'], gon.address['longitude'])
+
+  LISTING.gMap = new google.maps.Map(document.getElementById('map'), {
+    zoom: 14,
+    center: coords
+  });
+    var marker = new google.maps.Marker({
+      position: coords,
+      map: LISTING.gMap,
+      title:"publicAds Listing",
+      animation: google.maps.Animation.DROP
+  });
+  var sv = new google.maps.StreetViewService();
+    if (gon.addressDetails) {
+    LISTING.panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('pano'));
+    LISTING.panorama.setPano(gon.addressDetails['pano_id']);
+    LISTING.panorama.setPov({
+      heading: Number(gon.addressDetails['heading']),
+      pitch: Number(gon.addressDetails['pitch'])
+    })
+    LISTING.panorama.setVisible(true);
+    console.log("i've got details");
+    }
+    else {
+    LISTING.panorama = new google.maps.StreetViewPanorama(
+          document.getElementById('pano'), {
+            position: coords,
+            pov: {
+              heading: 270,
+              pitch: 0},
+            zoom: 1
+        });
+    console.log("i've dont have details");
+    }
+
+
+  </script>
+<% end %>
+
+<style>
+  #map, #pano{
+    width: 300px;
+    height: 300px;
+  }
+/*  #pano{
+
+  }*/
+</style>

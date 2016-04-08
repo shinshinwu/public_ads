@@ -16,10 +16,10 @@ addresses = Address.create([
   {listing_id: 2, line_1: "620 O'Farrell St", line_2: "4th St", city: "San Francisco", state: "CA", zipcode: "94109", country: "US"}
 ])
 
-messages = Message.create([
-  {listing_id: 1, sender_id: 2, recipient_id: 1, subject: "I'm super intersted in your ad space!", body: "super interested, please send me more info!", start_date: Date.current, end_date: 1.month.from_now.to_date},
-  {listing_id: 1, sender_id: 1, recipient_id: 2, subject: "RE:I'm super intersted in your ad space!", body: "Yes! what is your ad's content gonna be about?"}
-])
+# messages = Message.create([
+#   {listing_id: 1, sender_id: 2, recipient_id: 1, subject: "I'm super intersted in your ad space!", body: "super interested, please send me more info!", start_date: Date.current, end_date: 1.month.from_now.to_date},
+#   {listing_id: 1, sender_id: 1, recipient_id: 2, subject: "RE:I'm super intersted in your ad space!", body: "Yes! what is your ad's content gonna be about?"}
+# ])
 
 
 

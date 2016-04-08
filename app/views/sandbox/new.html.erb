@@ -1,6 +1,6 @@
-<%= form_for(:coohration, url: {controller: "sandbox", action: "get_map"}, remote: true) do |f| %>
+<%= form_for(:coohration, url: {controller: "sandbox", action: "get_map"}, html: {multipart: true}, authenticity_token: true) do |f| %>
   
-<section class="oohm-f oohm-0 ">
+<section class="oohm-f oohm-0 o-0">
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">			
@@ -22,11 +22,14 @@
 	</div>
 </div>
 </section>
-<section class="oohm-f oohm-1 ">
+<section class="oohm-f oohm-1 o-0">
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">			
   		<h1>2) Set Street View as accurately as possible</h1>
+      <p>You can move marker on map above to make larger position changes and adjust the street view for fine tuning.</p>
+      <p>If you are happy with your job, move on to the next step.</p>
+      <input id="next_step_1" type="button" value="Geocode" class="btn btn-warning">
     </div>
     <div class="col-sm-6">
       <div id="pani" class="c-w-m"></div>
@@ -35,11 +38,12 @@
       <%= f.hidden_field(:pitch, id: 'pano_pitch')%> 
       <%= f.hidden_field(:lat, id: 'pano_lat')%>
       <%= f.hidden_field(:lng, id: 'pano_lng')%>
+
     </div>
 	</div>
 </div>
 </section>
-<section class="oohm-f oohm-2 ">
+<section class="oohm-f oohm-2 o-0">
 <div class="container">
 	<div class="row">
     <div class="col-sm-6">      
@@ -56,7 +60,7 @@
     <label class="orange" > ID </label>
   <%= f.text_field :oohm_id, required: true, class: "w-100p", placeholder: "OOHM ID" %>
   </div>
-
+      <input id="next_step_2" type="button" value="Geocode" class="btn btn-warning">
 
     </div>
     <div class="col-sm-6">     
@@ -65,27 +69,41 @@
 	</div>
 </div>
 </section>
-<section class="oohm-f oohm-3 ">
+<section class="oohm-f oohm-3 o-0">
 <div class="container">
 	<div class="row">
     <div class="col-sm-6">      
       <h1>4) Upload Picture of Ad</h1>
-      <input type="file"  name="image" accept="image/*" capture>
-      <p>or upload image</p>
-            <input type="file"  name="image" accept="image/*" >
+      <p>take or upload image</p>
+<!--         <input type="file"  name="image" accept="image/*" >
+
+           <input type='file' id="inputFile" /> -->
+<%= f.file_field :picture, accept: 'image/png,image/gif,image/jpeg' %> 
+
+
+  <input id="next_step_3" type="button" value="Geocode" class="btn btn-warning">
     </div>
     <div class="col-sm-6">     
-      <h1>New Picture for Ad</h1>
+      <img id="image_upload_preview" src="http://placehold.it/300x300" alt="your image" class="img-responsive center-block" />
     </div>
 	</div>
 </div>
 </section>
-<section class="oohm-f oohm-4 ">
+<section class="oohm-f oohm-4 o-0">
 <div class="container">
 	<div class="row">
 		<div class="col-xs-12">			
 		  <div class="form-group">
-      <h1>5) Review and Submit !</h1>
+        <h1>5) Review and Submit !</h1>
+        <div class="form-group">
+          <label class="orange" > ID </label>
+          <%= f.text_field :title, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+        </div>
+        <div class="form-group">
+          <label class="orange" > ID </label>
+          <%= f.text_field :description, required: true, class: "w-100p", placeholder: "OOHM ID" %>
+        </div>
+        <%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Choose Ad Type"}, {:multiple => false, class: "", required: true} %>
         <%= f.submit "Sign In", :class => 'btn btn-warning btn-block', id: 'stopy' %>
       </div>
     </div>
@@ -98,6 +116,47 @@
 
 
 <% content_for :javascripts do %>
+
+<script type="text/javascript">
+$('#next_step_1').on('click', function(event){
+  $('.oohm-2.o-0').fadeIn('slow');
+  $(this).fadeOut('slow');
+});
+$('#next_step_2').on('click', function(event){
+  $('.oohm-3.o-0').fadeIn('slow');
+  $(this).fadeOut('slow');
+});
+$('#next_step_3').on('click', function(event){
+  $('.oohm-4.o-0').fadeIn('slow');
+  $(this).fadeOut('slow');
+});
+</script>
+
+
+
+<script type="text/javascript">
+      function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#image_upload_preview').attr('src', e.target.result);
+                $('#image_upload_preview').attr('max-width', '300px');
+                $('#image_upload_preview').attr('max-height', '300px');
+                $('#image_upload_preview').addClass('img-responsive center-block');
+                // $('#image_upload_preview').addClass('img-responsive');
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#coohration_picture").change(function () {
+        readURL(this);
+    });
+</script>
+
+
 <script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyD4MNOQPBMHu2SwoXKy0CFvwEP7PcjN-Wg"></script>
 
  <script>
@@ -157,6 +216,7 @@ newOOHM.geocodeAddress = function (geocoder, resultsMap) {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
+  $('.oohm-1.o-0').hide().fadeIn('slow');
 }
 </script>
 
@@ -183,6 +243,7 @@ newOOHM.pickMeUp = function(oohmMap) {
           var coords = new google.maps.LatLng(lati, longi)
           newOOHM.panorama.setPosition(coords);
       });
+    $('.oohm-1.o-0').fadeIn('slow');
   }
   function error() {
    alert('there was an error with geolocation. try entering an address.')
@@ -242,5 +303,14 @@ newOOHM.pickMeUp = function(oohmMap) {
 #pani{
   width: 300px;
   height: 300px;
+}
+.oohm-0{
+}
+.o-0{
+  -webkit-transition: all 0.3s ease;transition: all 0.3s ease;
+  display: none;
+}
+.oohm-0.o-0{
+  display: block;
 }
 </style>

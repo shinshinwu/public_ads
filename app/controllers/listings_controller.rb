@@ -52,6 +52,7 @@ class ListingsController < ApplicationController
     else
       false
     end
+    set_gon_address
   end
 
   def create
@@ -119,6 +120,9 @@ class ListingsController < ApplicationController
       redirect_to listings_path and return
     end
     @address = @listing.address
+    if (@details = @address.details)
+      set_gon_address_details
+    end
     @user = current_user
   end
 
@@ -148,6 +152,19 @@ class ListingsController < ApplicationController
     @address.country  = params[:listing][:address][:country]
   end
 
+  def set_gon_address
+    gon.address = @address.as_json
+  end
+  def set_gon_address_details
+    if @details.count > 0
+      @detail_container = []
+        detail = {}
+      @details.each do |d|
+        detail["#{d.key}"] = d.value
+      end
+    gon.addressDetails = detail
+    end
+  end
   def search_params
     params.permit(:category, :address, :distance)
   end
