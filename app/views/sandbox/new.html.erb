@@ -95,7 +95,7 @@
 		<div class="col-xs-12">			
 		  <div class="form-group">
       <h1>5) Review and Submit !</h1>
-<%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Select Permission Level"}, {:multiple => false, class: ""} %>
+<%= f.select :public_ad_category, [ ["Billboard", "Billboard"], ["Bench Ad", "Bench Ad"], ["Bus Stop Ad", "Bus Stop Ad"]], {prompt: "Choose Ad Type"}, {:multiple => false, class: "", required: true} %>
         <%= f.submit "Sign In", :class => 'btn btn-warning btn-block', id: 'stopy' %>
       </div>
     </div>
@@ -112,12 +112,15 @@
 <script type="text/javascript">
 $('#next_step_1').on('click', function(event){
   $('.oohm-2.o-0').fadeIn('slow');
+  $(this).fadeOut('slow');
 });
 $('#next_step_2').on('click', function(event){
   $('.oohm-3.o-0').fadeIn('slow');
+  $(this).fadeOut('slow');
 });
 $('#next_step_3').on('click', function(event){
   $('.oohm-4.o-0').fadeIn('slow');
+  $(this).fadeOut('slow');
 });
 </script>
 
@@ -205,7 +208,7 @@ newOOHM.geocodeAddress = function (geocoder, resultsMap) {
       alert('Geocode was not successful for the following reason: ' + status);
     }
   });
-  $('.oohm-1.o-0').fadeIn('slow');
+  $('.oohm-1.o-0').hide().fadeIn('slow');
 }
 </script>
 

@@ -35,7 +35,7 @@ class Listing < ActiveRecord::Base
   end
 
   def area
-    return width * height
+      return width * height unless !width || !height
   end
 
   private
