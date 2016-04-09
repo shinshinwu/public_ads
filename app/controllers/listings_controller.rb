@@ -53,6 +53,9 @@ class ListingsController < ApplicationController
       false
     end
     set_gon_address
+    if (@details = @address.details)
+      set_gon_address_details
+    end
   end
 
   def create
@@ -120,9 +123,6 @@ class ListingsController < ApplicationController
       redirect_to listings_path and return
     end
     @address = @listing.address
-    if (@details = @address.details)
-      set_gon_address_details
-    end
     @user = current_user
   end
 

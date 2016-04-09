@@ -26,7 +26,7 @@ class UsersController < ApplicationController
     else
       flash[:error] = "Something went wrong!"
     end
-    redirect_to profile_users_path
+    redirect_to coohration_path
   end
 
   def edit
@@ -82,7 +82,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit(:email, :password)
+    params.require(:user).permit(:email, :password, :user_type)
   end
 
   def set_user_context

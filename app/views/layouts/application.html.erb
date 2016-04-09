@@ -13,7 +13,7 @@
 </head>
 <body>
   <!-- Navigation -->
-  <nav class="navbar navbar-default topnav" role="navigation">
+  <nav class="navbar navbar-default topnav one-edge-shadow" role="navigation">
     <div class="container topnav">
       <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -90,7 +90,7 @@
               <%= link_to "Profile", profile_users_path %>
             </li>
             <li>
-              <%= link_to "Create Listing", new_listing_path %>
+              <%= link_to "Create Listing", coohration_path, data: { no_turbolink: true } %>
             </li>
             <li>
               <%= link_to "Logout", logout_users_path, method: "delete" %>
