@@ -20,7 +20,7 @@
               </div>
               <div class="col-xs-12">
                 <%= label_tag(:address, "Zip Code of Address:", class: 'd-b') %>
-                <%= text_field_tag(:address, @search_address || 94101, :required => true) %>
+                <%= text_field_tag(:address, @search_address || 94117, :required => true) %>
               </div>
               <%= hidden_field_tag('distance', 'radius')%> 
             </div>
@@ -215,6 +215,10 @@ var listingsListContainer = document.getElementById("marker_list"),
     listingInfoContainer = document.createElement('div'),
     listingInfo = document.createElement('p');
 
+// var no_turbo_links = document.createAttribute("data-no-turbolink")
+// listingLink.setAttributeNode(no_turbo_links);  
+
+
 
 listingLink.className += "d-b t-d-n l-c-p t-b" ;
 listingLink.innerHTML = markerId + '. ' +markerTitle;
@@ -231,7 +235,7 @@ moreInfo = document.createElement("a"),
 moreInfo.setAttribute('href', baseUrlListing+markerData[1]['id'])
 moreInfo.className += 'f-w-600 l-c-p t-d-g t-d-n t-d-g'
 moreInfo.innerHTML = 'More Info';
-
+// moreInfo.setAttributeNode(no_turbo_links);  
 
 console.log('here is some' +moreInfo.length);
 listingInfoContainer.appendChild(listingInfo);
