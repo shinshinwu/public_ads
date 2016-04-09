@@ -90,7 +90,7 @@
               <%= link_to "Profile", profile_users_path %>
             </li>
             <li>
-              <%= link_to "Create Listing", new_listing_path %>
+              <%= link_to "Create Listing", coohration_path, data: { no_turbolink: true } %>
             </li>
             <li>
               <%= link_to "Logout", logout_users_path, method: "delete" %>

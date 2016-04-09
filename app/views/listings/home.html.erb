@@ -67,7 +67,12 @@
                 <h1 class="text-center v-p-t b-t ">List your public<span class="orange">ad</span> space by creating your  <span class="orange">free</span>  account today</h1>
                 </div> <!-- listing section -->
                 <div class="col-xs-12 ">
-                  <%= form_for @user, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
+                  <%= form_for User.new, url: {controller: "users", action: "create"}, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
+                                                  <div class="form-group">
+                                <label class="sr-only">Type
+                                </label>
+                                <%= f.select :user_type, options_for_select(User.user_form_selections, "User::Curator"), class: "c-w-m d-b" %>
+                              </div>
                     <div class="form-group">
                       <label class="sr-only">Email address</label>
                       <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
@@ -101,13 +106,14 @@
     <div class="row">
       <div class="col-lg-6 col-lg-offset-1  col-sm-6">
         <div class="clearfix"></div>
+        <%=image_tag 'searchmarket.png', class: "h-h-i"%>
         <h2 class="section-heading r-t no-pad no-marg">Search for a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer ">
         <p class="home lead r-t no-pad no-marg">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
         <a href="#tab-one" class="cta-link desk-btn  f-r btn btn-warning btn-lg hidden-xs">Search</a>
       </div>
       <div class="col-lg-5   col-sm-6">
-        <%= image_tag("public-ad-sample.png", class: "f-l img-responsive home-img") %>
+        <%= image_tag("map_public_ad.png", class: "f-l img-responsive home-img pad-left-20px") %>
       </div>
       <div class="col-xs-12 visible-xs">
         <a href="#tab-one" class="cta-link  btn btn-warning btn-lg visible-xs">Search</a>
@@ -122,16 +128,19 @@
   <div class="container">
     <div class="row">
             <div class="col-lg-5 col-sm-6">
-        <%= image_tag("public-ad-sample-2.jpg", class: "f-r img-responsive home-img ") %>
+        <%= image_tag("public-ad-sample-2.jpg", class: "f-r img-responsive home-img hidden-xs") %>
       </div>
       <div class="col-lg-6 p-l-30 col-sm-6">
         <div class="clearfix"></div>
+        <%=image_tag 'stacks.png', class: "h-h-i-1"%>
         <h2 class="section-heading no-pad no-marg l-t">List a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer">
         <p class="home lead l-t no-pad no-marg">Do you own out-of-home media space? Are you tired of paying those high advertisement agency fee's? List your sign for free today by creating a profile in under 3 minutes. We'll make an instantly marketeable profile for your public ad space that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.</p>
         <a href="#tab-two" class="cta-link btn btn-warning desk-btn btn-lg hidden-xs">List</a>
       </div>
-
+<div class="col-xs-12 visible-xs pad-b">
+        <%= image_tag("public-ad-sample-2.jpg", class: "f-r img-responsive home-img ") %>
+</div>
       <div class="col-xs-12 visible-xs">
         <a href="#tab-two" class="cta-link btn btn-warning  btn-lg visible-xs">List</a>
       </div>
@@ -145,7 +154,8 @@
     <div class="row">
       <div class="col-lg-6  col-lg-offset-1 col-sm-6">
         <div class="clearfix"></div>
-        <h2 class="section-heading r-t">Request a public<span class="orange">ad</span> space</h2>
+        <%=image_tag 'marketplace.png', class: "h-h-i"%>
+        <h2 class="section-heading r-t">The public<span class="orange">ad</span> space marketplace</h2>
         <hr class="section-heading-spacer">
         <p class="home lead r-t no-pad no-marg">Do you know the exact public<span class="orange">ad</span> you want? If you search our market place and don't see it, you can make a request for any public<span class="orange">ad</span> space and we will help to negotiate the listing for you.</p>
         <a href="#tab-one" class="cta-link btn btn-warning f-r desk-btn btn-lg hidden-xs">Request</a>
