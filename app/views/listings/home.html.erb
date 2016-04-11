@@ -44,7 +44,8 @@
             <div id="tab-two-panel" class="panel ">
               <div class="row toggleable" id='signInDiv'>
                 <div id="listing-section" class="col-xs-12">
-                 <h1 class="text-center v-p-t b-t ">List your public<span class="orange">ad</span> space by creating your  <span class="orange">free</span>  account today</h1>
+                 <h1 class="text-center v-p-t b-t ">
+Make money listing public<span class="orange">ad</span> space. Create your <span class="orange">free</span> account today.</h1>
                 </div> <!-- listing section -->
                 <div class="col-xs-12 ">
                   <%= form_for(:session, url: {controller: "sessions", action: "create"}, html: {class: "form-inline", id: "login-nav"}) do |f| %>
@@ -64,27 +65,28 @@
               </div> <!-- row -->
               <div class="row toggleable" id='signUpDiv'>
                 <div id="listing-section" class="col-xs-12">
-                <h1 class="text-center v-p-t b-t ">List your public<span class="orange">ad</span> space by creating your  <span class="orange">free</span>  account today</h1>
+                 <h1 class="text-center v-p-t b-t ">
+Make money listing public<span class="orange">ad</span> space. Create your <span class="orange">free</span> account today.</h1>
                 </div> <!-- listing section -->
                 <div class="col-xs-12 ">
-                  <%= form_for User.new, url: {controller: "users", action: "create"}, html: {class: "form-inline", id: "sign-up-nav"} do |f| %>
-                                                  <div class="form-group">
-                                <label class="sr-only">Type
-                                </label>
-                                <%= f.select :user_type, options_for_select(User.user_form_selections, "User::Curator"), class: "c-w-m d-b" %>
-                              </div>
+                  <%= form_for(User.new, url: {controller: "users", action: "create"}, html: {class: "f-p-t-20px form-inline", id: "sign-up-nav"}) do |f| %>
                     <div class="form-group">
-                      <label class="sr-only">Email address</label>
-                      <%= f.email_field :email, required: true, class: "w-100p", placeholder: "Email" %>
+                       <label class="sr-only">Email address</label>
+                     <%= f.email_field :email, required: true, class: "c-w-m d-b w-100p", placeholder: "Email" %>
                     </div>
                     <div class="form-group">
-                      <label class="sr-only">Password</label>
-                        <%= f.password_field :password, required: true, class: "w-100p", placeholder: "Password" %>
+                       <label class="sr-only">Password</label>
+                       <%= f.password_field :password, required: true, class: "c-w-m d-b w-100p", placeholder: "Password" %>
                     </div>
                     <div class="form-group">
-                        <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
+                      <label class="sr-only">Type
+                      </label>
+                      <%= select_tag :user_type, options_for_select(User.user_form_selections, "User::Curator"), class: "c-w-m d-b w-100p" %>
                     </div>
-                  <% end %>
+                    <div class="form-group">
+                  <%= f.submit "Sign Up", :class => 'btn btn-warning btn-block' %>
+                    </div>
+                 <% end %>
                 </div>
               </div>
               <div class="row">
@@ -109,7 +111,7 @@
         <%=image_tag 'searchmarket.png', class: "h-h-i"%>
         <h2 class="section-heading r-t no-pad no-marg">Search for a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer ">
-        <p class="home lead r-t no-pad no-marg">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listing/s you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
+        <p class="home lead r-t no-pad no-marg">Finding the perfect ad space to promote your business, products, or cause is easier than ever thanks to public<span class="ad-txt">ad</span>. Simple browse our map, find the listings you like most, and submit a request. Secure your dream adverstisement space in less than 3 minutes, it's that simple. </p>
         <a href="#tab-one" class="cta-link desk-btn  f-r btn btn-warning btn-lg hidden-xs">Search</a>
       </div>
       <div class="col-lg-5   col-sm-6">
@@ -135,7 +137,9 @@
         <%=image_tag 'stacks.png', class: "h-h-i-1"%>
         <h2 class="section-heading no-pad no-marg l-t">List a public<span class="orange">ad</span> space</h2>
         <hr class="section-heading-spacer">
-        <p class="home lead l-t no-pad no-marg">Do you own out-of-home media space? Are you tired of paying those high advertisement agency fee's? List your sign for free today by creating a profile in under 3 minutes. We'll make an instantly marketeable profile for your public ad space that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.</p>
+        <p class="home lead l-t no-pad no-marg">
+        Make money listing other people's out of home media, or make even more money listing your own. We'll make an instantly marketeable profile for your public<span class="ad-txt">ad</span> space, for free, that can be shared with a worldwide audience. Expand your horizons, increase your revenue. List with public<span class="ad-txt">ad</span> today.
+        </p>
         <a href="#tab-two" class="cta-link btn btn-warning desk-btn btn-lg hidden-xs">List</a>
       </div>
 <div class="col-xs-12 visible-xs pad-b">
