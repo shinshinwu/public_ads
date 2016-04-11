@@ -19,7 +19,7 @@
                 <%=select_tag 'category', options_for_select([ 'All', 'Billboard', 'Bench Ad', 'Bus Stop Ad'  ], @search_category ) %>
               </div>
               <div class="col-xs-12">
-                <%= label_tag(:address, "Zip Code of Address:", class: 'd-b') %>
+                <%= label_tag(:address, "Zip Code or Address:", class: 'd-b') %>
                 <%= text_field_tag(:address, @search_address || 94117, :required => true) %>
               </div>
               <%= hidden_field_tag('distance', 'radius')%> 
