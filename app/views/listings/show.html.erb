@@ -4,13 +4,13 @@
 <div class="container">
   <div class="row">
     <div class="col-xs-12">
-      <h1 class="text-center">&nbsp;&nbsp;
+      <h2 class="text-center">&nbsp;&nbsp;
         <%= @listing.title %>
-      </h1>
-      <h3 class="text-center">
+      </h2>
+      <h4 class="text-center">
         <%= @listing.description %>
-      </h3>
-      <h1 class="text-center">
+      </h4>
+      <h2 class="text-center">
         <% if @listing.user == current_user %>
           <div class="btn btn-warning">
             <%= link_to "Edit Listing", edit_listing_path(@listing), class: "no-link-styling" %>
@@ -28,7 +28,7 @@
             <% end %>
           <% end %>
         <% end %>
-      </h1>
+      </h2>
       </div>
   </div>
   <hr>
