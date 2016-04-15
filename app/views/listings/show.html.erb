@@ -1,23 +1,16 @@
+
+
+
 <div class="container">
-
-  <!-- Message Modal -->
-  <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title text-center" id="myModalLabel">Inquire about the listing with the pulic<span class="orange">ad</span> owner</h4>
-        </div>
-        <div class="modal-body">
-          <%= render partial: "new_inquiry", locals: { inquiry: Inquiry.new(listing_id: @listing.id), url: inquiries_path, method: :post} %>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="container col-sm-12">
-    <h1>&nbsp;&nbsp;
-      <%= @listing.title %>
+  <div class="row">
+    <div class="col-xs-12">
+      <h2 class="text-center">&nbsp;&nbsp;
+        <%= @listing.title %>
+      </h2>
+      <h4 class="text-center">
+        <%= @listing.description %>
+      </h4>
+      <h2 class="text-center">
         <% if @listing.user == current_user %>
           <div class="btn btn-warning">
             <%= link_to "Edit Listing", edit_listing_path(@listing), class: "no-link-styling" %>
@@ -34,100 +27,93 @@
               <%= link_to "Contact", login_users_path, class: "btn btn-warning" %>
             <% end %>
           <% end %>
-      <% end %>
-    </h1>
-
-    <hr>
-
-    <div class="container">
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="orange-border sm-margin sm-padding">
-            <div class="row">
-              <div class="col-sm-12 col-md-5 col-lg-5">
-                <%= image_tag(@listing.photo.url, class: "img-responsive img-thumbnail") %>
-              </div>
-
-              <div class="col-sm-12 col-md-7 col-lg-7">
-                <div class="row sm-margin">
-                  <% if @listing.is_approved %>
-                    <div class="pull-left">
-                      <h5><span>
-                        <%= number_to_currency(@listing.recurring_amount) %> <%= @listing.renewal_period_label %>&nbsp;&nbsp;&nbsp;&nbsp;
-                        <%= number_to_currency(@listing.base_amount) %> one time set-up fee
-                      </span></h5>
-                    </div>
-                  <% end %>
-                  <div class="pull-right">
-                    <h5>Width: <%= @listing.width %> in | Height: <%= @listing.height %> in | <%= @listing.area %> SqIn</h5>
-                  </div>
-                </div>
-
-                <div class="row sm-margin">
-                  <h4 class="text-center"><span class="fa fa-map-marker icon"></span>&nbsp;&nbsp; Nearest Street Address<br> <%= @listing.address.line_1 %>, <%= @listing.address.city %>, <%= @listing.address.state %> <%= @listing.address.zipcode %> <%= @listing.address.country %></h4>
-                </div>
-
-                <div class="row sm-margin">
-                  <h5>
-                    <div class="col-sm-4 orange">Type</div>
-                    <div class="col-sm-8"><%= @listing.category %></div>
-                  </h5>
-                </div>
-
-                <div class="row sm-margin">
-                  <h5>
-                    <div class="col-sm-4 orange">Availability:</div>
-                    <div class="col-sm-8"><%= @listing.is_available ? "Available" : "Unavailable" %></div>
-                  </h5>
-                </div>
-
-                <div class="row sm-margin">
-                  <h5>
-                    <div class="col-sm-4 orange">Reference ID:</div>
-                    <div class="col-sm-8"><%= @listing.ref_id %></div>
-                  </h5>
-                </div>
-
-                <div class="row sm-margin">
-                  <h5>
-                    <div class="col-sm-4 orange">Description:</div>
-                    <div class="col-sm-8"><%= @listing.description %></div>
-                  </h5>
-                </div>
-
-                <div class="row sm-margin">
-                  <h5>
-                    <div class="col-sm-4 orange">Owned By:</div>
-                    <div class="col-sm-8"><%= @listing.company_name %></div>
-                  </h5>
-                </div>
-
-                <% if @listing.is_approved %>
-                  <div class="row sm-margin">
-                    <h5>
-                      <div class="col-sm-4 orange">Minimum Lease:</div>
-                      <div class="col-sm-8"><%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></div>
-                    </h5>
-                  </div>
-                <% end %>
-              </div> <!-- / col-sm-12 -->
-            </div><!-- / row -->
-            <div class="row">
-              <div class="col-sm-6">
-                <div class="c-w-m" id="map"></div>
-              </div>
-              <div class="col-sm-6">
-                <div class="c-w-m" id="pano"></div>
-              </div>
-            </div> <!-- .row -->
-          </div><!-- / orang-border -->
-        </div><!-- / col-sm-12 -->
-      </div><!-- / row -->
-
-    </div><!-- / container -->
-
+        <% end %>
+      </h2>
+      </div>
   </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <%= image_tag(@listing.photo.url, class: "img-responsive center-block") %>
+    </div>
+    <div class="col-sm-6 p-top-5p">                    
+      <h4 class="text-center"><span class="fa fa-map-marker icon"></span></h4>
+      <h4 class="text-center">Nearest Street Address</h4>
+      <h4 class="text-center"><%= @listing.address.line_1 %>, <%= @listing.address.city %>, <%= @listing.address.state %> <%= @listing.address.zipcode %> <%= @listing.address.country %></h4>
+      <h5 class="text-center">
+        <%= number_to_currency(@listing.recurring_amount) %> <%= @listing.renewal_period_label %>&nbsp;&nbsp;&nbsp;&nbsp;
+        <%= number_to_currency(@listing.base_amount) %> one time set-up fee
+      </h5>
+      <h5 class="text-center">Width: <%= @listing.width %> in | Height: <%= @listing.height %> in | <%= @listing.area %> SqIn</h5>
+    </div>
+  </div>
+  <hr>
+    <div class="row">
+    <div class="col-xs-12">
+      <div class="row">
+        <div class="col-xs-6">
+          <h5 class="text-right orange">Type</h5>
+        </div>
+        <div class="col-xs-6">
+          <h5 class=""><%=@listing.category%></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h5 class="text-right orange">Reference ID:</h5>
+        </div>
+        <div class="col-xs-6">
+          <h5 class=""><%=@listing.ref_id%></h5>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-6">
+          <h5 class="text-right orange">Owned By:</h5>
+        </div>
+        <div class="col-xs-6">
+          <h5 class=""><%=@listing.company_name%></h5>
+        </div>
+      </div>
+<%if @listing.is_approved?%>
+      <div class="row">
+        <div class="col-xs-6">
+          <h5 class="text-right orange">Minimum Lease:</h5>
+        </div>
+        <div class="col-xs-6">
+          <h5 class=""><%= distance_of_time_in_words_to_now(@listing.min_lease_days.days.from_now) %></h5>
+        </div>
+      </div>
+<%end%>
+    </div>
+  </div>
+  <hr>
+  <div class="row">
+    <div class="col-sm-6">
+      <h3 class="text-center">Location</h3>
+      <div class="c-w-m" id="map"></div>
+    </div>
+    <div class="col-sm-6">
+      <h3 class="text-center">Street View</h3>
+      <div class="c-w-m" id="pano"></div>
+    </div>
+  </div>
+  <hr>
 </div>
+
+
+
+
+
+
+
+
+<style type="text/css">
+  .nav.nav-tabs li{
+    /*margin: 0 auto;*/
+    text-align: center;
+  }
+
+</style>
 
 
 
@@ -184,7 +170,25 @@ var coords = new google.maps.LatLng(gon.address['latitude'], gon.address['longit
     width: 300px;
     height: 300px;
   }
-/*  #pano{
 
-  }*/
+.p-top-5p{
+  padding-top: 5%;
+}
+
 </style>
+
+
+
+  <div class="modal fade" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title text-center" id="myModalLabel">Inquire about the listing with the pulic<span class="orange">ad</span> owner</h4>
+        </div>
+        <div class="modal-body">
+          <%= render partial: "new_inquiry", locals: { inquiry: Inquiry.new(listing_id: @listing.id), url: inquiries_path, method: :post} %>
+        </div>
+      </div>
+    </div>
+  </div>
